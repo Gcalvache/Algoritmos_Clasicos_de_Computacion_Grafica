@@ -35,6 +35,8 @@
             this.circuloToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.bresenhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.polarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metodoBresenhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metodoPuntoMedioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,9 @@
             // lineasToolStripMenuItem
             // 
             this.lineasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dDAToolStripMenuItem});
+            this.dDAToolStripMenuItem,
+            this.metodoBresenhamToolStripMenuItem,
+            this.metodoPuntoMedioToolStripMenuItem});
             this.lineasToolStripMenuItem.Name = "lineasToolStripMenuItem";
             this.lineasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.lineasToolStripMenuItem.Text = "Lineas";
@@ -60,8 +64,8 @@
             // dDAToolStripMenuItem
             // 
             this.dDAToolStripMenuItem.Name = "dDAToolStripMenuItem";
-            this.dDAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dDAToolStripMenuItem.Text = "Metodos lineas";
+            this.dDAToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.dDAToolStripMenuItem.Text = "Metodo DDA";
             this.dDAToolStripMenuItem.Click += new System.EventHandler(this.dDAToolStripMenuItem_Click);
             // 
             // circuloToolStripMenuItem
@@ -78,23 +82,37 @@
             // circuloToolStripMenuItem1
             // 
             this.circuloToolStripMenuItem1.Name = "circuloToolStripMenuItem1";
-            this.circuloToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.circuloToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.circuloToolStripMenuItem1.Text = "Punto Medio";
             this.circuloToolStripMenuItem1.Click += new System.EventHandler(this.circuloToolStripMenuItem1_Click);
             // 
             // bresenhamToolStripMenuItem
             // 
             this.bresenhamToolStripMenuItem.Name = "bresenhamToolStripMenuItem";
-            this.bresenhamToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bresenhamToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.bresenhamToolStripMenuItem.Text = "Bresenham";
             this.bresenhamToolStripMenuItem.Click += new System.EventHandler(this.bresenhamToolStripMenuItem_Click);
             // 
             // polarToolStripMenuItem
             // 
             this.polarToolStripMenuItem.Name = "polarToolStripMenuItem";
-            this.polarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.polarToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.polarToolStripMenuItem.Text = "Polar";
             this.polarToolStripMenuItem.Click += new System.EventHandler(this.polarToolStripMenuItem_Click);
+            // 
+            // metodoBresenhamToolStripMenuItem
+            // 
+            this.metodoBresenhamToolStripMenuItem.Name = "metodoBresenhamToolStripMenuItem";
+            this.metodoBresenhamToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.metodoBresenhamToolStripMenuItem.Text = "Metodo Bresenham";
+            this.metodoBresenhamToolStripMenuItem.Click += new System.EventHandler(this.metodoBresenhamToolStripMenuItem_Click);
+            // 
+            // metodoPuntoMedioToolStripMenuItem
+            // 
+            this.metodoPuntoMedioToolStripMenuItem.Name = "metodoPuntoMedioToolStripMenuItem";
+            this.metodoPuntoMedioToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.metodoPuntoMedioToolStripMenuItem.Text = "Metodo Punto Medio";
+            this.metodoPuntoMedioToolStripMenuItem.Click += new System.EventHandler(this.metodoPuntoMedioToolStripMenuItem_Click);
             // 
             // frmHome
             // 
@@ -123,5 +141,7 @@
         private System.Windows.Forms.ToolStripMenuItem circuloToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem bresenhamToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem polarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metodoBresenhamToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metodoPuntoMedioToolStripMenuItem;
     }
 }

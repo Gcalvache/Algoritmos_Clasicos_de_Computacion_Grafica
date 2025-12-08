@@ -1,57 +1,53 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\",
+  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|c:\\users\\pc\\desktop\\grafica\\algoritmo para dibujar  lineas\\algortimosdibujarlinea\\algortimosdibujarlinea\\frmmetododda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|c:\\users\\pc\\desktop\\grafica\\algoritmo para dibujar  lineas\\algoritmos_clasicos_de_computacion_grafica\\algortimosdibujarlinea\\algortimosdibujarlinea\\frmmetododda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetododda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculopolar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculopolar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\clinea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\clinea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculo.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculo.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetododda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculopolar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculopolar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\clinea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\clinea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculo.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculo.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetododda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetododda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetododda.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetododda.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetododda.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -61,7 +57,7 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmhome.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmhome.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmhome.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -71,11 +67,11 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculobresenham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculopolar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculopolar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculopolar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -97,7 +93,7 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculobresenham.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\algortimosdibujarlinea\\frmmetodocirculobresenham.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FA97DE-A7C9-4295-99F4-13CD7FDEB07A}|AlgortimosDibujarLinea\\AlgortimosDibujarLinea.csproj|solutionrelative:algortimosdibujarlinea\\frmmetodocirculobresenham.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -108,27 +104,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "frmMetodoCirculo - Copia.resx",
-              "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
-              "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-12-02T15:35:33.415Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "frmMetodoDda.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoDda.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs [Dise\u00F1o]",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoDda.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T15:05:57.85Z",
@@ -136,47 +120,85 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 3,
+              "Title": "frmHome.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs",
+              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmHome.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs [Dise\u00F1o]",
+              "RelativeToolTip": "AlgortimosDibujarLinea\\frmHome.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T14:42:58.629Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmHome.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs",
+              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmHome.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs",
+              "RelativeToolTip": "AlgortimosDibujarLinea\\frmHome.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAUwA8AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T14:44:58.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Program.cs",
+              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Program.cs",
+              "RelativeToolTip": "AlgortimosDibujarLinea\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T14:45:29.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
               "Title": "frmMetodoCirculo - Copia (2).resx",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).resx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
               "WhenOpened": "2025-12-02T15:35:33.492Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmNew.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmNew.cs",
-              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmNew.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmNew.cs [Dise\u00F1o]",
-              "RelativeToolTip": "AlgortimosDibujarLinea\\frmNew.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T14:44:04.592Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "DocumentIndex": 22,
+              "Title": "frmMetodoCirculo - Copia.resx",
+              "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
+              "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-12-02T15:35:33.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "frmMetodoCirculo - Copia (2).Designer.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).Designer.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).Designer.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).Designer.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).Designer.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).Designer.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T15:35:33.448Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "frmMetodoCirculoBresenham.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.Designer.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.Designer.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -184,47 +206,47 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 21,
               "Title": "frmMetodoCirculo - Copia.Designer.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.Designer.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.Designer.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.Designer.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.Designer.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.Designer.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T15:35:33.371Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "frmMetodoCirculoPola.Designer.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.Designer.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.Designer.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.Designer.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.Designer.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.Designer.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T15:35:33.306Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 19,
               "Title": "frmMetodoCirculoBresenhan.Designer.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.Designer.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.Designer.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.Designer.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.Designer.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.Designer.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T15:35:33.252Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "frmMetodoCirculoPolar.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.Designer.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculoPolar.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.Designer.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculoPolar.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -232,22 +254,22 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "frmMetodoCirculoBresenham.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
               "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs [Dise\u00F1o]",
-              "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T14:54:40.881Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 17,
               "Title": "frmMetodoCirculoBresenham.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculoBresenham.cs",
               "ViewState": "AgIAAA8BAAAAAAAAAEBVwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -255,11 +277,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "frmMetodoCirculoPolar.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculoPolar.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculoPolar.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculoPolar.cs",
               "ViewState": "AgIAAPMAAAAAAAAAAEBVwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -267,105 +289,83 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "frmMetodoCirculoPola.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoPola.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T14:24:53.835Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "frmMetodoCirculoBresenhan.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculoBresenhan.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T14:24:36.935Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frmHome.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs",
-              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmHome.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs [Dise\u00F1o]",
-              "RelativeToolTip": "AlgortimosDibujarLinea\\frmHome.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T14:42:58.629Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "frmMetodoCirculo.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
               "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs [Dise\u00F1o]",
-              "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculo.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-27T15:19:11.892Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frmHome.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs",
-              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmHome.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.cs",
-              "RelativeToolTip": "AlgortimosDibujarLinea\\frmHome.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAWwDYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T14:44:58.787Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "frmMetodoCirculo - Copia.cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T14:07:06.255Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "frmMetodoCirculo - Copia (2).cs",
               "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs",
               "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs",
-              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1451575352\\frmMetodoCirculo - Copia (2).cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T14:07:29.242Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "frmHome.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.Designer.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmHome.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmHome.Designer.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmHome.Designer.cs",
               "ViewState": "AgIAAHgAAAAAAAAAAMBdwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-02T14:08:57.48Z"
+              "WhenOpened": "2025-12-02T14:08:57.48Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "Clinea.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Clinea.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Clinea.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\Clinea.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Clinea.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Clinea.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\Clinea.cs",
               "ViewState": "AgIAACcBAAAAAAAAAAD4vz0BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -375,9 +375,9 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "frmMetodoCirculo.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.Designer.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculo.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.Designer.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculo.Designer.cs",
               "ViewState": "AgIAANgAAAAAAAAAAAAWwAIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -387,9 +387,9 @@
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "frmMetodoCirculo.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoCirculo.cs",
               "ViewState": "AgIAAOUAAAAAAAAAAIBZwLcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -397,35 +397,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Program.cs",
-              "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\Program.cs",
-              "RelativeToolTip": "AlgortimosDibujarLinea\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T14:45:29.501Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "frmMetodoDda.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.Designer.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoDda.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.Designer.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoDda.Designer.cs",
               "ViewState": "AgIAAHsBAAAAAAAAAABhwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T15:25:15.08Z"
+              "WhenOpened": "2025-11-25T15:25:15.08Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "frmMetodoDda.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs",
               "RelativeDocumentMoniker": "AlgortimosDibujarLinea\\frmMetodoDda.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\GRAFICA\\ALGORITMO PARA DIBUJAR  LINEAS\\Algoritmos_Clasicos_de_Computacion_Grafica\\AlgortimosDibujarLinea\\AlgortimosDibujarLinea\\frmMetodoDda.cs",
               "RelativeToolTip": "AlgortimosDibujarLinea\\frmMetodoDda.cs",
               "ViewState": "AgIAAKsAAAAAAAAAAAAWwLsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

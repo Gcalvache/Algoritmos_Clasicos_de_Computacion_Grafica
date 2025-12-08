@@ -71,17 +71,23 @@
     <Compile Include="frmMetodoCirculo.Designer.cs">
       <DependentUpon>frmMetodoCirculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMetodoDda.cs">
+    <Compile Include="frmMetodoLineaPuntoMedio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMetodoDda.Designer.cs">
-      <DependentUpon>frmMetodoDda.cs</DependentUpon>
+    <Compile Include="frmMetodoLineaPuntoMedio.Designer.cs">
+      <DependentUpon>frmMetodoLineaPuntoMedio.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNew.cs">
+    <Compile Include="frmMetodoLineaBresenham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNew.Designer.cs">
-      <DependentUpon>frmNew.cs</DependentUpon>
+    <Compile Include="frmMetodoLineaBresenham.Designer.cs">
+      <DependentUpon>frmMetodoLineaBresenham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoLineaDda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoLineaDda.Designer.cs">
+      <DependentUpon>frmMetodoLineaDda.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,11 +103,14 @@
     <EmbeddedResource Include="frmMetodoCirculo.resx">
       <DependentUpon>frmMetodoCirculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMetodoDda.resx">
-      <DependentUpon>frmMetodoDda.cs</DependentUpon>
+    <EmbeddedResource Include="frmMetodoLineaPuntoMedio.resx">
+      <DependentUpon>frmMetodoLineaPuntoMedio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNew.resx">
-      <DependentUpon>frmNew.cs</DependentUpon>
+    <EmbeddedResource Include="frmMetodoLineaBresenham.resx">
+      <DependentUpon>frmMetodoLineaBresenham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoLineaDda.resx">
+      <DependentUpon>frmMetodoLineaDda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

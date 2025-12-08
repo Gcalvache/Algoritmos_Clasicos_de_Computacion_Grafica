@@ -19,7 +19,7 @@ namespace AlgortimosDibujarLinea
 
         private void dDAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmMetodoDda frm= new frmMetodoDda();
+            frmMetodoLineaDda frm= new frmMetodoLineaDda();
             frm. MdiParent = this;
             frm.Show();
         }
@@ -49,6 +49,20 @@ namespace AlgortimosDibujarLinea
         private void circuloToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void metodoBresenhamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoLineaBresenham frm = new frmMetodoLineaBresenham();   
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void metodoPuntoMedioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoLineaPuntoMedio frm = new frmMetodoLineaPuntoMedio();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }
