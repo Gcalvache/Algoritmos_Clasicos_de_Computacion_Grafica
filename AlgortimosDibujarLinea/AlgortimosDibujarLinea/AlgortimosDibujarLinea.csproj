@@ -47,11 +47,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clinea.cs" />
+    <Compile Include="CRelleno.cs" />
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmHome.Designer.cs">
       <DependentUpon>frmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoRellenoBoundary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoRellenoBoundary.Designer.cs">
+      <DependentUpon>frmMetodoRellenoBoundary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoRellenoScanlineSeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoRellenoScanlineSeed.Designer.cs">
+      <DependentUpon>frmMetodoRellenoScanlineSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoRellenoFlood.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoRellenoFlood.Designer.cs">
+      <DependentUpon>frmMetodoRellenoFlood.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMetodoCirculoPolar.cs">
       <SubType>Form</SubType>
@@ -93,6 +112,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoRellenoBoundary.resx">
+      <DependentUpon>frmMetodoRellenoBoundary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoRellenoScanlineSeed.resx">
+      <DependentUpon>frmMetodoRellenoScanlineSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoRellenoFlood.resx">
+      <DependentUpon>frmMetodoRellenoFlood.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMetodoCirculoPolar.resx">
       <DependentUpon>frmMetodoCirculoPolar.cs</DependentUpon>

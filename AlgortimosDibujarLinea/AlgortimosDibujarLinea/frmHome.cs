@@ -64,5 +64,26 @@ namespace AlgortimosDibujarLinea
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void boundaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoRellenoBoundary frm = new frmMetodoRellenoBoundary();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void floodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoRellenoFlood frm = new frmMetodoRellenoFlood();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void scanlineSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoRellenoScanlineSeed frm = new frmMetodoRellenoScanlineSeed();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

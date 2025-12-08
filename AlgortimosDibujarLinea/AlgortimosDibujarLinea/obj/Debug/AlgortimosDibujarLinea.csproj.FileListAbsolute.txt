@@ -31,3 +31,6 @@ C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_d
 C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_de_Computacion_Grafica\AlgortimosDibujarLinea\AlgortimosDibujarLinea\obj\Debug\AlgortimosDibujarLinea.frmMetodoLineaPuntoMedio.resources
 C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_de_Computacion_Grafica\AlgortimosDibujarLinea\AlgortimosDibujarLinea\obj\Debug\AlgortimosDibujarLinea.frmMetodoLineaBresenham.resources
 C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_de_Computacion_Grafica\AlgortimosDibujarLinea\AlgortimosDibujarLinea\obj\Debug\AlgortimosDibujarLinea.frmMetodoLineaDda.resources
+C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_de_Computacion_Grafica\AlgortimosDibujarLinea\AlgortimosDibujarLinea\obj\Debug\AlgortimosDibujarLinea.frmMetodoRellenoBoundary.resources
+C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_de_Computacion_Grafica\AlgortimosDibujarLinea\AlgortimosDibujarLinea\obj\Debug\AlgortimosDibujarLinea.frmMetodoRellenoScanlineSeed.resources
+C:\Users\PC\Desktop\GRAFICA\ALGORITMO PARA DIBUJAR  LINEAS\Algoritmos_Clasicos_de_Computacion_Grafica\AlgortimosDibujarLinea\AlgortimosDibujarLinea\obj\Debug\AlgortimosDibujarLinea.frmMetodoRellenoFlood.resources

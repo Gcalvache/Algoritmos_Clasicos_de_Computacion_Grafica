@@ -46,11 +46,11 @@
             this.lblYf = new System.Windows.Forms.Label();
             this.lblXf = new System.Windows.Forms.Label();
             this.grpOpciones = new System.Windows.Forms.GroupBox();
-            this.lblZoom = new System.Windows.Forms.Label();
-            this.trkZoom = new System.Windows.Forms.TrackBar();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCalcular = new System.Windows.Forms.Button();
+            this.lblZoom = new System.Windows.Forms.Label();
+            this.trkZoom = new System.Windows.Forms.TrackBar();
             this.grpSalida = new System.Windows.Forms.GroupBox();
             this.txtPendiente = new System.Windows.Forms.TextBox();
             this.lblPendiente = new System.Windows.Forms.Label();
@@ -232,25 +232,6 @@
             this.grpOpciones.TabStop = false;
             this.grpOpciones.Text = "OPCIONES";
             // 
-            // lblZoom
-            // 
-            this.lblZoom.AutoSize = true;
-            this.lblZoom.Location = new System.Drawing.Point(340, 368);
-            this.lblZoom.Name = "lblZoom";
-            this.lblZoom.Size = new System.Drawing.Size(66, 13);
-            this.lblZoom.TabIndex = 4;
-            this.lblZoom.Text = "Zoom: 10 px";
-            // 
-            // trkZoom
-            // 
-            this.trkZoom.Location = new System.Drawing.Point(343, 384);
-            this.trkZoom.Maximum = 100;
-            this.trkZoom.Minimum = 2;
-            this.trkZoom.Name = "trkZoom";
-            this.trkZoom.Size = new System.Drawing.Size(248, 45);
-            this.trkZoom.TabIndex = 3;
-            this.trkZoom.Value = 10;
-            // 
             // btnSalir
             // 
             this.btnSalir.Location = new System.Drawing.Point(180, 63);
@@ -277,6 +258,25 @@
             this.btnCalcular.TabIndex = 0;
             this.btnCalcular.Text = "CALCULAR";
             this.btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(340, 368);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(66, 13);
+            this.lblZoom.TabIndex = 4;
+            this.lblZoom.Text = "Zoom: 10 px";
+            // 
+            // trkZoom
+            // 
+            this.trkZoom.Location = new System.Drawing.Point(343, 384);
+            this.trkZoom.Maximum = 100;
+            this.trkZoom.Minimum = 2;
+            this.trkZoom.Name = "trkZoom";
+            this.trkZoom.Size = new System.Drawing.Size(248, 45);
+            this.trkZoom.TabIndex = 3;
+            this.trkZoom.Value = 10;
             // 
             // grpSalida
             // 
@@ -305,7 +305,7 @@
             this.lblPendiente.TabIndex = 0;
             this.lblPendiente.Text = "PENDIENTE:";
             // 
-            // frmMetodoDda
+            // frmMetodoLineaDda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,7 +319,7 @@
             this.Controls.Add(this.grpInicial);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmMetodoLineaDda";
-            this.Text = "Metodo DDA";
+            this.Text = "Trazado de Linea-DDA";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpGrafico.ResumeLayout(false);

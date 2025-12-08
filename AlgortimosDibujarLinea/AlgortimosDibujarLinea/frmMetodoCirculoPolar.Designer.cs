@@ -46,8 +46,8 @@
             this.groupBox1.SuspendLayout();
             this.grpGrafico.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
             this.grpOpciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -91,7 +91,7 @@
             this.lblR.AutoSize = true;
             this.lblR.Location = new System.Drawing.Point(17, 83);
             this.lblR.Name = "lblR";
-            this.lblR.Size = new System.Drawing.Size(23, 13);
+            this.lblR.Size = new System.Drawing.Size(21, 13);
             this.lblR.TabIndex = 2;
             this.lblR.Text = "R=";
             // 
@@ -100,7 +100,7 @@
             this.lblYc.AutoSize = true;
             this.lblYc.Location = new System.Drawing.Point(17, 53);
             this.lblYc.Name = "lblYc";
-            this.lblYc.Size = new System.Drawing.Size(29, 13);
+            this.lblYc.Size = new System.Drawing.Size(26, 13);
             this.lblYc.TabIndex = 1;
             this.lblYc.Text = "Yc=";
             // 
@@ -109,7 +109,7 @@
             this.lblXc.AutoSize = true;
             this.lblXc.Location = new System.Drawing.Point(17, 25);
             this.lblXc.Name = "lblXc";
-            this.lblXc.Size = new System.Drawing.Size(29, 13);
+            this.lblXc.Size = new System.Drawing.Size(26, 13);
             this.lblXc.TabIndex = 0;
             this.lblXc.Text = "Xc=";
             // 
@@ -150,7 +150,7 @@
             this.lblZoom.AutoSize = true;
             this.lblZoom.Location = new System.Drawing.Point(7, 16);
             this.lblZoom.Name = "lblZoom";
-            this.lblZoom.Size = new System.Drawing.Size(65, 13);
+            this.lblZoom.Size = new System.Drawing.Size(66, 13);
             this.lblZoom.TabIndex = 3;
             this.lblZoom.Text = "Zoom: 10 px";
             // 
@@ -162,7 +162,6 @@
             this.trkZoom.Name = "trkZoom";
             this.trkZoom.Size = new System.Drawing.Size(248, 45);
             this.trkZoom.TabIndex = 2;
-            this.trkZoom.TickFrequency = 1;
             this.trkZoom.Value = 10;
             // 
             // btnSalir
@@ -201,12 +200,11 @@
             this.Controls.Add(this.grpOpciones);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmMetodoCirculoPolar";
-            this.Text = "Form Círculo - Polar";
+            this.Text = "Trazado de Circulo-Polar";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpGrafico.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
             this.grpOpciones.ResumeLayout(false);
             this.grpOpciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
