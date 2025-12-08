@@ -1,0 +1,158 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoCirculo : Form
+    {
+        public frmMetodoCirculo()
+        {
+            InitializeComponent();
+
+            // Asociar eventos de botones
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            // Inicializar picturebox con bitmap
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXc.Clear();
+            txtYc.Clear();
+            txtR.Clear();
+
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.Clear(pcbGrafico.BackColor);
+                }
+                pcbGrafico.Invalidate();
+            }
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            int xc, yc, r;
+            if (!int.TryParse(txtXc.Text, out xc) ||
+                !int.TryParse(txtYc.Text, out yc) ||
+                !int.TryParse(txtR.Text, out r))
+            {
+                MessageBox.Show("Ingrese valores enteros válidos para Xc, Yc y R.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (r < 0)
+            {
+                MessageBox.Show("El radio debe ser no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var puntos = Clinea.CircleMidpoint(xc, yc, r);
+
+            if (puntos == null || puntos.Count == 0)
+            {
+                MessageBox.Show("No hay puntos para dibujar.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Prepare bitmap
+            if (pcbGrafico.Image == null)
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.Clear(pcbGrafico.BackColor);
+
+                int width = pcbGrafico.Width;
+                int height = pcbGrafico.Height;
+                int margin = 20;
+                int cellSize = 20;
+
+                int minX = puntos.Min(p => p.X);
+                int maxX = puntos.Max(p => p.X);
+                int minY = puntos.Min(p => p.Y);
+                int maxY = puntos.Max(p => p.Y);
+
+                int neededCols = maxX - minX + 1;
+                int neededRows = maxY - minY + 1;
+
+                int availableW = Math.Max(50, width - margin * 2);
+                int availableH = Math.Max(50, height - margin * 2);
+
+                int candidateW = availableW / Math.Max(1, neededCols);
+                int candidateH = availableH / Math.Max(1, neededRows);
+
+                int candidate = Math.Min(candidateW, candidateH);
+                if (candidate >= 4) cellSize = candidate;
+
+                cellSize = Math.Max(4, Math.Min(cellSize, 80));
+
+                // Draw grid
+                using (var penGrid = new Pen(Color.LightGray, 1))
+                {
+                    for (int x = margin; x <= width; x += cellSize)
+                        g.DrawLine(penGrid, x, 0, x, height);
+                    for (int y = margin; y <= height; y += cellSize)
+                        g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                // Fill cells for each circle point
+                using (var fillBrush = new SolidBrush(Color.FromArgb(200, 100, 100, 100)))
+                using (var centerBrush = new SolidBrush(Color.FromArgb(220, 0, 120, 200)))
+                using (var penOutline = new Pen(Color.Black, 1))
+                {
+                    foreach (var p in puntos)
+                    {
+                        int col = p.X - minX;
+                        int row = p.Y - minY;
+
+                        int rectX = margin + col * cellSize;
+                        int rectY = margin + row * cellSize;
+
+                        g.FillRectangle(fillBrush, rectX, rectY, cellSize, cellSize);
+                        g.DrawRectangle(penOutline, rectX, rectY, cellSize, cellSize);
+                    }
+
+                    // Mark center cell if inside range
+                    if (xc >= minX && xc <= maxX && yc >= minY && yc <= maxY)
+                    {
+                        int ccol = xc - minX;
+                        int crow = yc - minY;
+                        int cx = margin + ccol * cellSize;
+                        int cy = margin + crow * cellSize;
+                        g.FillRectangle(centerBrush, cx, cy, cellSize, cellSize);
+                        g.DrawRectangle(Pens.Black, cx, cy, cellSize, cellSize);
+                    }
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbGrafico_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

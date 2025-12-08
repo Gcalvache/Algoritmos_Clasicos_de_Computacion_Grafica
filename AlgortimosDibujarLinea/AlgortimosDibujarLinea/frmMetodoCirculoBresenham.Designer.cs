@@ -1,0 +1,235 @@
+﻿namespace AlgortimosDibujarLinea
+{
+    partial class frmMetodoCirculoBresenham
+    {
+        /// <summary>
+        /// Variable del diseñador necesaria.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén usando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtR = new System.Windows.Forms.TextBox();
+            this.txtYc = new System.Windows.Forms.TextBox();
+            this.txtXc = new System.Windows.Forms.TextBox();
+            this.lblR = new System.Windows.Forms.Label();
+            this.lblYc = new System.Windows.Forms.Label();
+            this.lblXc = new System.Windows.Forms.Label();
+            this.grpGrafico = new System.Windows.Forms.GroupBox();
+            this.pcbGrafico = new System.Windows.Forms.PictureBox();
+            this.grpOpciones = new System.Windows.Forms.GroupBox();
+            this.lblZoom = new System.Windows.Forms.Label();
+            this.trkZoom = new System.Windows.Forms.TrackBar();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.grpGrafico.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
+            this.grpOpciones.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtR);
+            this.groupBox1.Controls.Add(this.txtYc);
+            this.groupBox1.Controls.Add(this.txtXc);
+            this.groupBox1.Controls.Add(this.lblR);
+            this.groupBox1.Controls.Add(this.lblYc);
+            this.groupBox1.Controls.Add(this.lblXc);
+            this.groupBox1.Location = new System.Drawing.Point(24, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(286, 123);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de entrada";
+            // 
+            // txtR
+            // 
+            this.txtR.Location = new System.Drawing.Point(88, 80);
+            this.txtR.Name = "txtR";
+            this.txtR.Size = new System.Drawing.Size(177, 20);
+            this.txtR.TabIndex = 5;
+            // 
+            // txtYc
+            // 
+            this.txtYc.Location = new System.Drawing.Point(88, 50);
+            this.txtYc.Name = "txtYc";
+            this.txtYc.Size = new System.Drawing.Size(177, 20);
+            this.txtYc.TabIndex = 4;
+            // 
+            // txtXc
+            // 
+            this.txtXc.Location = new System.Drawing.Point(88, 22);
+            this.txtXc.Name = "txtXc";
+            this.txtXc.Size = new System.Drawing.Size(177, 20);
+            this.txtXc.TabIndex = 3;
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.Location = new System.Drawing.Point(17, 83);
+            this.lblR.Name = "lblR";
+            this.lblR.Size = new System.Drawing.Size(23, 13);
+            this.lblR.TabIndex = 2;
+            this.lblR.Text = "R=";
+            // 
+            // lblYc
+            // 
+            this.lblYc.AutoSize = true;
+            this.lblYc.Location = new System.Drawing.Point(17, 53);
+            this.lblYc.Name = "lblYc";
+            this.lblYc.Size = new System.Drawing.Size(29, 13);
+            this.lblYc.TabIndex = 1;
+            this.lblYc.Text = "Yc=";
+            // 
+            // lblXc
+            // 
+            this.lblXc.AutoSize = true;
+            this.lblXc.Location = new System.Drawing.Point(17, 25);
+            this.lblXc.Name = "lblXc";
+            this.lblXc.Size = new System.Drawing.Size(29, 13);
+            this.lblXc.TabIndex = 0;
+            this.lblXc.Text = "Xc=";
+            // 
+            // grpGrafico
+            // 
+            this.grpGrafico.Controls.Add(this.pcbGrafico);
+            this.grpGrafico.Location = new System.Drawing.Point(336, 24);
+            this.grpGrafico.Name = "grpGrafico";
+            this.grpGrafico.Size = new System.Drawing.Size(452, 389);
+            this.grpGrafico.TabIndex = 2;
+            this.grpGrafico.TabStop = false;
+            this.grpGrafico.Text = "GRAFICO";
+            // 
+            // pcbGrafico
+            // 
+            this.pcbGrafico.Location = new System.Drawing.Point(7, 20);
+            this.pcbGrafico.Name = "pcbGrafico";
+            this.pcbGrafico.Size = new System.Drawing.Size(439, 356);
+            this.pcbGrafico.TabIndex = 0;
+            this.pcbGrafico.TabStop = false;
+            // 
+            // grpOpciones
+            // 
+            this.grpOpciones.Controls.Add(this.lblZoom);
+            this.grpOpciones.Controls.Add(this.trkZoom);
+            this.grpOpciones.Controls.Add(this.btnSalir);
+            this.grpOpciones.Controls.Add(this.btnLimpiar);
+            this.grpOpciones.Controls.Add(this.btnCalcular);
+            this.grpOpciones.Location = new System.Drawing.Point(24, 160);
+            this.grpOpciones.Name = "grpOpciones";
+            this.grpOpciones.Size = new System.Drawing.Size(286, 110);
+            this.grpOpciones.TabIndex = 3;
+            this.grpOpciones.TabStop = false;
+            this.grpOpciones.Text = "OPCIONES";
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(7, 16);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(65, 13);
+            this.lblZoom.TabIndex = 3;
+            this.lblZoom.Text = "Zoom: 10 px";
+            // 
+            // trkZoom
+            // 
+            this.trkZoom.Location = new System.Drawing.Point(7, 32);
+            this.trkZoom.Maximum = 100;
+            this.trkZoom.Minimum = 2;
+            this.trkZoom.Name = "trkZoom";
+            this.trkZoom.Size = new System.Drawing.Size(248, 45);
+            this.trkZoom.TabIndex = 2;
+            this.trkZoom.TickFrequency = 1;
+            this.trkZoom.Value = 10;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(180, 75);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 2;
+            this.btnSalir.Text = "SALIR";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(93, 75);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 1;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(7, 75);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.TabIndex = 0;
+            this.btnCalcular.Text = "CALCULAR";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // frmMetodoCirculo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 434);
+            this.Controls.Add(this.grpGrafico);
+            this.Controls.Add(this.grpOpciones);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "frmMetodoCirculo";
+            this.Text = "Form Círculo";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.grpGrafico.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
+            this.grpOpciones.ResumeLayout(false);
+            this.grpOpciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblR;
+        private System.Windows.Forms.Label lblYc;
+        private System.Windows.Forms.Label lblXc;
+        private System.Windows.Forms.TextBox txtR;
+        private System.Windows.Forms.TextBox txtYc;
+        private System.Windows.Forms.TextBox txtXc;
+        private System.Windows.Forms.GroupBox grpGrafico;
+        private System.Windows.Forms.PictureBox pcbGrafico;
+        private System.Windows.Forms.GroupBox grpOpciones;
+        private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.TrackBar trkZoom;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnCalcular;
+    }
+}
+

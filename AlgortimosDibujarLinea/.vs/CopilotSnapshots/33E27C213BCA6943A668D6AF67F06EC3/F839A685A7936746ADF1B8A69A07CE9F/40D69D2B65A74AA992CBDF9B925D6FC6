@@ -1,0 +1,179 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoDda : Form
+    {
+        public frmMetodoDda()
+        {
+            InitializeComponent();
+
+            // Asociar eventos de botones
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            // Inicializar picturebox con bitmap
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXi.Clear();
+            txtYi.Clear();
+            txtXf.Clear();
+            txtYf.Clear();
+            txtPendiente.Clear();
+
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.Clear(pcbGrafico.BackColor);
+                }
+                pcbGrafico.Invalidate();
+            }
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            int xi, yi, xf, yf;
+            if (!int.TryParse(txtXi.Text, out xi) ||
+                !int.TryParse(txtYi.Text, out yi) ||
+                !int.TryParse(txtXf.Text, out xf) ||
+                !int.TryParse(txtYf.Text, out yf))
+            {
+                MessageBox.Show("Ingrese coordenadas enteras válidas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var linea = new Clinea(xi, yi, xf, yf);
+            var puntos = linea.Discretize();
+
+            txtPendiente.Text = double.IsInfinity(linea.Pendiente) ? "∞" : linea.Pendiente.ToString("F4");
+
+            // Dibujar los puntos en el PictureBox
+            if (pcbGrafico.Image == null)
+            {
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+            }
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                // Limpiar
+                g.Clear(pcbGrafico.BackColor);
+
+                // Parámetros de la grilla
+                int width = pcbGrafico.Width;
+                int height = pcbGrafico.Height;
+
+                // Centro (origen de coordenadas)
+                int cx = width / 2;
+                int cy = height / 2;
+
+                // Calcular escala (tamaño de celda) para que los puntos se vean como casillas
+                int cellSize = 30; // valor por defecto
+
+                // Intentar adaptar escala para que la línea quepa en el área
+                if (puntos != null && puntos.Count > 0)
+                {
+                    int minX = puntos.Min(p => p.X);
+                    int maxX = puntos.Max(p => p.X);
+                    int minY = puntos.Min(p => p.Y);
+                    int maxY = puntos.Max(p => p.Y);
+
+                    int rangeX = Math.Max(Math.Abs(minX), Math.Abs(maxX));
+                    int rangeY = Math.Max(Math.Abs(minY), Math.Abs(maxY));
+
+                    int neededCols = rangeX * 2 + 3;
+                    int neededRows = rangeY * 2 + 3;
+
+                    if (neededCols > 0 && neededRows > 0)
+                    {
+                        int candidate = Math.Min(Math.Max(4, width / neededCols), Math.Max(4, height / neededRows));
+                        if (candidate > 0)
+                            cellSize = candidate;
+                    }
+                }
+
+                // Dibujar grilla centrada en (cx,cy)
+                using (var penGrid = new Pen(Color.LightGray, 2))
+                {
+                    // verticales
+                    int nLeft = (int)Math.Ceiling((double)cx / cellSize);
+                    int nRight = (int)Math.Ceiling((double)(width - cx) / cellSize);
+                    for (int n = -nLeft; n <= nRight; n++)
+                    {
+                        int x = cx + n * cellSize;
+                        g.DrawLine(penGrid, x, 0, x, height);
+                    }
+
+                    // horizontales
+                    int nUp = (int)Math.Ceiling((double)cy / cellSize);
+                    int nDown = (int)Math.Ceiling((double)(height - cy) / cellSize);
+                    for (int n = -nUp; n <= nDown; n++)
+                    {
+                        int y = cy + n * cellSize;
+                        g.DrawLine(penGrid, 0, y, width, y);
+                    }
+                }
+
+                // Dibujar casillas (píxeles) para cada punto
+                var fillBrush = new SolidBrush(Color.FromArgb(160, 120, 120, 120));
+                foreach (var p in puntos)
+                {
+                    int px = cx + p.X * cellSize;
+                    int py = cy - p.Y * cellSize; // invertir Y para que Y crezca hacia arriba
+
+                    int rectX = px - cellSize / 2;
+                    int rectY = py - cellSize / 2;
+
+                    g.FillRectangle(fillBrush, rectX, rectY, cellSize, cellSize);
+                }
+                fillBrush.Dispose();
+
+                // Conectar centros con una línea delgada negra
+                using (var penLine = new Pen(Color.Black, 3))
+                {
+                    for (int i = 1; i < puntos.Count; i++)
+                    {
+                        var p1 = puntos[i - 1];
+                        var p2 = puntos[i];
+                        int x1 = cx + p1.X * cellSize;
+                        int y1 = cy - p1.Y * cellSize;
+                        int x2 = cx + p2.X * cellSize;
+                        int y2 = cy - p2.Y * cellSize;
+                        g.DrawLine(penLine, x1, y1, x2, y2);
+                    }
+                }
+
+                // Opcional: dibujar ejes en gris más oscuro
+                using (var penAxis = new Pen(Color.Gray, 2))
+                {
+                    g.DrawLine(penAxis, 0, cy, width, cy);
+                    g.DrawLine(penAxis, cx, 0, cx, height);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

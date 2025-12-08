@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+
+namespace AlgortimosDibujarLinea
+{
+    public class Clinea
+    {
+        public int Xi { get; }
+        public int Yi { get; }
+        public int Xf { get; }
+        public int Yf { get; }
+        public double Pendiente { get; private set; }
+
+        public Clinea(int xi, int yi, int xf, int yf)
+        {
+            Xi = xi;
+            Yi = yi;
+            Xf = xf;
+            Yf = yf;
+        }
+
+        //algoritmo DDA
+        public List<Point> Discretize()
+        {
+            var points = new List<Point>();
+
+            int dx = Xf - Xi;
+            int dy = Yf - Yi;
+            int steps = Math.Max(Math.Abs(dx), Math.Abs(dy));
+
+            if (steps == 0)
+            {
+                points.Add(new Point(Xi, Yi));
+                Pendiente = double.NaN;
+                return points;
+            }
+
+            double xInc = dx / (double)steps;
+            double yInc = dy / (double)steps;
+
+            double x = Xi;
+            double y = Yi;
+
+            for (int i = 0; i <= steps; i++)
+            {
+                points.Add(new Point((int)Math.Round(x), (int)Math.Round(y)));
+                x += xInc;
+                y += yInc;
+            }
+
+            Pendiente = dx == 0 ? double.PositiveInfinity : dy / (double)dx;
+            return points;
+        }
+    }
+}

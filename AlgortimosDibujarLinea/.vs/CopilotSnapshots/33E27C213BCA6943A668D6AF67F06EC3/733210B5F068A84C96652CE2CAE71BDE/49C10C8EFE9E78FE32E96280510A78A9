@@ -1,0 +1,181 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoCirculo : Form
+    {
+        public frmMetodoCirculo()
+        {
+            InitializeComponent();
+
+            // Asociar eventos de botones
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            // Inicializar zoom si existe
+            if (trkZoom != null)
+            {
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {trkZoom.Value} px";
+            }
+
+            // Inicializar picturebox con bitmap
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            if (lblZoom != null && trkZoom != null)
+                lblZoom.Text = $"Zoom: {trkZoom.Value} px";
+
+            BtnCalcular_Click(this, EventArgs.Empty);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXc.Clear();
+            txtYc.Clear();
+            txtR.Clear();
+
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.Clear(pcbGrafico.BackColor);
+                }
+                pcbGrafico.Invalidate();
+            }
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            int xc, yc, r;
+            if (!int.TryParse(txtXc.Text, out xc) ||
+                !int.TryParse(txtYc.Text, out yc) ||
+                !int.TryParse(txtR.Text, out r))
+            {
+                MessageBox.Show("Ingrese valores enteros válidos para Xc, Yc y R.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (r < 0)
+            {
+                MessageBox.Show("El radio debe ser no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var puntos = Clinea.CircleMidpoint(xc, yc, r);
+
+            if (puntos == null || puntos.Count == 0)
+            {
+                MessageBox.Show("No hay puntos para dibujar.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Prepare bitmap
+            if (pcbGrafico.Image == null)
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                // Better rendering quality
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.Clear(pcbGrafico.BackColor);
+
+                int width = pcbGrafico.Width;
+                int height = pcbGrafico.Height;
+                int margin = 10;
+
+                // scale (pixels per unit)
+                float scale = 10f; // default
+                if (trkZoom != null)
+                    scale = trkZoom.Value;
+
+                // center of picture box in pixels
+                float cx = width / 2f;
+                float cy = height / 2f;
+
+                // Draw fine grid (cartesian)
+                using (var penGrid = new Pen(Color.FromArgb(200, 220, 220, 220), 1))
+                {
+                    // spacing = scale
+                    float spacing = Math.Max(1f, scale);
+
+                    // vertical lines
+                    for (float x = cx; x <= width; x += spacing)
+                        g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing)
+                        g.DrawLine(penGrid, x, 0, x, height);
+
+                    // horizontal lines
+                    for (float y = cy; y <= height; y += spacing)
+                        g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing)
+                        g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                // Draw axes
+                using (var penAxis = new Pen(Color.Gray, 2))
+                {
+                    g.DrawLine(penAxis, 0, cy, width, cy); // x-axis
+                    g.DrawLine(penAxis, cx, 0, cx, height); // y-axis
+                }
+
+                // Map function: world (x,y) -> screen px
+                Func<int, int, PointF> map = (x, y) => new PointF(cx + (x - xc) * scale, cy - (y - yc) * scale);
+                // Note: mapping centers on circle center so circle appears centered
+
+                // Draw discrete points as small squares (high definition)
+                float pxSize = Math.Max(1f, scale * 0.6f);
+                using (var fillBrush = new SolidBrush(Color.FromArgb(220, 80, 80, 80)))
+                using (var penPoint = new Pen(Color.Black, 1))
+                using (var penCircle = new Pen(Color.FromArgb(180, 0, 100, 200), Math.Max(1f, scale * 0.08f)))
+                {
+                    foreach (var p in puntos)
+                    {
+                        var sp = map(p.X, p.Y);
+                        var rect = new RectangleF(sp.X - pxSize / 2f, sp.Y - pxSize / 2f, pxSize, pxSize);
+                        g.FillRectangle(fillBrush, rect);
+                        g.DrawRectangle(penPoint, rect.X, rect.Y, rect.Width, rect.Height);
+                    }
+
+                    // Draw smooth circle overlay using precise radius scaled
+                    float radiusPx = r * scale;
+                    var centerScreen = map(xc, yc);
+                    float cxScreen = centerScreen.X - radiusPx;
+                    float cyScreen = centerScreen.Y - radiusPx;
+                    float diameter = radiusPx * 2f;
+
+                    g.DrawEllipse(penCircle, cxScreen, cyScreen, diameter, diameter);
+                }
+
+                // Optionally label center
+                using (var font = new Font("Arial", 8))
+                using (var brush = new SolidBrush(Color.Black))
+                {
+                    var centerText = $"({xc},{yc}) R={r}";
+                    var txtSize = g.MeasureString(centerText, font);
+                    g.FillRectangle(Brushes.White, 5, 5, txtSize.Width + 4, txtSize.Height + 4);
+                    g.DrawString(centerText, font, brush, 7, 7);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+    }
+}

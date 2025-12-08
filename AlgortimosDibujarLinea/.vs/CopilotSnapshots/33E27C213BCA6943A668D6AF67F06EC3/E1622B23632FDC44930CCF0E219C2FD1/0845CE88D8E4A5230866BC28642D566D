@@ -1,0 +1,208 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoDda : Form
+    {
+        public frmMetodoDda()
+        {
+            InitializeComponent();
+
+            // Asociar eventos de botones
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            // Inicializar picturebox con bitmap
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXi.Clear();
+            txtYi.Clear();
+            txtXf.Clear();
+            txtYf.Clear();
+            txtPendiente.Clear();
+
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.Clear(pcbGrafico.BackColor);
+                }
+                pcbGrafico.Invalidate();
+            }
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            int xi, yi, xf, yf;
+            if (!int.TryParse(txtXi.Text, out xi) ||
+                !int.TryParse(txtYi.Text, out yi) ||
+                !int.TryParse(txtXf.Text, out xf) ||
+                !int.TryParse(txtYf.Text, out yf))
+            {
+                MessageBox.Show("Ingrese coordenadas enteras válidas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var linea = new Clinea(xi, yi, xf, yf);
+
+            // Seleccionar algoritmo según la opción en la interfaz
+            Clinea.LineAlgorithm algoritmo = Clinea.LineAlgorithm.DDA;
+            if (cmbAlgoritmo != null && cmbAlgoritmo.SelectedItem != null)
+            {
+                var sel = cmbAlgoritmo.SelectedItem.ToString();
+                if (sel == "Bresenham") algoritmo = Clinea.LineAlgorithm.Bresenham;
+                else if (sel == "Punto Medio") algoritmo = Clinea.LineAlgorithm.Midpoint;
+                else algoritmo = Clinea.LineAlgorithm.DDA;
+            }
+
+            var puntos = linea.Discretize(algoritmo);
+
+            txtPendiente.Text = double.IsInfinity(linea.Pendiente) ? "∞" : linea.Pendiente.ToString("F4");
+
+            // Dibujar los puntos en el PictureBox
+            if (pcbGrafico.Image == null)
+            {
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+            }
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                // Limpiar
+                g.Clear(pcbGrafico.BackColor);
+
+                int width = pcbGrafico.Width;
+                int height = pcbGrafico.Height;
+
+                // Margen y tamaño de celda (se ajusta para que los puntos quepan)
+                int margin = 20;
+                int cellSize = 30; // por defecto
+
+                int minX = 0, maxX = 0, minY = 0, maxY = 0;
+
+                if (puntos != null && puntos.Count > 0)
+                {
+                    // conservar min/max originales
+                    minX = puntos.Min(p => p.X);
+                    maxX = puntos.Max(p => p.X);
+                    minY = puntos.Min(p => p.Y);
+                    maxY = puntos.Max(p => p.Y);
+
+                    // Opción 3: intercambiar ejes X y Y para el mapeo visual
+                    // neededCols (número de columnas visibles) se basa en el rango de Y
+                    // neededRows (número de filas visibles) se basa en el rango de X
+                    int neededCols = (maxY - minY + 1);
+                    int neededRows = (maxX - minX + 1);
+
+                    int availableW = Math.Max(50, width - margin * 2);
+                    int availableH = Math.Max(50, height - margin * 2);
+
+                    int candidateW = availableW / Math.Max(1, neededCols);
+                    int candidateH = availableH / Math.Max(1, neededRows);
+
+                    int candidate = Math.Min(candidateW, candidateH);
+                    if (candidate >= 4)
+                        cellSize = candidate;
+                }
+
+                // Limitar el tamaño de celda a un rango razonable
+                cellSize = Math.Max(4, Math.Min(cellSize, 80));
+
+                // Dibujar la grilla (no centrada): origen visual en la esquina superior izquierda con un margen
+                using (var penGrid = new Pen(Color.LightGray, 2))
+                {
+                    // Líneas verticales hacia la derecha
+                    for (int x = margin; x <= width; x += cellSize)
+                        g.DrawLine(penGrid, x, 0, x, height);
+
+                    // Líneas verticales hacia la izquierda desde el margen
+                    for (int x = margin - cellSize; x >= 0; x -= cellSize)
+                        g.DrawLine(penGrid, x, 0, x, height);
+
+                    // Líneas horizontales hacia abajo
+                    for (int y = margin; y <= height; y += cellSize)
+                        g.DrawLine(penGrid, 0, y, width, y);
+
+                    // Líneas horizontales hacia arriba desde el margen
+                    for (int y = margin - cellSize; y >= 0; y -= cellSize)
+                        g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                // Rellenar casillas para cada punto y dibujar la línea conectando sus centros
+                if (puntos != null && puntos.Count > 0)
+                {
+                    // Calcular suma de cambios entre puntos consecutivos para decidir orientación real de la secuencia
+                    int sumDX = 0;
+                    int sumDY = 0;
+                    for (int i = 1; i < puntos.Count; i++)
+                    {
+                        sumDX += puntos[i].X - puntos[i - 1].X;
+                        sumDY += puntos[i].Y - puntos[i - 1].Y;
+                    }
+
+                    // Para mapeo intercambiado (columnas <- Y, filas <- X):
+                    bool colForward = sumDY >= 0; // si true, columnas aumentan con Y
+                    bool rowForward = sumDX >= 0; // si true, filas aumentan con X
+
+                    using (var fillBrush = new SolidBrush(Color.FromArgb(160, 120, 120, 120)))
+                    {
+                        foreach (var p in puntos)
+                        {
+                            int col = colForward ? (p.Y - minY) : (maxY - p.Y);
+                            int row = rowForward ? (p.X - minX) : (maxX - p.X);
+
+                            int rectX = margin + col * cellSize;
+                            int rectY = margin + row * cellSize;
+
+                            g.FillRectangle(fillBrush, rectX, rectY, cellSize, cellSize);
+                        }
+                    }
+
+                    using (var penLine = new Pen(Color.Black, 3))
+                    {
+                        for (int i = 1; i < puntos.Count; i++)
+                        {
+                            var p1 = puntos[i - 1];
+                            var p2 = puntos[i];
+
+                            int x1 = margin + (colForward ? (p1.Y - minY) : (maxY - p1.Y)) * cellSize + cellSize / 2;
+                            int y1 = margin + (rowForward ? (p1.X - minX) : (maxX - p1.X)) * cellSize + cellSize / 2;
+                            int x2 = margin + (colForward ? (p2.Y - minY) : (maxY - p2.Y)) * cellSize + cellSize / 2;
+                            int y2 = margin + (rowForward ? (p2.X - minX) : (maxX - p2.X)) * cellSize + cellSize / 2;
+
+                            g.DrawLine(penLine, x1, y1, x2, y2);
+                        }
+                    }
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pcbGrafico_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
