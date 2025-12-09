@@ -85,5 +85,47 @@ namespace AlgortimosDibujarLinea
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void cohenSutherlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoCorteLineaCohen frm = new frmMetodoCorteLineaCohen();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void liangBarskyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoCorteLineaBarsky frm= new frmMetodoCorteLineaBarsky();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void nichollLeeNichollToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoCorteLineaNLN frm = new frmMetodoCorteLineaNLN();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void greinerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoRecortePoligonoGreiner frm = new frmMetodoRecortePoligonoGreiner();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void sutherlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoRecortePoligonoSutherland frm = new frmMetodoRecortePoligonoSutherland();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void weilerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMetodoRecortePoligonoWeiler frm= new frmMetodoRecortePoligonoWeiler();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

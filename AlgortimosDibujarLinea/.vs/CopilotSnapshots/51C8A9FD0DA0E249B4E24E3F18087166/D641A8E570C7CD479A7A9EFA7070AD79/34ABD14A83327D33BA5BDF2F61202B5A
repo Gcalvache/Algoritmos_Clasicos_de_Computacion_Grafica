@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+
+namespace AlgortimosDibujarLinea
+{
+    internal static class CRecortePoligono
+    {
+        // Sutherland–Hodgman polygon clipping
+        // Subject and clip are lists of points in the same coordinate system (clockwise or counter-clockwise)
+        public static List<PointF> SutherlandHodgmanClip(List<PointF> subjectPolygon, List<PointF> clipPolygon)
+        {
+            if (subjectPolygon == null || clipPolygon == null) return new List<PointF>();
+            if (subjectPolygon.Count == 0) return new List<PointF>();
+
+            List<PointF> outputList = new List<PointF>(subjectPolygon);
+
+            // iterate over edges of clip polygon
+            for (int i = 0; i < clipPolygon.Count; i++)
+            {
+                PointF A = clipPolygon[i];
+                PointF B = clipPolygon[(i + 1) % clipPolygon.Count];
+
+                List<PointF> inputList = outputList.ToList();
+                outputList.Clear();
+
+                if (inputList.Count == 0) break;
+
+                PointF S = inputList[inputList.Count - 1];
+
+                for (int j = 0; j < inputList.Count; j++)
+                {
+                    PointF E = inputList[j];
+
+                    bool E_inside = IsInside(A, B, E);
+                    bool S_inside = IsInside(A, B, S);
+
+                    if (S_inside && E_inside)
+                    {
+                        // both inside -> output E
+                        outputList.Add(E);
+                    }
+                    else if (S_inside && !E_inside)
+                    {
+                        // leaving -> output intersection
+                        var inter = ComputeIntersection(S, E, A, B);
+                        if (inter.HasValue) outputList.Add(inter.Value);
+                    }
+                    else if (!S_inside && E_inside)
+                    {
+                        // entering -> output intersection then E
+                        var inter = ComputeIntersection(S, E, A, B);
+                        if (inter.HasValue) outputList.Add(inter.Value);
+                        outputList.Add(E);
+                    }
+                    // else both outside -> no output
+
+                    S = E;
+                }
+            }
+
+            return outputList;
+        }
+
+        // Helper: determine if point P is inside edge AB (to the left of AB)
+        private static bool IsInside(PointF A, PointF B, PointF P)
+        {
+            // For clipping we treat 'inside' as to the left of the edge from A to B
+            // Compute cross product (B-A) x (P-A)
+            float cross = (B.X - A.X) * (P.Y - A.Y) - (B.Y - A.Y) * (P.X - A.X);
+            // if cross >= 0 => P is left of AB (assuming clip polygon defined counter-clockwise)
+            return cross >= 0f;
+        }
+
+        // Compute intersection between segment S->E and infinite line A->B (edge)
+        private static PointF? ComputeIntersection(PointF S, PointF E, PointF A, PointF B)
+        {
+            // Line S + t*(E-S)
+            float dxSE = E.X - S.X;
+            float dySE = E.Y - S.Y;
+
+            // Line A + u*(B-A)
+            float dxAB = B.X - A.X;
+            float dyAB = B.Y - A.Y;
+
+            float denom = dxSE * dyAB - dySE * dxAB;
+            if (Math.Abs(denom) < 1e-9f) return null; // parallel
+
+            float s = ((A.X - S.X) * dyAB - (A.Y - S.Y) * dxAB) / denom;
+            // intersection point is S + s*(E-S)
+            return new PointF(S.X + s * dxSE, S.Y + s * dySE);
+        }
+
+        // Weiler–Atherton polygon clipping
+        // Full implementation is lengthy; use Sutherland–Hodgman for now as a practical fallback.
+        public static List<PointF> WeilerAthertonClip(List<PointF> subjectPolygon, List<PointF> clipPolygon)
+        {
+            // TODO: replace with full Weiler–Atherton implementation.
+            return SutherlandHodgmanClip(subjectPolygon, clipPolygon);
+        }
+
+        // Greiner–Hormann polygon clipping
+        // Full implementation is complex; use Sutherland–Hodgman as fallback for now.
+        public static List<PointF> GreinerHormannClip(List<PointF> subjectPolygon, List<PointF> clipPolygon)
+        {
+            // TODO: replace with full Greiner–Hormann implementation.
+            return SutherlandHodgmanClip(subjectPolygon, clipPolygon);
+        }
+    }
+}

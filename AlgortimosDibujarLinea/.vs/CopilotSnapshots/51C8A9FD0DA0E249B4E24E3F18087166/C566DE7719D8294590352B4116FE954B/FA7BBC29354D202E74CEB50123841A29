@@ -1,0 +1,222 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoCorteLineaCohen : Form
+    {
+        private Point? _p0 = null;
+        private Point? _p1 = null;
+        private bool _firstAutoSet = true;
+
+        public frmMetodoCorteLineaCohen()
+        {
+            InitializeComponent();
+
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            if (trkZoom != null)
+            {
+                trkZoom.Minimum = 1;
+                trkZoom.Maximum = 2000;
+                trkZoom.TickFrequency = 10;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            if (pcbGrafico.Image == null)
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            pcbGrafico.MouseClick += PcbGrafico_MouseClick;
+            DrawBase();
+        }
+
+        private float ScaleFromTrack(int v) => v / 10f;
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            DrawBase();
+            DrawPointsAndLines();
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e) => Close();
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            _p0 = null; _p1 = null;
+            txtXc.Clear(); txtYc.Clear(); txtR.Clear();
+            DrawBase();
+        }
+
+        private void PcbGrafico_MouseClick(object sender, MouseEventArgs e)
+        {
+            // map from pixel to logical coordinates (integer units)
+            var width = pcbGrafico.Width; var height = pcbGrafico.Height;
+            float scale = ScaleFromTrack(trkZoom.Value);
+            float cx = width / 2f, cy = height / 2f;
+            int lx = (int)Math.Round((e.X - cx) / scale);
+            int ly = (int)Math.Round((cy - e.Y) / scale);
+
+            if (_p0 == null)
+            {
+                _p0 = new Point(lx, ly);
+            }
+            else if (_p1 == null)
+            {
+                _p1 = new Point(lx, ly);
+            }
+            else
+            {
+                // reset and start new
+                _p0 = new Point(lx, ly);
+                _p1 = null;
+            }
+
+            DrawBase();
+            DrawPointsAndLines();
+        }
+
+        private void DrawBase()
+        {
+            if (pcbGrafico.Image == null)
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            int width = pcbGrafico.Width, height = pcbGrafico.Height;
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.Clear(pcbGrafico.BackColor);
+
+                float scale = ScaleFromTrack(trkZoom.Value);
+                float spacing = scale < 6f ? scale * (int)Math.Ceiling(6f / Math.Max(0.0001f, scale)) : scale;
+                float cx = width / 2f, cy = height / 2f;
+
+                using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                {
+                    for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                using (var penAxis = new Pen(Color.Gray, 2))
+                {
+                    g.DrawLine(penAxis, 0, cy, width, cy);
+                    g.DrawLine(penAxis, cx, 0, cx, height);
+                }
+
+                // draw clip rectangle = view rectangle in logical coordinates
+                // left logical = -(width/2)/scale ; right logical = (width/2)/scale etc.
+                int xmin = (int)Math.Ceiling(- (width/2f) / scale);
+                int xmax = (int)Math.Floor((width/2f) / scale);
+                int ymin = (int)Math.Ceiling(- (height/2f) / scale);
+                int ymax = (int)Math.Floor((height/2f) / scale);
+
+                // Rectangle in pixel coordinates
+                var clipRect = new Rectangle(0, 0, width - 1, height - 1);
+                using (var penClip = new Pen(Color.FromArgb(160, Color.Blue), 2))
+                {
+                    g.DrawRectangle(penClip, clipRect);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+
+        private void DrawPointsAndLines()
+        {
+            if (pcbGrafico.Image == null) return;
+            int width = pcbGrafico.Width, height = pcbGrafico.Height;
+            float scale = ScaleFromTrack(trkZoom.Value);
+            float cx = width / 2f, cy = height / 2f;
+
+            Func<int,int,PointF> map = (x,y) => new PointF(cx + (x) * scale, cy - (y) * scale);
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                if (_p0 != null)
+                {
+                    var p = map(_p0.Value.X, _p0.Value.Y);
+                    g.FillEllipse(Brushes.Red, p.X - 3, p.Y - 3, 6, 6);
+                }
+                if (_p1 != null)
+                {
+                    var p = map(_p1.Value.X, _p1.Value.Y);
+                    g.FillEllipse(Brushes.Red, p.X - 3, p.Y - 3, 6, 6);
+                }
+
+                if (_p0 != null && _p1 != null)
+                {
+                    // draw original line
+                    var pA = map(_p0.Value.X, _p0.Value.Y);
+                    var pB = map(_p1.Value.X, _p1.Value.Y);
+                    using (var penOrig = new Pen(Color.DarkGray, 2))
+                    {
+                        g.DrawLine(penOrig, pA, pB);
+                    }
+
+                    // clipping rectangle in logical coordinates (based on view bounds)
+                    // left logical = -(width/2)/scale ; right logical = (width/2)/scale etc.
+                    int xmin = (int)Math.Ceiling(- (width/2f) / scale);
+                    int xmax = (int)Math.Floor((width/2f) / scale);
+                    int ymin = (int)Math.Ceiling(- (height/2f) / scale);
+                    int ymax = (int)Math.Floor((height/2f) / scale);
+
+                    Point cp0 = _p0.Value; Point cp1 = _p1.Value;
+                    bool accept = CRecorteLinea.CohenSutherlandClip(ref cp0, ref cp1, new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin));
+
+                    if (accept)
+                    {
+                        var q0 = map(cp0.X, cp0.Y);
+                        var q1 = map(cp1.X, cp1.Y);
+                        using (var penClip = new Pen(Color.Red, 2))
+                        {
+                            g.DrawLine(penClip, q0, q1);
+                        }
+                    }
+                    else
+                    {
+                        // optionally indicate rejection
+                        using (var sf = new Font("Segoe UI", 9))
+                        using (var br = new SolidBrush(Color.Red))
+                        {
+                            g.DrawString("Segmento fuera del área de recorte", sf, br, 6, 6);
+                        }
+                    }
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            // perform clipping and redraw (already done on clicks)
+            if (_p0 == null || _p1 == null)
+            {
+                MessageBox.Show("Seleccione dos puntos en el área de dibujo con el mouse.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DrawBase();
+            DrawPointsAndLines();
+        }
+
+        private void frmMetodoCirculo_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

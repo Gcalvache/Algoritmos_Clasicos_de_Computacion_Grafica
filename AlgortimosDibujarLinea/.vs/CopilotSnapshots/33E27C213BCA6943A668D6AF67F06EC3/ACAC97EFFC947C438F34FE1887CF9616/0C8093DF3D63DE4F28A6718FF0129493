@@ -1,0 +1,311 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoCorteLineaCohen : Form
+    {
+        private bool _firstAutoSet = true;
+
+        public frmMetodoCorteLineaCohen()
+        {
+            InitializeComponent();
+
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            if (trkZoom != null)
+            {
+                trkZoom.Minimum = 1;
+                trkZoom.Maximum = 2000;
+                trkZoom.TickFrequency = 10;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private float ScaleFromTrack(int trackValue) => trackValue / 10f;
+        private int TrackFromScale(float scale) => (int)Math.Max(1, Math.Round(scale * 10f));
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            if (lblZoom != null && trkZoom != null)
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            BtnCalcular_Click(this, EventArgs.Empty);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e) => Close();
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtX1.Clear(); txtY1.Clear(); txtX2.Clear(); txtY2.Clear();
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image)) g.Clear(pcbGrafico.BackColor);
+                pcbGrafico.Invalidate();
+            }
+            _firstAutoSet = true;
+
+            if (lblOutP1 != null) lblOutP1.Text = "----";
+            if (lblOutP2 != null) lblOutP2.Text = "----";
+        }
+
+        // outcode bits
+        private const int LEFT = 1;   // 0001
+        private const int RIGHT = 2;  // 0010
+        private const int BOTTOM = 4; // 0100
+        private const int TOP = 8;    // 1000
+
+        private int ComputeOutCodeLocal(float x, float y, float xmin, float ymin, float xmax, float ymax)
+        {
+            int code = 0;
+            if (x < xmin) code |= LEFT;
+            else if (x > xmax) code |= RIGHT;
+            if (y < ymin) code |= BOTTOM;
+            else if (y > ymax) code |= TOP;
+            return code;
+        }
+
+        private string OutCodeToString(int code)
+        {
+            int t = (code & TOP) != 0 ? 1 : 0;
+            int r = (code & RIGHT) != 0 ? 1 : 0;
+            int b = (code & BOTTOM) != 0 ? 1 : 0;
+            int l = (code & LEFT) != 0 ? 1 : 0;
+            return $"{t}{r}{b}{l}";
+        }
+
+        // default clip box centered at origin, size 20x20 (user can pan/zoom to see different)
+        private const float DefaultClipHalf = 10f;
+
+        private async void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            if (!float.TryParse(txtX1.Text, out float x1) || !float.TryParse(txtY1.Text, out float y1) ||
+                !float.TryParse(txtX2.Text, out float x2) || !float.TryParse(txtY2.Text, out float y2))
+            {
+                MessageBox.Show("Ingrese valores numéricos válidos para los dos puntos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            float xMin = -DefaultClipHalf;
+            float xMax = DefaultClipHalf;
+            float yMin = -DefaultClipHalf;
+            float yMax = DefaultClipHalf;
+
+            if (pcbGrafico.Image == null) pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            int width = pcbGrafico.Width, height = pcbGrafico.Height, margin = 12;
+
+            float worldW = Math.Max(1f, xMax - xMin);
+            float worldH = Math.Max(1f, yMax - yMin);
+            float maxWorld = Math.Max(worldW, worldH);
+            float maxPx = Math.Min((width - margin * 2), (height - margin * 2));
+            float autoScale = Math.Max(2f, maxPx / (maxWorld * 1.2f));
+
+            if (trkZoom != null)
+            {
+                int suggestedMax = Math.Max(TrackFromScale(autoScale * 4f), 50);
+                suggestedMax = Math.Min(suggestedMax, 5000);
+                trkZoom.Minimum = 1;
+                trkZoom.Maximum = suggestedMax;
+                if (_firstAutoSet)
+                {
+                    trkZoom.Value = Math.Min(trkZoom.Maximum, Math.Max(trkZoom.Minimum, TrackFromScale(autoScale)));
+                    _firstAutoSet = false;
+                }
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            float scale = (trkZoom != null) ? ScaleFromTrack(trkZoom.Value) : autoScale;
+            scale = Math.Max(0.01f, scale);
+
+            float worldCx = 0f;
+            float worldCy = 0f;
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.Clear(pcbGrafico.BackColor);
+
+                float spacing = scale;
+                if (spacing < 6f)
+                {
+                    int unitsPerLine = (int)Math.Ceiling(6f / Math.Max(0.0001f, scale));
+                    spacing = unitsPerLine * scale;
+                }
+
+                float cx = width / 2f;
+                float cy = height / 2f;
+
+                using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                {
+                    for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                using (var penAxis = new Pen(Color.Gray, 2))
+                {
+                    g.DrawLine(penAxis, 0, cy, width, cy);
+                    g.DrawLine(penAxis, cx, 0, cx, height);
+                }
+
+                Func<float, float, PointF> map = (wx, wy) => new PointF(cx + (wx - worldCx) * scale, cy - (wy - worldCy) * scale);
+
+                // draw clipping rectangle centered at origin
+                var topLeft = map(xMin, yMax);
+                var bottomRight = map(xMax, yMin);
+                var clipRect = new RectangleF(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+                using (var penClip = new Pen(Color.Blue, Math.Max(1f, scale * 0.04f))) g.DrawRectangle(penClip, clipRect.X, clipRect.Y, clipRect.Width, clipRect.Height);
+
+                // draw region grid and labels
+                float cellW = clipRect.Width; float cellH = clipRect.Height;
+                float baseX = clipRect.X - cellW; float baseY = clipRect.Y - cellH;
+
+                using (var font = new Font("Segoe UI", Math.Max(8f, scale * 0.3f)))
+                using (var brush = new SolidBrush(Color.Black))
+                {
+                    for (int row = 0; row < 3; row++)
+                    {
+                        for (int col = 0; col < 3; col++)
+                        {
+                            float rx = baseX + col * cellW; float ry = baseY + row * cellH; var rf = new RectangleF(rx, ry, cellW, cellH);
+                            g.DrawRectangle(Pens.Gray, rf.X, rf.Y, rf.Width, rf.Height);
+                            float wx = xMin + (col - 1) * (xMax - xMin) + (xMax - xMin) / 2f;
+                            float wy = yMax + (1 - row) * (yMax - yMin) - (yMax - yMin) / 2f;
+                            int code = ComputeOutCodeLocal(wx, wy, xMin, yMin, xMax, yMax);
+                            string text = OutCodeToString(code);
+                            var sz = g.MeasureString(text, font);
+                            g.DrawString(text, font, brush, rf.X + (rf.Width - sz.Width) / 2f, rf.Y + (rf.Height - sz.Height) / 2f);
+                        }
+                    }
+                }
+
+                // draw original line
+                var p0s = map(x1, y1); var p1s = map(x2, y2);
+                using (var penOrig = new Pen(Color.FromArgb(180, 100, 100, 100), 2)) { penOrig.DashStyle = DashStyle.Dash; g.DrawLine(penOrig, p0s, p1s); }
+
+                // legend
+                using (var font2 = new Font("Segoe UI", 9f))
+                using (var brush2 = new SolidBrush(Color.Black))
+                {
+                    var text = $"P1=({x1},{y1}) P2=({x2},{y2})  Clip=[{-DefaultClipHalf},{-DefaultClipHalf}]-[{DefaultClipHalf},{DefaultClipHalf}]";
+                    var size = g.MeasureString(text, font2);
+                    var bg = new RectangleF(6, 6, size.Width + 6, size.Height + 6);
+                    using (var b = new SolidBrush(Color.FromArgb(200, 255, 255, 255))) g.FillRectangle(b, bg);
+                    g.DrawString(text, font2, brush2, 9, 9);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+
+            // simulate Cohen-Sutherland step-by-step using default clip
+            float x0 = x1, y0 = y1, x_1 = x2, y_1 = y2;
+            int out0 = ComputeOutCodeLocal(x0, y0, xMin, yMin, xMax, yMax);
+            int out1 = ComputeOutCodeLocal(x_1, y_1, xMin, yMin, xMax, yMax);
+
+            if (lblOutP1 != null) lblOutP1.Text = OutCodeToString(out0);
+            if (lblOutP2 != null) lblOutP2.Text = OutCodeToString(out1);
+
+            bool accept = false; bool done = false;
+
+            while (!done)
+            {
+                if ((out0 | out1) == 0)
+                {
+                    accept = true; done = true;
+                    using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                    using (var penFinal = new Pen(Color.Green, Math.Max(1f, scale * 0.08f)))
+                    {
+                        var f0 = new PointF((width/2f + (x0 - worldCx) * scale), (height/2f - (y0 - worldCy) * scale));
+                        var f1 = new PointF((width/2f + (x_1 - worldCx) * scale), (height/2f - (y_1 - worldCy) * scale));
+                        g.DrawLine(penFinal, f0, f1);
+                    }
+                    pcbGrafico.Invalidate(); break;
+                }
+                else if ((out0 & out1) != 0)
+                {
+                    done = true; MessageBox.Show("La línea está completamente fuera (rechazo trivial).", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                }
+                else
+                {
+                    int outcodeOut = out0 != 0 ? out0 : out1;
+                    float x = 0, y = 0;
+                    if ((outcodeOut & TOP) != 0)
+                    {
+                        y = yMax;
+                        if (Math.Abs(y_1 - y0) > 1e-6f) x = x0 + (x_1 - x0) * (y - y0) / (y_1 - y0); else x = x0;
+                    }
+                    else if ((outcodeOut & BOTTOM) != 0)
+                    {
+                        y = yMin;
+                        if (Math.Abs(y_1 - y0) > 1e-6f) x = x0 + (x_1 - x0) * (y - y0) / (y_1 - y0); else x = x0;
+                    }
+                    else if ((outcodeOut & RIGHT) != 0)
+                    {
+                        x = xMax;
+                        if (Math.Abs(x_1 - x0) > 1e-6f) y = y0 + (y_1 - y0) * (x - x0) / (x_1 - x0); else y = y0;
+                    }
+                    else if ((outcodeOut & LEFT) != 0)
+                    {
+                        x = xMin;
+                        if (Math.Abs(x_1 - x0) > 1e-6f) y = y0 + (y_1 - y0) * (x - x0) / (x_1 - x0); else y = y0;
+                    }
+
+                    using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                    using (var brushInt = new SolidBrush(Color.Orange))
+                    using (var penStep = new Pen(Color.OrangeRed, Math.Max(1f, scale * 0.06f)))
+                    {
+                        var mp = new PointF((width/2f + (x - worldCx) * scale), (height/2f - (y - worldCy) * scale));
+                        g.FillEllipse(brushInt, mp.X - 3, mp.Y - 3, 6, 6);
+                        g.DrawEllipse(penStep, mp.X - 4, mp.Y - 4, 8, 8);
+                        if (outcodeOut == out0)
+                        {
+                            var f1 = new PointF((width/2f + (x_1 - worldCx) * scale), (height/2f - (y_1 - worldCy) * scale));
+                            g.DrawLine(penStep, mp, f1);
+                        }
+                        else
+                        {
+                            var f0p = new PointF((width/2f + (x0 - worldCx) * scale), (height/2f - (y0 - worldCy) * scale));
+                            g.DrawLine(penStep, f0p, mp);
+                        }
+                    }
+
+                    if (lblOutP1 != null) lblOutP1.Text = OutCodeToString(out0);
+                    if (lblOutP2 != null) lblOutP2.Text = OutCodeToString(out1);
+
+                    pcbGrafico.Invalidate();
+
+                    int delayMs = 300; if (numDelay != null) { try { delayMs = (int)numDelay.Value; } catch { delayMs = 300; } }
+                    await Task.Delay(Math.Max(0, delayMs));
+
+                    if (outcodeOut == out0)
+                    {
+                        x0 = x; y0 = y; out0 = ComputeOutCodeLocal(x0, y0, xMin, yMin, xMax, yMax);
+                    }
+                    else
+                    {
+                        x_1 = x; y_1 = y; out1 = ComputeOutCodeLocal(x_1, y_1, xMin, yMin, xMax, yMax);
+                    }
+                }
+            }
+
+            if (accept) MessageBox.Show("La línea (o su segmento) está dentro del rectángulo de recorte.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void frmMetodoCorteLineaCohen_Load(object sender, EventArgs e) { }
+    }
+}

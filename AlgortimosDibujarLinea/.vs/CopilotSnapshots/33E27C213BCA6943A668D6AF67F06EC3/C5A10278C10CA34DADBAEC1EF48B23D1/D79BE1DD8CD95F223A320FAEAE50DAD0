@@ -1,0 +1,169 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoCorteLineaBarsky : Form
+    {
+        private bool _firstAutoSet = true;
+        private const float DefaultClipHalf = 10f;
+
+        public frmMetodoCorteLineaBarsky()
+        {
+            InitializeComponent();
+
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            if (trkZoom != null)
+            {
+                trkZoom.Minimum = 1;
+                trkZoom.Maximum = 2000;
+                trkZoom.TickFrequency = 10;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private float ScaleFromTrack(int trackValue) => trackValue / 10f;
+        private int TrackFromScale(float scale) => (int)Math.Max(1, Math.Round(scale * 10f));
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            if (lblZoom != null && trkZoom != null)
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            BtnCalcular_Click(this, EventArgs.Empty);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e) => Close();
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtX1.Clear(); txtY1.Clear(); txtX2.Clear(); txtY2.Clear();
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image)) g.Clear(pcbGrafico.BackColor);
+                pcbGrafico.Invalidate();
+            }
+            _firstAutoSet = true;
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            if (!float.TryParse(txtX1.Text, out float x1) || !float.TryParse(txtY1.Text, out float y1) ||
+                !float.TryParse(txtX2.Text, out float x2) || !float.TryParse(txtY2.Text, out float y2))
+            {
+                MessageBox.Show("Ingrese valores numéricos válidos para los dos puntos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            float xMin = -DefaultClipHalf; float xMax = DefaultClipHalf; float yMin = -DefaultClipHalf; float yMax = DefaultClipHalf;
+
+            if (pcbGrafico.Image == null) pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            int width = pcbGrafico.Width;
+            int height = pcbGrafico.Height;
+            int margin = 12;
+
+            float worldW = Math.Max(1f, xMax - xMin);
+            float worldH = Math.Max(1f, yMax - yMin);
+            float maxWorld = Math.Max(worldW, worldH);
+            float maxPx = Math.Min((width - margin * 2), (height - margin * 2));
+            float autoScale = Math.Max(2f, maxPx / (maxWorld * 1.2f));
+
+            if (trkZoom != null)
+            {
+                int suggestedMax = Math.Max(TrackFromScale(autoScale * 4f), 50);
+                suggestedMax = Math.Min(suggestedMax, 5000);
+                trkZoom.Minimum = 1;
+                trkZoom.Maximum = suggestedMax;
+                if (_firstAutoSet)
+                {
+                    trkZoom.Value = Math.Min(trkZoom.Maximum, Math.Max(trkZoom.Minimum, TrackFromScale(autoScale)));
+                    _firstAutoSet = false;
+                }
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            float scale = (trkZoom != null) ? ScaleFromTrack(trkZoom.Value) : autoScale;
+            scale = Math.Max(0.01f, scale);
+
+            float worldCx = 0f;
+            float worldCy = 0f;
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.Clear(pcbGrafico.BackColor);
+
+                float spacing = scale;
+                if (spacing < 6f)
+                {
+                    int unitsPerLine = (int)Math.Ceiling(6f / Math.Max(0.0001f, scale));
+                    spacing = unitsPerLine * scale;
+                }
+
+                float cx = width / 2f;
+                float cy = height / 2f;
+
+                using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                {
+                    for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                using (var penAxis = new Pen(Color.Gray, 2)) { g.DrawLine(penAxis, 0, cy, width, cy); g.DrawLine(penAxis, cx, 0, cx, height); }
+
+                Func<float, float, PointF> map = (wx, wy) => new PointF(cx + (wx - worldCx) * scale, cy - (wy - worldCy) * scale);
+
+                var topLeft = map(xMin, yMax);
+                var bottomRight = map(xMax, yMin);
+                var clipRect = new RectangleF(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+                using (var penClip = new Pen(Color.Blue, Math.Max(1f, scale * 0.04f))) g.DrawRectangle(penClip, clipRect.X, clipRect.Y, clipRect.Width, clipRect.Height);
+
+                var p0 = map(x1, y1); var p1 = map(x2, y2);
+                using (var penOrig = new Pen(Color.FromArgb(180, 100, 100, 100), 2)) { penOrig.DashStyle = DashStyle.Dash; g.DrawLine(penOrig, p0, p1); }
+
+                using (var font = new Font("Segoe UI", 9f)) using (var brush = new SolidBrush(Color.Black)) { var text = $"P1=({x1},{y1}) P2=({x2},{y2})  Clip=[{xMin},{yMin}]-[{xMax},{yMax}]"; var size = g.MeasureString(text, font); var bg = new RectangleF(6, 6, size.Width + 6, size.Height + 6); using (var b = new SolidBrush(Color.FromArgb(200, 255, 255, 255))) g.FillRectangle(b, bg); g.DrawString(text, font, brush, 9, 9); }
+            }
+
+            pcbGrafico.Invalidate();
+
+            var pA = new PointF(x1, y1);
+            var pB = new PointF(x2, y2);
+            var intClip = new Rectangle((int)Math.Floor(xMin), (int)Math.Floor(yMin), (int)Math.Ceiling(xMax - xMin), (int)Math.Ceiling(yMax - yMin));
+            bool visible = CRecorteLinea.LiangBarsky(ref pA, ref pB, intClip);
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            using (var penClipFinal = new Pen(Color.Red, Math.Max(2f, scale * 0.08f)))
+            {
+                if (!visible)
+                {
+                    MessageBox.Show("La línea está fuera del rectángulo de recorte.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Func<float, float, PointF> map = (wx, wy) => new PointF(width / 2f + (wx - worldCx) * scale, height / 2f - (wy - worldCy) * scale);
+                    var fa = map(pA.X, pA.Y); var fb = map(pB.X, pB.Y);
+                    g.DrawLine(penClipFinal, fa, fb);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+    }
+}

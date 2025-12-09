@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clinea.cs" />
+    <Compile Include="CRecorteLinea.cs" />
+    <Compile Include="CRecortePoligono.cs" />
     <Compile Include="CRelleno.cs" />
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
@@ -54,11 +56,47 @@
     <Compile Include="frmHome.Designer.cs">
       <DependentUpon>frmHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMetodoRecortePoligonoGreiner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoRecortePoligonoGreiner.Designer.cs">
+      <DependentUpon>frmMetodoRecortePoligonoGreiner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoRecortePoligonoWeiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoRecortePoligonoWeiler.Designer.cs">
+      <DependentUpon>frmMetodoRecortePoligonoWeiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoRecortePoligonoSutherland.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoRecortePoligonoSutherland.Designer.cs">
+      <DependentUpon>frmMetodoRecortePoligonoSutherland.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoCorteLineaBarsky.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoCorteLineaBarsky.Designer.cs">
+      <DependentUpon>frmMetodoCorteLineaBarsky.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoCorteLineaNLN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoCorteLineaNLN.Designer.cs">
+      <DependentUpon>frmMetodoCorteLineaNLN.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMetodoRellenoBoundary.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMetodoRellenoBoundary.Designer.cs">
       <DependentUpon>frmMetodoRellenoBoundary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMetodoCorteLineaCohen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMetodoCorteLineaCohen.Designer.cs">
+      <DependentUpon>frmMetodoCorteLineaCohen.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMetodoRellenoScanlineSeed.cs">
       <SubType>Form</SubType>
@@ -113,8 +151,26 @@
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoRecortePoligonoGreiner.resx">
+      <DependentUpon>frmMetodoRecortePoligonoGreiner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoRecortePoligonoWeiler.resx">
+      <DependentUpon>frmMetodoRecortePoligonoWeiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoRecortePoligonoSutherland.resx">
+      <DependentUpon>frmMetodoRecortePoligonoSutherland.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoCorteLineaBarsky.resx">
+      <DependentUpon>frmMetodoCorteLineaBarsky.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoCorteLineaNLN.resx">
+      <DependentUpon>frmMetodoCorteLineaNLN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMetodoRellenoBoundary.resx">
       <DependentUpon>frmMetodoRellenoBoundary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMetodoCorteLineaCohen.resx">
+      <DependentUpon>frmMetodoCorteLineaCohen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMetodoRellenoScanlineSeed.resx">
       <DependentUpon>frmMetodoRellenoScanlineSeed.cs</DependentUpon>

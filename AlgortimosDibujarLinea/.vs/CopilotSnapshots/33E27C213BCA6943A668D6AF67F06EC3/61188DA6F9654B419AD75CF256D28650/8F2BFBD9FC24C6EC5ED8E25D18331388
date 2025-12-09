@@ -1,0 +1,245 @@
+﻿namespace AlgortimosDibujarLinea
+{
+    partial class frmMetodoCorteLineaBarsky
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblX1 = new System.Windows.Forms.Label();
+            this.txtX1 = new System.Windows.Forms.TextBox();
+            this.lblY1 = new System.Windows.Forms.Label();
+            this.txtY1 = new System.Windows.Forms.TextBox();
+            this.lblX2 = new System.Windows.Forms.Label();
+            this.txtX2 = new System.Windows.Forms.TextBox();
+            this.lblY2 = new System.Windows.Forms.Label();
+            this.txtY2 = new System.Windows.Forms.TextBox();
+            this.grpGrafico = new System.Windows.Forms.GroupBox();
+            this.pcbGrafico = new System.Windows.Forms.PictureBox();
+            this.grpOpciones = new System.Windows.Forms.GroupBox();
+            this.lblZoom = new System.Windows.Forms.Label();
+            this.trkZoom = new System.Windows.Forms.TrackBar();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.grpGrafico.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
+            this.grpOpciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblX1);
+            this.groupBox1.Controls.Add(this.txtX1);
+            this.groupBox1.Controls.Add(this.lblY1);
+            this.groupBox1.Controls.Add(this.txtY1);
+            this.groupBox1.Controls.Add(this.lblX2);
+            this.groupBox1.Controls.Add(this.txtX2);
+            this.groupBox1.Controls.Add(this.lblY2);
+            this.groupBox1.Controls.Add(this.txtY2);
+            this.groupBox1.Location = new System.Drawing.Point(24, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(286, 160);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de entrada";
+            // 
+            // lblX1
+            // 
+            this.lblX1.AutoSize = true;
+            this.lblX1.Location = new System.Drawing.Point(17, 25);
+            this.lblX1.Name = "lblX1";
+            this.lblX1.Size = new System.Drawing.Size(27, 13);
+            this.lblX1.TabIndex = 0;
+            this.lblX1.Text = "X1=";
+            // 
+            // txtX1
+            // 
+            this.txtX1.Location = new System.Drawing.Point(60, 22);
+            this.txtX1.Name = "txtX1";
+            this.txtX1.Size = new System.Drawing.Size(200, 20);
+            this.txtX1.TabIndex = 1;
+            // 
+            // lblY1
+            // 
+            this.lblY1.AutoSize = true;
+            this.lblY1.Location = new System.Drawing.Point(17, 50);
+            this.lblY1.Name = "lblY1";
+            this.lblY1.Size = new System.Drawing.Size(27, 13);
+            this.lblY1.TabIndex = 2;
+            this.lblY1.Text = "Y1=";
+            // 
+            // txtY1
+            // 
+            this.txtY1.Location = new System.Drawing.Point(60, 47);
+            this.txtY1.Name = "txtY1";
+            this.txtY1.Size = new System.Drawing.Size(200, 20);
+            this.txtY1.TabIndex = 3;
+            // 
+            // lblX2
+            // 
+            this.lblX2.AutoSize = true;
+            this.lblX2.Location = new System.Drawing.Point(17, 75);
+            this.lblX2.Name = "lblX2";
+            this.lblX2.Size = new System.Drawing.Size(27, 13);
+            this.lblX2.TabIndex = 4;
+            this.lblX2.Text = "X2=";
+            // 
+            // txtX2
+            // 
+            this.txtX2.Location = new System.Drawing.Point(60, 72);
+            this.txtX2.Name = "txtX2";
+            this.txtX2.Size = new System.Drawing.Size(200, 20);
+            this.txtX2.TabIndex = 5;
+            // 
+            // lblY2
+            // 
+            this.lblY2.AutoSize = true;
+            this.lblY2.Location = new System.Drawing.Point(17, 100);
+            this.lblY2.Name = "lblY2";
+            this.lblY2.Size = new System.Drawing.Size(27, 13);
+            this.lblY2.TabIndex = 6;
+            this.lblY2.Text = "Y2=";
+            // 
+            // txtY2
+            // 
+            this.txtY2.Location = new System.Drawing.Point(60, 97);
+            this.txtY2.Name = "txtY2";
+            this.txtY2.Size = new System.Drawing.Size(200, 20);
+            this.txtY2.TabIndex = 7;
+            // 
+            // grpGrafico
+            // 
+            this.grpGrafico.Controls.Add(this.pcbGrafico);
+            this.grpGrafico.Location = new System.Drawing.Point(336, 24);
+            this.grpGrafico.Name = "grpGrafico";
+            this.grpGrafico.Size = new System.Drawing.Size(452, 389);
+            this.grpGrafico.TabIndex = 2;
+            this.grpGrafico.TabStop = false;
+            this.grpGrafico.Text = "GRAFICO";
+            // 
+            // pcbGrafico
+            // 
+            this.pcbGrafico.Location = new System.Drawing.Point(7, 20);
+            this.pcbGrafico.Name = "pcbGrafico";
+            this.pcbGrafico.Size = new System.Drawing.Size(439, 356);
+            this.pcbGrafico.TabIndex = 0;
+            this.pcbGrafico.TabStop = false;
+            // 
+            // grpOpciones
+            // 
+            this.grpOpciones.Controls.Add(this.lblZoom);
+            this.grpOpciones.Controls.Add(this.trkZoom);
+            this.grpOpciones.Controls.Add(this.btnSalir);
+            this.grpOpciones.Controls.Add(this.btnLimpiar);
+            this.grpOpciones.Controls.Add(this.btnCalcular);
+            this.grpOpciones.Location = new System.Drawing.Point(24, 200);
+            this.grpOpciones.Name = "grpOpciones";
+            this.grpOpciones.Size = new System.Drawing.Size(286, 110);
+            this.grpOpciones.TabIndex = 3;
+            this.grpOpciones.TabStop = false;
+            this.grpOpciones.Text = "OPCIONES";
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(7, 40);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(66, 13);
+            this.lblZoom.TabIndex = 3;
+            this.lblZoom.Text = "Zoom: 10 px";
+            // 
+            // trkZoom
+            // 
+            this.trkZoom.Location = new System.Drawing.Point(7, 56);
+            this.trkZoom.Maximum = 100;
+            this.trkZoom.Minimum = 2;
+            this.trkZoom.Name = "trkZoom";
+            this.trkZoom.Size = new System.Drawing.Size(248, 45);
+            this.trkZoom.TabIndex = 2;
+            this.trkZoom.Value = 10;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(200, 75);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 2;
+            this.btnSalir.Text = "SALIR";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(110, 75);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 1;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(7, 75);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.TabIndex = 0;
+            this.btnCalcular.Text = "CALCULAR";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // frmMetodoCorteLineaBarsky
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 434);
+            this.Controls.Add(this.grpGrafico);
+            this.Controls.Add(this.grpOpciones);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "frmMetodoCorteLineaBarsky";
+            this.Text = "Recorte de Línea - Liang-Barsky";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.grpGrafico.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
+            this.grpOpciones.ResumeLayout(false);
+            this.grpOpciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpGrafico;
+        private System.Windows.Forms.PictureBox pcbGrafico;
+        private System.Windows.Forms.GroupBox grpOpciones;
+        private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.TrackBar trkZoom;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.Label lblX1;
+        private System.Windows.Forms.Label lblY1;
+        private System.Windows.Forms.Label lblX2;
+        private System.Windows.Forms.Label lblY2;
+        private System.Windows.Forms.TextBox txtX1;
+        private System.Windows.Forms.TextBox txtY1;
+        private System.Windows.Forms.TextBox txtX2;
+        private System.Windows.Forms.TextBox txtY2;
+    }
+}
+

@@ -1,0 +1,325 @@
+﻿namespace AlgortimosDibujarLinea
+{
+    partial class frmMetodoCorteLineaCohen
+    {
+        /// <summary>
+        /// Variable del diseñador necesaria.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén usando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblX1 = new System.Windows.Forms.Label();
+            this.txtX1 = new System.Windows.Forms.TextBox();
+            this.lblY1 = new System.Windows.Forms.Label();
+            this.txtY1 = new System.Windows.Forms.TextBox();
+            this.lblX2 = new System.Windows.Forms.Label();
+            this.txtX2 = new System.Windows.Forms.TextBox();
+            this.lblY2 = new System.Windows.Forms.Label();
+            this.txtY2 = new System.Windows.Forms.TextBox();
+            this.grpGrafico = new System.Windows.Forms.GroupBox();
+            this.pcbGrafico = new System.Windows.Forms.PictureBox();
+            this.grpOpciones = new System.Windows.Forms.GroupBox();
+            this.lblOutP1Label = new System.Windows.Forms.Label();
+            this.lblOutP1 = new System.Windows.Forms.Label();
+            this.lblOutP2Label = new System.Windows.Forms.Label();
+            this.lblOutP2 = new System.Windows.Forms.Label();
+            this.lblZoom = new System.Windows.Forms.Label();
+            this.trkZoom = new System.Windows.Forms.TrackBar();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.grpGrafico.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
+            this.grpOpciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblX1);
+            this.groupBox1.Controls.Add(this.txtX1);
+            this.groupBox1.Controls.Add(this.lblY1);
+            this.groupBox1.Controls.Add(this.txtY1);
+            this.groupBox1.Controls.Add(this.lblX2);
+            this.groupBox1.Controls.Add(this.txtX2);
+            this.groupBox1.Controls.Add(this.lblY2);
+            this.groupBox1.Controls.Add(this.txtY2);
+            this.groupBox1.Location = new System.Drawing.Point(32, 30);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(381, 160);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de entrada";
+            // 
+            // lblX1
+            // 
+            this.lblX1.AutoSize = true;
+            this.lblX1.Location = new System.Drawing.Point(13, 27);
+            this.lblX1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblX1.Name = "lblX1";
+            this.lblX1.Size = new System.Drawing.Size(29, 16);
+            this.lblX1.TabIndex = 0;
+            this.lblX1.Text = "X1=";
+            // 
+            // txtX1
+            // 
+            this.txtX1.Location = new System.Drawing.Point(80, 23);
+            this.txtX1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtX1.Name = "txtX1";
+            this.txtX1.Size = new System.Drawing.Size(265, 22);
+            this.txtX1.TabIndex = 1;
+            // 
+            // lblY1
+            // 
+            this.lblY1.AutoSize = true;
+            this.lblY1.Location = new System.Drawing.Point(13, 59);
+            this.lblY1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblY1.Name = "lblY1";
+            this.lblY1.Size = new System.Drawing.Size(30, 16);
+            this.lblY1.TabIndex = 2;
+            this.lblY1.Text = "Y1=";
+            // 
+            // txtY1
+            // 
+            this.txtY1.Location = new System.Drawing.Point(80, 55);
+            this.txtY1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtY1.Name = "txtY1";
+            this.txtY1.Size = new System.Drawing.Size(265, 22);
+            this.txtY1.TabIndex = 3;
+            // 
+            // lblX2
+            // 
+            this.lblX2.AutoSize = true;
+            this.lblX2.Location = new System.Drawing.Point(13, 91);
+            this.lblX2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblX2.Name = "lblX2";
+            this.lblX2.Size = new System.Drawing.Size(29, 16);
+            this.lblX2.TabIndex = 4;
+            this.lblX2.Text = "X2=";
+            // 
+            // txtX2
+            // 
+            this.txtX2.Location = new System.Drawing.Point(80, 87);
+            this.txtX2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtX2.Name = "txtX2";
+            this.txtX2.Size = new System.Drawing.Size(265, 22);
+            this.txtX2.TabIndex = 5;
+            // 
+            // lblY2
+            // 
+            this.lblY2.AutoSize = true;
+            this.lblY2.Location = new System.Drawing.Point(13, 123);
+            this.lblY2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblY2.Name = "lblY2";
+            this.lblY2.Size = new System.Drawing.Size(30, 16);
+            this.lblY2.TabIndex = 6;
+            this.lblY2.Text = "Y2=";
+            // 
+            // txtY2
+            // 
+            this.txtY2.Location = new System.Drawing.Point(80, 119);
+            this.txtY2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtY2.Name = "txtY2";
+            this.txtY2.Size = new System.Drawing.Size(265, 22);
+            this.txtY2.TabIndex = 7;
+            // 
+            // grpGrafico
+            // 
+            this.grpGrafico.Controls.Add(this.pcbGrafico);
+            this.grpGrafico.Location = new System.Drawing.Point(448, 30);
+            this.grpGrafico.Margin = new System.Windows.Forms.Padding(4);
+            this.grpGrafico.Name = "grpGrafico";
+            this.grpGrafico.Padding = new System.Windows.Forms.Padding(4);
+            this.grpGrafico.Size = new System.Drawing.Size(603, 479);
+            this.grpGrafico.TabIndex = 2;
+            this.grpGrafico.TabStop = false;
+            this.grpGrafico.Text = "GRAFICO";
+            // 
+            // pcbGrafico
+            // 
+            this.pcbGrafico.Location = new System.Drawing.Point(9, 25);
+            this.pcbGrafico.Margin = new System.Windows.Forms.Padding(4);
+            this.pcbGrafico.Name = "pcbGrafico";
+            this.pcbGrafico.Size = new System.Drawing.Size(585, 438);
+            this.pcbGrafico.TabIndex = 0;
+            this.pcbGrafico.TabStop = false;
+            // 
+            // grpOpciones
+            // 
+            this.grpOpciones.Controls.Add(this.lblOutP1Label);
+            this.grpOpciones.Controls.Add(this.lblOutP1);
+            this.grpOpciones.Controls.Add(this.lblOutP2Label);
+            this.grpOpciones.Controls.Add(this.lblOutP2);
+            this.grpOpciones.Controls.Add(this.lblZoom);
+            this.grpOpciones.Controls.Add(this.trkZoom);
+            this.grpOpciones.Controls.Add(this.btnSalir);
+            this.grpOpciones.Controls.Add(this.btnLimpiar);
+            this.grpOpciones.Controls.Add(this.btnCalcular);
+            this.grpOpciones.Location = new System.Drawing.Point(32, 200);
+            this.grpOpciones.Margin = new System.Windows.Forms.Padding(4);
+            this.grpOpciones.Name = "grpOpciones";
+            this.grpOpciones.Padding = new System.Windows.Forms.Padding(4);
+            this.grpOpciones.Size = new System.Drawing.Size(381, 148);
+            this.grpOpciones.TabIndex = 3;
+            this.grpOpciones.TabStop = false;
+            this.grpOpciones.Text = "OPCIONES";
+            // 
+            // lblOutP1Label
+            // 
+            this.lblOutP1Label.AutoSize = true;
+            this.lblOutP1Label.Location = new System.Drawing.Point(9, 20);
+            this.lblOutP1Label.Name = "lblOutP1Label";
+            this.lblOutP1Label.Size = new System.Drawing.Size(51, 16);
+            this.lblOutP1Label.TabIndex = 10;
+            this.lblOutP1Label.Text = "Out P1:";
+            // 
+            // lblOutP1
+            // 
+            this.lblOutP1.AutoSize = true;
+            this.lblOutP1.Location = new System.Drawing.Point(68, 20);
+            this.lblOutP1.Name = "lblOutP1";
+            this.lblOutP1.Size = new System.Drawing.Size(28, 16);
+            this.lblOutP1.TabIndex = 11;
+            this.lblOutP1.Text = "----";
+            // 
+            // lblOutP2Label
+            // 
+            this.lblOutP2Label.AutoSize = true;
+            this.lblOutP2Label.Location = new System.Drawing.Point(120, 20);
+            this.lblOutP2Label.Name = "lblOutP2Label";
+            this.lblOutP2Label.Size = new System.Drawing.Size(51, 16);
+            this.lblOutP2Label.TabIndex = 12;
+            this.lblOutP2Label.Text = "Out P2:";
+            // 
+            // lblOutP2
+            // 
+            this.lblOutP2.AutoSize = true;
+            this.lblOutP2.Location = new System.Drawing.Point(179, 20);
+            this.lblOutP2.Name = "lblOutP2";
+            this.lblOutP2.Size = new System.Drawing.Size(28, 16);
+            this.lblOutP2.TabIndex = 13;
+            this.lblOutP2.Text = "----";
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(9, 72);
+            this.lblZoom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(79, 16);
+            this.lblZoom.TabIndex = 3;
+            this.lblZoom.Text = "Zoom: 10 px";
+            // 
+            // trkZoom
+            // 
+            this.trkZoom.Location = new System.Drawing.Point(9, 91);
+            this.trkZoom.Margin = new System.Windows.Forms.Padding(4);
+            this.trkZoom.Maximum = 100;
+            this.trkZoom.Minimum = 2;
+            this.trkZoom.Name = "trkZoom";
+            this.trkZoom.Size = new System.Drawing.Size(331, 56);
+            this.trkZoom.TabIndex = 2;
+            this.trkZoom.Value = 10;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(240, 105);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 28);
+            this.btnSalir.TabIndex = 2;
+            this.btnSalir.Text = "SALIR";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(124, 105);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 28);
+            this.btnLimpiar.TabIndex = 1;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(9, 105);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(100, 28);
+            this.btnCalcular.TabIndex = 0;
+            this.btnCalcular.Text = "CALCULAR";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // frmMetodoCorteLineaCohen
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1067, 534);
+            this.Controls.Add(this.grpGrafico);
+            this.Controls.Add(this.grpOpciones);
+            this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frmMetodoCorteLineaCohen";
+            this.Text = "Recorte de Línea - Cohen-Sutherland";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.grpGrafico.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
+            this.grpOpciones.ResumeLayout(false);
+            this.grpOpciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpGrafico;
+        private System.Windows.Forms.PictureBox pcbGrafico;
+        private System.Windows.Forms.GroupBox grpOpciones;
+        private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.TrackBar trkZoom;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.Label lblX1;
+        private System.Windows.Forms.Label lblY1;
+        private System.Windows.Forms.Label lblX2;
+        private System.Windows.Forms.Label lblY2;
+        private System.Windows.Forms.TextBox txtX1;
+        private System.Windows.Forms.TextBox txtY1;
+        private System.Windows.Forms.TextBox txtX2;
+        private System.Windows.Forms.TextBox txtY2;
+        private System.Windows.Forms.Label lblOutP1Label;
+        private System.Windows.Forms.Label lblOutP1;
+        private System.Windows.Forms.Label lblOutP2Label;
+        private System.Windows.Forms.Label lblOutP2;
+    }
+}
+

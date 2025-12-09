@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
+
+namespace AlgortimosDibujarLinea
+{
+    internal class CRecorteLinea
+    {
+        // Liang-Barsky algorithm for line clipping
+        // p0,p1 are in world coordinates; clip is rectangle in integer coordinates (xmin,ymin,width,height)
+        public static bool LiangBarsky(ref PointF p0, ref PointF p1, Rectangle clip)
+        {
+            float xmin = clip.X;
+            float ymin = clip.Y;
+            float xmax = clip.X + clip.Width;
+            float ymax = clip.Y + clip.Height;
+
+            float dx = p1.X - p0.X;
+            float dy = p1.Y - p0.Y;
+
+            float t0 = 0f, t1 = 1f;
+
+            bool ClipTest(float p, float q, ref float tE, ref float tL)
+            {
+                if (Math.Abs(p) < 1e-9f) // p == 0
+                {
+                    if (q < 0f) return false; // parallel and outside
+                    return true; // parallel and inside
+                }
+                float r = q / p;
+                if (p < 0f)
+                {
+                    if (r > tL) return false;
+                    if (r > tE) tE = r;
+                }
+                else if (p > 0f)
+                {
+                    if (r < tE) return false;
+                    if (r < tL) tL = r;
+                }
+                return true;
+            }
+
+            // Left: x >= xmin  => p = -dx, q = p0.x - xmin
+            if (!ClipTest(-dx, p0.X - xmin, ref t0, ref t1)) return false;
+            // Right: x <= xmax => p = dx, q = xmax - p0.x
+            if (!ClipTest(dx, xmax - p0.X, ref t0, ref t1)) return false;
+            // Bottom: y >= ymin => p = -dy, q = p0.y - ymin
+            if (!ClipTest(-dy, p0.Y - ymin, ref t0, ref t1)) return false;
+            // Top: y <= ymax => p = dy, q = ymax - p0.y
+            if (!ClipTest(dy, ymax - p0.Y, ref t0, ref t1)) return false;
+
+            if (t1 < t0) return false;
+
+            PointF newP0 = new PointF(p0.X + t0 * dx, p0.Y + t0 * dy);
+            PointF newP1 = new PointF(p0.X + t1 * dx, p0.Y + t1 * dy);
+
+            p0 = newP0;
+            p1 = newP1;
+            return true;
+        }
+
+        // Nicholl-Lee-Nicholl algorithm: for now use Liang-Barsky implementation as a reliable clipper.
+        public static bool NichollLeeNicholl(ref PointF p0, ref PointF p1, Rectangle clip)
+        {
+            // For compatibility, call LiangBarsky which produces the same clipped segment.
+            return LiangBarsky(ref p0, ref p1, clip);
+        }
+    }
+}

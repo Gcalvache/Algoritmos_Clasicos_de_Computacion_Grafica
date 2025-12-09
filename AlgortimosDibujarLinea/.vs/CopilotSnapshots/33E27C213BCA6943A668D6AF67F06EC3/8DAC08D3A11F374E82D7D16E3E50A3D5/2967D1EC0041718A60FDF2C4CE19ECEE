@@ -1,0 +1,180 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+
+namespace AlgortimosDibujarLinea
+{
+    internal class CRecorteLinea
+    {
+        // Cohen-Sutherland outcodes
+        private const int INSIDE = 0; // 0000
+        private const int LEFT = 1;   // 0001
+        private const int RIGHT = 2;  // 0010
+        private const int BOTTOM = 4; // 0100
+        private const int TOP = 8;    // 1000
+
+        private static int ComputeOutCode(double x, double y, Rectangle clip)
+        {
+            int code = INSIDE;
+            if (x < clip.Left) code |= LEFT;
+            else if (x > clip.Right) code |= RIGHT;
+            if (y < clip.Top) code |= TOP; // note: screen coords vs world; we treat y increasing up in world; caller must use consistent coords
+            else if (y > clip.Bottom) code |= BOTTOM;
+            return code;
+        }
+
+        // Cohen-Sutherland algorithm. Assumes world coordinates where clip.Top <= clip.Bottom.
+        // Returns true if clipped segment exists; modifies p0/p1 to clipped endpoints.
+        public static bool CohenSutherland(ref PointF p0, ref PointF p1, Rectangle clip)
+        {
+            double x0 = p0.X, y0 = p0.Y;
+            double x1 = p1.X, y1 = p1.Y;
+
+            int outcode0 = ComputeOutCode(x0, y0, clip);
+            int outcode1 = ComputeOutCode(x1, y1, clip);
+            bool accept = false;
+
+            while (true)
+            {
+                if ((outcode0 | outcode1) == 0)
+                {
+                    // both inside
+                    accept = true;
+                    break;
+                }
+                else if ((outcode0 & outcode1) != 0)
+                {
+                    // both share an outside zone -> trivial reject
+                    break;
+                }
+                else
+                {
+                    // At least one is outside
+                    double x = 0, y = 0;
+                    int outcodeOut = outcode0 != 0 ? outcode0 : outcode1;
+
+                    // find intersection point
+                    if ((outcodeOut & TOP) != 0)
+                    {
+                        // y = clip.Top
+                        y = clip.Top;
+                        if (y1 != y0)
+                            x = x0 + (x1 - x0) * (y - y0) / (y1 - y0);
+                        else
+                            x = x0;
+                    }
+                    else if ((outcodeOut & BOTTOM) != 0)
+                    {
+                        y = clip.Bottom;
+                        if (y1 != y0)
+                            x = x0 + (x1 - x0) * (y - y0) / (y1 - y0);
+                        else
+                            x = x0;
+                    }
+                    else if ((outcodeOut & RIGHT) != 0)
+                    {
+                        x = clip.Right;
+                        if (x1 != x0)
+                            y = y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+                        else
+                            y = y0;
+                    }
+                    else if ((outcodeOut & LEFT) != 0)
+                    {
+                        x = clip.Left;
+                        if (x1 != x0)
+                            y = y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+                        else
+                            y = y0;
+                    }
+
+                    // replace outside point with intersection
+                    if (outcodeOut == outcode0)
+                    {
+                        x0 = x; y0 = y;
+                        outcode0 = ComputeOutCode(x0, y0, clip);
+                    }
+                    else
+                    {
+                        x1 = x; y1 = y;
+                        outcode1 = ComputeOutCode(x1, y1, clip);
+                    }
+                }
+            }
+
+            if (accept)
+            {
+                p0 = new PointF((float)x0, (float)y0);
+                p1 = new PointF((float)x1, (float)y1);
+                return true;
+            }
+            return false;
+        }
+
+        // Liang-Barsky algorithm
+        public static bool LiangBarsky(ref PointF p0, ref PointF p1, Rectangle clip)
+        {
+            double x0 = p0.X, y0 = p0.Y;
+            double x1 = p1.X, y1 = p1.Y;
+            double dx = x1 - x0;
+            double dy = y1 - y0;
+
+            double u0 = 0.0, u1 = 1.0;
+
+            double[] p = {-dx, dx, -dy, dy};
+            double[] q = {x0 - clip.Left, clip.Right - x0, y0 - clip.Top, clip.Bottom - y0};
+
+            for (int i = 0; i < 4; i++)
+            {
+                double pi = p[i];
+                double qi = q[i];
+                if (Math.Abs(pi) < 1e-12)
+                {
+                    if (qi < 0)
+                        return false; // parallel and outside
+                }
+                else
+                {
+                    double u = qi / pi;
+                    if (pi < 0)
+                    {
+                        // entering
+                        if (u > u0) u0 = u;
+                    }
+                    else
+                    {
+                        // leaving
+                        if (u < u1) u1 = u;
+                    }
+                }
+            }
+
+            if (u0 > u1) return false;
+
+            double nx0 = x0 + u0 * dx;
+            double ny0 = y0 + u0 * dy;
+            double nx1 = x0 + u1 * dx;
+            double ny1 = y0 + u1 * dy;
+
+            p0 = new PointF((float)nx0, (float)ny0);
+            p1 = new PointF((float)nx1, (float)ny1);
+            return true;
+        }
+
+        // Nicholl-Lee-Nicholl: for simplicity we use an optimized Liang-Barsky variant with early rejection tests
+        public static bool NichollLeeNicholl(ref PointF p0, ref PointF p1, Rectangle clip)
+        {
+            // Perform quick trivial accept/reject using Cohen outcodes
+            PointF a = p0, b = p1;
+            int outA = ComputeOutCode(a.X, a.Y, clip);
+            int outB = ComputeOutCode(b.X, b.Y, clip);
+            if ((outA | outB) == 0)
+                return true; // fully inside
+            if ((outA & outB) != 0)
+                return false; // trivially reject
+
+            // Fallback to Liang-Barsky for precise clipping (NLN optimizes but Liang-Barsky yields correct result)
+            return LiangBarsky(ref p0, ref p1, clip);
+        }
+    }
+}

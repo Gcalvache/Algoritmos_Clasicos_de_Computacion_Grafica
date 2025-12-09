@@ -1,0 +1,344 @@
+﻿namespace AlgortimosDibujarLinea
+{
+    partial class frmMetodoCorteLineaNLN
+    {
+        /// <summary>
+        /// Variable del diseñador necesaria.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén usando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblX1 = new System.Windows.Forms.Label();
+            this.lblY1 = new System.Windows.Forms.Label();
+            this.lblX2 = new System.Windows.Forms.Label();
+            this.lblY2 = new System.Windows.Forms.Label();
+            this.lblXmin = new System.Windows.Forms.Label();
+            this.lblYmin = new System.Windows.Forms.Label();
+            this.lblXmax = new System.Windows.Forms.Label();
+            this.lblYmax = new System.Windows.Forms.Label();
+            this.txtX1 = new System.Windows.Forms.TextBox();
+            this.txtY1 = new System.Windows.Forms.TextBox();
+            this.txtX2 = new System.Windows.Forms.TextBox();
+            this.txtY2 = new System.Windows.Forms.TextBox();
+            this.txtXmin = new System.Windows.Forms.TextBox();
+            this.txtYmin = new System.Windows.Forms.TextBox();
+            this.txtXmax = new System.Windows.Forms.TextBox();
+            this.txtYmax = new System.Windows.Forms.TextBox();
+            this.grpGrafico = new System.Windows.Forms.GroupBox();
+            this.pcbGrafico = new System.Windows.Forms.PictureBox();
+            this.grpOpciones = new System.Windows.Forms.GroupBox();
+            this.lblZoom = new System.Windows.Forms.Label();
+            this.trkZoom = new System.Windows.Forms.TrackBar();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.grpGrafico.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
+            this.grpOpciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblX1);
+            this.groupBox1.Controls.Add(this.txtX1);
+            this.groupBox1.Controls.Add(this.lblY1);
+            this.groupBox1.Controls.Add(this.txtY1);
+            this.groupBox1.Controls.Add(this.lblX2);
+            this.groupBox1.Controls.Add(this.txtX2);
+            this.groupBox1.Controls.Add(this.lblY2);
+            this.groupBox1.Controls.Add(this.txtY2);
+            this.groupBox1.Controls.Add(this.lblXmin);
+            this.groupBox1.Controls.Add(this.txtXmin);
+            this.groupBox1.Controls.Add(this.lblYmin);
+            this.groupBox1.Controls.Add(this.txtYmin);
+            this.groupBox1.Controls.Add(this.lblXmax);
+            this.groupBox1.Controls.Add(this.txtXmax);
+            this.groupBox1.Controls.Add(this.lblYmax);
+            this.groupBox1.Controls.Add(this.txtYmax);
+            this.groupBox1.Location = new System.Drawing.Point(24, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(286, 220);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de entrada";
+            // 
+            // lblX1
+            // 
+            this.lblX1.AutoSize = true;
+            this.lblX1.Location = new System.Drawing.Point(10, 22);
+            this.lblX1.Name = "lblX1";
+            this.lblX1.Size = new System.Drawing.Size(27, 13);
+            this.lblX1.TabIndex = 0;
+            this.lblX1.Text = "X1=";
+            // 
+            // txtX1
+            // 
+            this.txtX1.Location = new System.Drawing.Point(60, 19);
+            this.txtX1.Name = "txtX1";
+            this.txtX1.Size = new System.Drawing.Size(200, 20);
+            this.txtX1.TabIndex = 1;
+            // 
+            // lblY1
+            // 
+            this.lblY1.AutoSize = true;
+            this.lblY1.Location = new System.Drawing.Point(10, 48);
+            this.lblY1.Name = "lblY1";
+            this.lblY1.Size = new System.Drawing.Size(27, 13);
+            this.lblY1.TabIndex = 2;
+            this.lblY1.Text = "Y1=";
+            // 
+            // txtY1
+            // 
+            this.txtY1.Location = new System.Drawing.Point(60, 45);
+            this.txtY1.Name = "txtY1";
+            this.txtY1.Size = new System.Drawing.Size(200, 20);
+            this.txtY1.TabIndex = 3;
+            // 
+            // lblX2
+            // 
+            this.lblX2.AutoSize = true;
+            this.lblX2.Location = new System.Drawing.Point(10, 74);
+            this.lblX2.Name = "lblX2";
+            this.lblX2.Size = new System.Drawing.Size(27, 13);
+            this.lblX2.TabIndex = 4;
+            this.lblX2.Text = "X2=";
+            // 
+            // txtX2
+            // 
+            this.txtX2.Location = new System.Drawing.Point(60, 71);
+            this.txtX2.Name = "txtX2";
+            this.txtX2.Size = new System.Drawing.Size(200, 20);
+            this.txtX2.TabIndex = 5;
+            // 
+            // lblY2
+            // 
+            this.lblY2.AutoSize = true;
+            this.lblY2.Location = new System.Drawing.Point(10, 100);
+            this.lblY2.Name = "lblY2";
+            this.lblY2.Size = new System.Drawing.Size(27, 13);
+            this.lblY2.TabIndex = 6;
+            this.lblY2.Text = "Y2=";
+            // 
+            // txtY2
+            // 
+            this.txtY2.Location = new System.Drawing.Point(60, 97);
+            this.txtY2.Name = "txtY2";
+            this.txtY2.Size = new System.Drawing.Size(200, 20);
+            this.txtY2.TabIndex = 7;
+            // 
+            // lblXmin
+            // 
+            this.lblXmin.AutoSize = true;
+            this.lblXmin.Location = new System.Drawing.Point(10, 126);
+            this.lblXmin.Name = "lblXmin";
+            this.lblXmin.Size = new System.Drawing.Size(34, 13);
+            this.lblXmin.TabIndex = 8;
+            this.lblXmin.Text = "Xmin=";
+            // 
+            // txtXmin
+            // 
+            this.txtXmin.Location = new System.Drawing.Point(60, 123);
+            this.txtXmin.Name = "txtXmin";
+            this.txtXmin.Size = new System.Drawing.Size(200, 20);
+            this.txtXmin.TabIndex = 9;
+            // 
+            // lblYmin
+            // 
+            this.lblYmin.AutoSize = true;
+            this.lblYmin.Location = new System.Drawing.Point(10, 152);
+            this.lblYmin.Name = "lblYmin";
+            this.lblYmin.Size = new System.Drawing.Size(34, 13);
+            this.lblYmin.TabIndex = 10;
+            this.lblYmin.Text = "Ymin=";
+            // 
+            // txtYmin
+            // 
+            this.txtYmin.Location = new System.Drawing.Point(60, 149);
+            this.txtYmin.Name = "txtYmin";
+            this.txtYmin.Size = new System.Drawing.Size(200, 20);
+            this.txtYmin.TabIndex = 11;
+            // 
+            // lblXmax
+            // 
+            this.lblXmax.AutoSize = true;
+            this.lblXmax.Location = new System.Drawing.Point(10, 178);
+            this.lblXmax.Name = "lblXmax";
+            this.lblXmax.Size = new System.Drawing.Size(36, 13);
+            this.lblXmax.TabIndex = 12;
+            this.lblXmax.Text = "Xmax=";
+            // 
+            // txtXmax
+            // 
+            this.txtXmax.Location = new System.Drawing.Point(60, 175);
+            this.txtXmax.Name = "txtXmax";
+            this.txtXmax.Size = new System.Drawing.Size(200, 20);
+            this.txtXmax.TabIndex = 13;
+            // 
+            // lblYmax
+            // 
+            this.lblYmax.AutoSize = true;
+            this.lblYmax.Location = new System.Drawing.Point(10, 204);
+            this.lblYmax.Name = "lblYmax";
+            this.lblYmax.Size = new System.Drawing.Size(36, 13);
+            this.lblYmax.TabIndex = 14;
+            this.lblYmax.Text = "Ymax=";
+            // 
+            // txtYmax
+            // 
+            this.txtYmax.Location = new System.Drawing.Point(60, 201);
+            this.txtYmax.Name = "txtYmax";
+            this.txtYmax.Size = new System.Drawing.Size(200, 20);
+            this.txtYmax.TabIndex = 15;
+            // 
+            // grpGrafico
+            // 
+            this.grpGrafico.Controls.Add(this.pcbGrafico);
+            this.grpGrafico.Location = new System.Drawing.Point(336, 24);
+            this.grpGrafico.Name = "grpGrafico";
+            this.grpGrafico.Size = new System.Drawing.Size(452, 389);
+            this.grpGrafico.TabIndex = 2;
+            this.grpGrafico.TabStop = false;
+            this.grpGrafico.Text = "GRAFICO";
+            // 
+            // pcbGrafico
+            // 
+            this.pcbGrafico.Location = new System.Drawing.Point(7, 20);
+            this.pcbGrafico.Name = "pcbGrafico";
+            this.pcbGrafico.Size = new System.Drawing.Size(439, 356);
+            this.pcbGrafico.TabIndex = 0;
+            this.pcbGrafico.TabStop = false;
+            // 
+            // grpOpciones
+            // 
+            this.grpOpciones.Controls.Add(this.lblZoom);
+            this.grpOpciones.Controls.Add(this.trkZoom);
+            this.grpOpciones.Controls.Add(this.btnSalir);
+            this.grpOpciones.Controls.Add(this.btnLimpiar);
+            this.grpOpciones.Controls.Add(this.btnCalcular);
+            this.grpOpciones.Location = new System.Drawing.Point(24, 256);
+            this.grpOpciones.Name = "grpOpciones";
+            this.grpOpciones.Size = new System.Drawing.Size(286, 120);
+            this.grpOpciones.TabIndex = 3;
+            this.grpOpciones.TabStop = false;
+            this.grpOpciones.Text = "OPCIONES";
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(7, 16);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(66, 13);
+            this.lblZoom.TabIndex = 3;
+            this.lblZoom.Text = "Zoom: 10 px";
+            // 
+            // trkZoom
+            // 
+            this.trkZoom.Location = new System.Drawing.Point(7, 32);
+            this.trkZoom.Maximum = 100;
+            this.trkZoom.Minimum = 2;
+            this.trkZoom.Name = "trkZoom";
+            this.trkZoom.Size = new System.Drawing.Size(248, 45);
+            this.trkZoom.TabIndex = 2;
+            this.trkZoom.Value = 10;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(180, 85);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 2;
+            this.btnSalir.Text = "SALIR";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(93, 85);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 1;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(7, 85);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.TabIndex = 0;
+            this.btnCalcular.Text = "CALCULAR";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // frmMetodoCorteLineaNLN
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 434);
+            this.Controls.Add(this.grpGrafico);
+            this.Controls.Add(this.grpOpciones);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "frmMetodoCorteLineaNLN";
+            this.Text = "Recorte de Línea - NLN";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.grpGrafico.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
+            this.grpOpciones.ResumeLayout(false);
+            this.grpOpciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpGrafico;
+        private System.Windows.Forms.PictureBox pcbGrafico;
+        private System.Windows.Forms.GroupBox grpOpciones;
+        private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.TrackBar trkZoom;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.Label lblX1;
+        private System.Windows.Forms.Label lblY1;
+        private System.Windows.Forms.Label lblX2;
+        private System.Windows.Forms.Label lblY2;
+        private System.Windows.Forms.TextBox txtX1;
+        private System.Windows.Forms.TextBox txtY1;
+        private System.Windows.Forms.TextBox txtX2;
+        private System.Windows.Forms.TextBox txtY2;
+        private System.Windows.Forms.Label lblXmin;
+        private System.Windows.Forms.Label lblYmin;
+        private System.Windows.Forms.Label lblXmax;
+        private System.Windows.Forms.Label lblYmax;
+        private System.Windows.Forms.TextBox txtXmin;
+        private System.Windows.Forms.TextBox txtYmin;
+        private System.Windows.Forms.TextBox txtXmax;
+        private System.Windows.Forms.TextBox txtYmax;
+    }
+}
+

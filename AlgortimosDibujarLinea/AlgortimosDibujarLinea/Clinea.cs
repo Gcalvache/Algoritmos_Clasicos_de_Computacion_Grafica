@@ -4,6 +4,17 @@ using System.Drawing;
 
 namespace AlgortimosDibujarLinea
 {
+    /// <summary>
+    /// Módulo de discretización de líneas y generación de puntos de círculo.
+    /// Contiene implementaciones de algoritmos clásicos:
+    /// - DDA (Digital Differential Analyzer): muestreo uniforme por pasos.
+    /// - Bresenham (líneas y círculos): algoritmo eficiente con aritmética entera.
+    /// - Midpoint: variante del algoritmo de Bresenham para líneas y círculos.
+    /// - Polar (círculo): método basado en coordenadas polares para comparar resultados.
+    ///
+    /// Requerimientos no funcionales: comentarios en español, validación mínima de entradas
+    /// y diseño modular para permitir reemplazo de algoritmos.
+    /// </summary>
     public class Clinea
     {
         public int Xi { get; }
@@ -185,8 +196,8 @@ namespace AlgortimosDibujarLinea
         }
 
         /// <summary>
-        /// Midpoint circle algorithm (already implemented earlier).
-        /// Produces integer raster points approximating a circle centered at (xc,yc) with radius r.
+        /// Algoritmo de punto medio para círculos.
+        /// Produce puntos enteros que aproximan un círculo centrado en (xc,yc) con radio r.
         /// </summary>
         public static List<Point> CircleMidpoint(int xc, int yc, int r)
         {
@@ -218,9 +229,7 @@ namespace AlgortimosDibujarLinea
         }
 
         /// <summary>
-        /// Bresenham's circle algorithm (integer arithmetic).
-        /// Uses a decision parameter d initialized to 3-2*r and updates using only integer additions.
-        /// It iterates x from 0 to y and reflects points to all eight octants.
+        /// Algoritmo de Bresenham para círculos (aritmética entera).
         /// </summary>
         public static List<Point> CircleBresenham(int xc, int yc, int r)
         {
@@ -229,7 +238,7 @@ namespace AlgortimosDibujarLinea
 
             int x = 0;
             int y = r;
-            int d = 3 - 2 * r; // decision parameter
+            int d = 3 - 2 * r; // parámetro de decisión
 
             PlotCircleOctants(points, xc, yc, x, y);
 
@@ -237,12 +246,10 @@ namespace AlgortimosDibujarLinea
             {
                 if (d <= 0)
                 {
-                    // choose East
                     d = d + 4 * x + 6;
                 }
                 else
                 {
-                    // choose SouthEast
                     d = d + 4 * (x - y) + 10;
                     y--;
                 }
@@ -254,11 +261,7 @@ namespace AlgortimosDibujarLinea
         }
 
         /// <summary>
-        /// Polar coordinate circle algorithm.
-        /// Computes points using x = r*cos(theta), y = r*sin(theta) for theta in [0, pi/4]
-        /// and reflects them to all octants. Step size is 1/r radians (approx) to ensure sampling density
-        /// roughly proportional to radius.
-        /// This uses floating point trig but is simple and useful for comparison.
+        /// Algoritmo polar para círculos (usa trigonometría flotante) para comparación.
         /// </summary>
         public static List<Point> CirclePolar(int xc, int yc, int r)
         {
@@ -271,10 +274,9 @@ namespace AlgortimosDibujarLinea
                 return points;
             }
 
-            // step angle chosen so that arc length between samples roughly 1 pixel at radius r
-            double dtheta = 1.0 / r; // radians
+            double dtheta = 1.0 / r;
             double theta = 0.0;
-            double limit = Math.PI / 4.0; // compute one octant and reflect
+            double limit = Math.PI / 4.0;
 
             for (theta = 0.0; theta <= limit + 1e-9; theta += dtheta)
             {
@@ -283,7 +285,6 @@ namespace AlgortimosDibujarLinea
                 PlotCircleOctants(points, xc, yc, x, y);
             }
 
-            // ensure final octant point at 45 degrees included
             int xf = (int)Math.Round(r * Math.Cos(limit));
             int yf = (int)Math.Round(r * Math.Sin(limit));
             PlotCircleOctants(points, xc, yc, xf, yf);
@@ -292,8 +293,7 @@ namespace AlgortimosDibujarLinea
         }
 
         /// <summary>
-        /// Adds the 8 symmetric points for the given (x,y) around center (xc,yc).
-        /// Uses uniqueness check to avoid duplicate entries.
+        /// Añade los 8 puntos simétricos alrededor del centro para (x,y).
         /// </summary>
         private static void PlotCircleOctants(List<Point> list, int xc, int yc, int x, int y)
         {
