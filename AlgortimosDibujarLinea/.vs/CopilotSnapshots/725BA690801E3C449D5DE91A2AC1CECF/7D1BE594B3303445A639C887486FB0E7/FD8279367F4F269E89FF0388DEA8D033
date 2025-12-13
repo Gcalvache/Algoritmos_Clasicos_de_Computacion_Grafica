@@ -1,0 +1,272 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    /// <summary>
+    /// Formulario para relleno por scanline con semilla.
+    /// Implementación desacoplada en CRelleno. Se validan entradas y se maneja errores.
+    /// </summary>
+    public partial class frmMetodoRellenoScanlineSeed : Form
+    {
+        private bool primerAutoAjuste = true;
+
+        public frmMetodoRellenoScanlineSeed()
+        {
+            InitializeComponent();
+
+            // Asociar eventos de botones
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            // Inicializar zoom si existe
+            if (trkZoom != null)
+            {
+                trkZoom.Minimum = 1; // 0.1 px/unidad
+                trkZoom.Maximum = 2000; // máximo razonable
+                trkZoom.TickFrequency = 10;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            // Inicializar PictureBox con bitmap
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private float ScaleFromTrack(int trackValue)
+        {
+            return trackValue / 10f;
+        }
+
+        private int TrackFromScale(float scale)
+        {
+            return (int)Math.Max(1, Math.Round(scale * 10f));
+        }
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            if (lblZoom != null && trkZoom != null)
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+
+            // Redibujar con nuevo zoom
+            BtnCalcular_Click(this, EventArgs.Empty);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXc.Clear();
+            txtYc.Clear();
+            txtR.Clear();
+
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.Clear(pcbGrafico.BackColor);
+                }
+                pcbGrafico.Invalidate();
+            }
+
+            // Restablecer primerAutoAjuste para el próximo dibujo
+            primerAutoAjuste = true;
+            if (this.Controls.ContainsKey("statusStrip1") && tsslInfo != null) tsslInfo.Text = string.Empty;
+        }
+
+        private async void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int xc, yc, r;
+                if (!int.TryParse(txtXc.Text, out xc) ||
+                    !int.TryParse(txtYc.Text, out yc) ||
+                    !int.TryParse(txtR.Text, out r))
+                {
+                    MessageBox.Show("Ingrese valores enteros válidos para Xc, Yc y R.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (r < 0)
+                {
+                    MessageBox.Show("El radio debe ser no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var boundaryPoints = Clinea.CircleMidpoint(xc, yc, r);
+
+                if (boundaryPoints == null || boundaryPoints.Count == 0)
+                {
+                    MessageBox.Show("No hay puntos para dibujar.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Preparar bitmap si es necesario
+                if (pcbGrafico.Image == null)
+                    pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+                int width = pcbGrafico.Width;
+                int height = pcbGrafico.Height;
+                int margin = 12;
+
+                // Calcular escala automática para que el círculo quepa centrado en el área
+                float maxRadiusPx = Math.Min((width - margin * 2) / 2f, (height - margin * 2) / 2f);
+                float autoScale = (r == 0) ? 10f : (maxRadiusPx / r);
+                if (float.IsNaN(autoScale) || float.IsInfinity(autoScale) || autoScale <= 0f)
+                    autoScale = 10f;
+
+                // Configurar rango del trackbar según la escala automática
+                if (trkZoom != null)
+                {
+                    int suggestedMax = Math.Max(TrackFromScale(autoScale * 4f), 50);
+                    suggestedMax = Math.Min(suggestedMax, 5000);
+                    trkZoom.Minimum = 1;
+                    trkZoom.Maximum = suggestedMax;
+
+                    if (primerAutoAjuste)
+                    {
+                        trkZoom.Value = Math.Min(trkZoom.Maximum, Math.Max(trkZoom.Minimum, TrackFromScale(autoScale)));
+                        primerAutoAjuste = false;
+                    }
+                    lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+                }
+
+                float scale = (trkZoom != null) ? ScaleFromTrack(trkZoom.Value) : autoScale;
+                scale = Math.Max(0.05f, scale);
+
+                // Dibujar elementos base (rejilla/ejes y contorno)
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+                    g.Clear(pcbGrafico.BackColor);
+
+                    float spacing = scale;
+                    if (spacing < 6f)
+                    {
+                        int unitsPerLine = (int)Math.Ceiling(6f / Math.Max(0.0001f, scale));
+                        spacing = unitsPerLine * scale;
+                    }
+
+                    float cx = width / 2f;
+                    float cy = height / 2f;
+
+                    using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                    {
+                        for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                        for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                        for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                        for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    }
+
+                    using (var penAxis = new Pen(Color.Gray, 2))
+                    {
+                        g.DrawLine(penAxis, 0, cy, width, cy);
+                        g.DrawLine(penAxis, cx, 0, cx, height);
+                    }
+
+                    Func<int, int, PointF> map = (x, y) => new PointF(cx + (x - xc) * scale, cy - (y - yc) * scale);
+
+                    // Para mostrar la frontera usar un píxel pequeño para distinguirla del relleno
+                    float boundaryPixel = Math.Max(1f, Math.Min(4f, scale * 0.6f));
+                    using (var brushPixel = new SolidBrush(Color.FromArgb(220, 80, 80, 80)))
+                    using (var penPixel = new Pen(Color.FromArgb(200, 20, 20, 20), 1))
+                    {
+                        var oldSmoothing = g.SmoothingMode;
+                        g.SmoothingMode = SmoothingMode.None;
+                        foreach (var p in boundaryPoints)
+                        {
+                            var sp = map(p.X, p.Y);
+                            // Alinear a la rejilla de píxeles entera
+                            int rx = (int)Math.Round(sp.X - boundaryPixel / 2f);
+                            int ry = (int)Math.Round(sp.Y - boundaryPixel / 2f);
+                            var rect = new Rectangle(rx, ry, (int)Math.Max(1f, boundaryPixel), (int)Math.Max(1f, boundaryPixel));
+                            g.FillRectangle(brushPixel, rect);
+                            if (boundaryPixel >= 1.5f) g.DrawRectangle(penPixel, rect.X, rect.Y, rect.Width, rect.Height);
+                        }
+                        g.SmoothingMode = oldSmoothing;
+                    }
+
+                    // Se elimina la leyenda dibujada sobre el gráfico. En su lugar se actualiza la barra de estado si existe.
+                    if (this.Controls.ContainsKey("statusStrip1") && tsslInfo != null)
+                    {
+                        tsslInfo.Text = $"Center=({xc},{yc})  R={r}  Scale={scale:0.##} px/unidad";
+                    }
+                }
+
+                pcbGrafico.Invalidate();
+
+                // Construir conjunto de frontera y engrosarlo para evitar huecos
+                var boundarySet = new HashSet<Point>(boundaryPoints);
+                var toAdd = new List<Point>();
+                foreach (var p in boundaryPoints)
+                {
+                    for (int dx = -1; dx <= 1; dx++)
+                        for (int dy = -1; dy <= 1; dy++)
+                            toAdd.Add(new Point(p.X + dx, p.Y + dy));
+                }
+                foreach (var p in toAdd) boundarySet.Add(p);
+
+                // Semilla en el centro
+                var seed = new Point(xc, yc);
+
+                // Calcular relleno en hilo de fondo
+                var fillPoints = await Task.Run(() => CRelleno.ScanlineSeedFill(seed, boundarySet));
+
+                if (fillPoints == null || fillPoints.Count == 0)
+                {
+                    MessageBox.Show("No hay puntos para rellenar.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Animar relleno píxel a píxel. Usar celda completa
+                int widthPx = pcbGrafico.Width;
+                int heightPx = pcbGrafico.Height;
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                using (var fillBrush = new SolidBrush(Color.FromArgb(200, 180, 180, 250)))
+                using (var penFill = new Pen(Color.FromArgb(160, 80, 80, 160), 1))
+                {
+                    Func<int, int, PointF> map = (x, y) => new PointF(widthPx / 2f + (x - xc) * scale, heightPx / 2f - (y - yc) * scale);
+                    float pixelSize = Math.Max(1f, scale);
+
+                    int delayMs = fillPoints.Count > 8000 ? 0 : (fillPoints.Count > 2000 ? 0 : 1);
+
+                    foreach (var p in fillPoints)
+                    {
+                        var sp = map(p.X, p.Y);
+                        int rx = (int)Math.Round(sp.X - pixelSize / 2f);
+                        int ry = (int)Math.Round(sp.Y - pixelSize / 2f);
+                        var rect = new Rectangle(rx, ry, (int)Math.Max(1f, pixelSize), (int)Math.Max(1f, pixelSize));
+                        g.FillRectangle(fillBrush, rect);
+                        if (pixelSize >= 1.5f) g.DrawRectangle(penFill, rect.X, rect.Y, rect.Width, rect.Height);
+
+                        pcbGrafico.Invalidate();
+                        if (delayMs > 0) await Task.Delay(delayMs);
+                    }
+                }
+
+                pcbGrafico.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error durante el relleno: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmMetodoCirculo_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}

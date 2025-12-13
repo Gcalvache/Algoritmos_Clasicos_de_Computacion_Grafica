@@ -46,9 +46,9 @@
             this.liangBarskyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nichollLeeNichollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recorteDePoligonosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.greinerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sutherlandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.greinerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,26 +203,26 @@
             this.recorteDePoligonosToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
             this.recorteDePoligonosToolStripMenuItem.Text = "Recorte de Poligonos";
             // 
+            // greinerToolStripMenuItem
+            // 
+            this.greinerToolStripMenuItem.Name = "greinerToolStripMenuItem";
+            this.greinerToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.greinerToolStripMenuItem.Text = "Greiner";
+            this.greinerToolStripMenuItem.Click += new System.EventHandler(this.greinerToolStripMenuItem_Click);
+            // 
             // sutherlandToolStripMenuItem
             // 
             this.sutherlandToolStripMenuItem.Name = "sutherlandToolStripMenuItem";
-            this.sutherlandToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sutherlandToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.sutherlandToolStripMenuItem.Text = "Sutherland";
             this.sutherlandToolStripMenuItem.Click += new System.EventHandler(this.sutherlandToolStripMenuItem_Click);
             // 
             // weilerToolStripMenuItem
             // 
             this.weilerToolStripMenuItem.Name = "weilerToolStripMenuItem";
-            this.weilerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.weilerToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.weilerToolStripMenuItem.Text = "Weiler";
             this.weilerToolStripMenuItem.Click += new System.EventHandler(this.weilerToolStripMenuItem_Click);
-            // 
-            // greinerToolStripMenuItem
-            // 
-            this.greinerToolStripMenuItem.Name = "greinerToolStripMenuItem";
-            this.greinerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.greinerToolStripMenuItem.Text = "Greiner";
-            this.greinerToolStripMenuItem.Click += new System.EventHandler(this.greinerToolStripMenuItem_Click);
             // 
             // frmHome
             // 
@@ -234,7 +234,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmHome";
+            this.Text = "Algoritmos Clasicos de Computacion Grafica";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

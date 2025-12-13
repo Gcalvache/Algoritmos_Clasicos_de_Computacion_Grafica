@@ -1,0 +1,158 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    public partial class frmMetodoRecortePoligonoSutherland : Form
+    {
+        private List<PointF> poligonoSujeto = new List<PointF>();
+        private List<PointF> poligonoRecorte = null; // polígono de recorte (opcional)
+
+        private enum ToolMode { None, DrawPolygon, DefineRect }
+        private ToolMode mode = ToolMode.None;
+
+        private Rectangle? userClipRectLogical = null;
+        private Rectangle userClipRectScreen = Rectangle.Empty;
+        private bool isDraggingRect = false;
+        private Point dragStartScreen;
+
+        public frmMetodoRecortePoligonoSutherland()
+        {
+            InitializeComponent();
+
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+            btnDrawPolygon.Click += BtnDrawPolygon_Click;
+            btnDefineRect.Click += BtnDefineRect_Click;
+
+            pcbGrafico.Image = new Bitmap(Math.Max(1, pcbGrafico.Width), Math.Max(1, pcbGrafico.Height));
+            pcbGrafico.MouseClick += PcbGrafico_MouseClick;
+            pcbGrafico.MouseDown += PcbGrafico_MouseDown;
+            pcbGrafico.MouseMove += PcbGrafico_MouseMove;
+            pcbGrafico.MouseUp += PcbGrafico_MouseUp;
+
+            trkZoom.Minimum = 1; trkZoom.Maximum = 200; trkZoom.Value = 20;
+            trkZoom.Scroll += (s, e) => { lblZoom.Text = $"Zoom: {trkZoom.Value} px"; Redraw(); };
+            Redraw();
+        }
+
+        private void BtnDrawPolygon_Click(object sender, EventArgs e) { mode = ToolMode.DrawPolygon; tsslStatus.Text = "Modo: Dibujar Polígono"; }
+        private void BtnDefineRect_Click(object sender, EventArgs e) { mode = ToolMode.DefineRect; tsslStatus.Text = "Modo: Definir Recorte (arrastre)"; }
+
+        private void BtnSalir_Click(object sender, EventArgs e) => Close();
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            poligonoSujeto.Clear(); poligonoRecorte = null; userClipRectLogical = null; userClipRectScreen = Rectangle.Empty; mode = ToolMode.None; tsslInfo.Text = "Recorte: 0"; Redraw();
+        }
+
+        private void PcbGrafico_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mode != ToolMode.DrawPolygon) return;
+            int w = pcbGrafico.Width, h = pcbGrafico.Height; float scale = trkZoom.Value; float cx = w/2f, cy = h/2f;
+            int lx = (int)Math.Round((e.X - cx)/scale); int ly = (int)Math.Round((cy - e.Y)/scale);
+            poligonoSujeto.Add(new PointF(lx, ly)); Redraw();
+        }
+
+        private void PcbGrafico_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (mode == ToolMode.DefineRect && e.Button == MouseButtons.Left)
+            {
+                isDraggingRect = true; dragStartScreen = e.Location; userClipRectScreen = new Rectangle(e.Location, Size.Empty);
+            }
+        }
+        private void PcbGrafico_MouseMove(object sender, MouseEventArgs e) { if (isDraggingRect) { userClipRectScreen = GetNormalizedRect(dragStartScreen, e.Location); Redraw(); } }
+        private void PcbGrafico_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (isDraggingRect && e.Button == MouseButtons.Left)
+            {
+                isDraggingRect = false; userClipRectScreen = GetNormalizedRect(dragStartScreen, e.Location);
+                var p1 = ScreenToLogical(userClipRectScreen.Location);
+                var p2 = ScreenToLogical(new Point(userClipRectScreen.Right, userClipRectScreen.Bottom));
+                int xmin = Math.Min(p1.X, p2.X); int xmax = Math.Max(p1.X, p2.X);
+                int ymin = Math.Min(p1.Y, p2.Y); int ymax = Math.Max(p1.Y, p2.Y);
+                userClipRectLogical = new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
+                tsslStatus.Text = $"Rectángulo definido: ({xmin},{ymin}) - ({xmax},{ymax})";
+                Redraw();
+            }
+        }
+
+        private Rectangle GetNormalizedRect(Point a, Point b) { int x = Math.Min(a.X, b.X); int y = Math.Min(a.Y, b.Y); int w = Math.Abs(a.X - b.X); int h = Math.Abs(a.Y - b.Y); return new Rectangle(x, y, w, h); }
+        private Point ScreenToLogical(Point screen) { int width = pcbGrafico.Width, height = pcbGrafico.Height; float scale = trkZoom.Value; float cx = width/2f, cy = height/2f; int lx = (int)Math.Round((screen.X - cx)/scale); int ly = (int)Math.Round((cy - screen.Y)/scale); return new Point(lx, ly); }
+        private PointF LogicalToScreen(PointF logical) { int width = pcbGrafico.Width, height = pcbGrafico.Height; float scale = trkZoom.Value; float cx = width/2f, cy = height/2f; return new PointF(cx + logical.X*scale, cy - logical.Y*scale); }
+
+        private void Redraw()
+        {
+            if (pcbGrafico.Image == null) pcbGrafico.Image = new Bitmap(Math.Max(1, pcbGrafico.Width), Math.Max(1, pcbGrafico.Height));
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.Clear(pcbGrafico.BackColor);
+                float scale = trkZoom.Value;
+                // Dibujar polígono sujeto en gris oscuro
+                DrawPolygon(g, poligonoSujeto, Pens.DarkGray, scale);
+
+                // Dibujar ventana de recorte (rectángulo del PictureBox) en azul
+                var rect = new Rectangle(0,0,pcbGrafico.Width-1, pcbGrafico.Height-1);
+                g.DrawRectangle(Pens.Blue, rect);
+
+                // Calcular el polígono de recorte en coordenadas lógicas: rectángulo
+                float w = pcbGrafico.Width, h = pcbGrafico.Height; float cx = w/2f, cy = h/2f; float halfW = (w/2f)/scale; float halfH = (h/2f)/scale;
+                poligonoRecorte = new List<PointF> {
+                    new PointF(-halfW, -halfH),
+                    new PointF(halfW, -halfH),
+                    new PointF(halfW, halfH),
+                    new PointF(-halfW, halfH)
+                };
+
+                // Dibujar puntos del polígono sujeto
+                if (poligonoSujeto.Count>0) DrawPolygon(g, poligonoSujeto, Pens.DarkGray, scale);
+
+                // muestra rectangulo user mientras arrastra
+                if (isDraggingRect && userClipRectScreen != Rectangle.Empty) { using (var pen = new Pen(Color.Blue)) { pen.DashStyle = DashStyle.Dash; g.DrawRectangle(pen, userClipRectScreen); } }
+
+                // Si el polígono sujeto está cerrado -> realizar recorte
+                if (poligonoSujeto.Count >= 3 && userClipRectLogical!=null)
+                {
+                    var subjectPts = poligonoSujeto.Select(p => new PointF(cx + p.X*scale, cy - p.Y*scale)).ToArray();
+                    using (var sb = new SolidBrush(Color.FromArgb(40, 80, 80, 80))) g.FillPolygon(sb, subjectPts);
+
+                    var clipped = CRecortePoligono.SutherlandHodgmanClip(poligonoSujeto, poligonoRecorte);
+                    DrawPolygon(g, clipped, Pens.Red, scale);
+
+                    if (clipped.Count>0)
+                    {
+                        var pts = clipped.Select(p => new PointF(cx + p.X*scale, cy - p.Y*scale)).ToArray();
+                        using (var sb = new SolidBrush(Color.FromArgb(100, 200, 100, 100))) g.FillPolygon(sb, pts);
+                        tsslInfo.Text = $"Recorte: {clipped.Count} vertices";
+                    }
+                }
+            }
+            pcbGrafico.Invalidate();
+        }
+
+        private void DrawPolygon(Graphics g, List<PointF> poly, Pen pen, float scale)
+        {
+            if (poly == null || poly.Count == 0) return;
+            float w = pcbGrafico.Width, h = pcbGrafico.Height; float cx = w/2f, cy = h/2f;
+            PointF[] pts = poly.Select(p => new PointF(cx + p.X*scale, cy - p.Y*scale)).ToArray();
+            if (pts.Length == 1) g.FillEllipse(Brushes.Red, pts[0].X-3, pts[0].Y-3,6,6);
+            else g.DrawPolygon(pen, pts);
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            if (poligonoSujeto.Count < 3) { MessageBox.Show("Defina al menos 3 puntos en el polígono sujeto.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+            if (userClipRectLogical==null) { MessageBox.Show("Defina el rectángulo de recorte con 'Definir Recorte'.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+            Redraw();
+        }
+    }
+}

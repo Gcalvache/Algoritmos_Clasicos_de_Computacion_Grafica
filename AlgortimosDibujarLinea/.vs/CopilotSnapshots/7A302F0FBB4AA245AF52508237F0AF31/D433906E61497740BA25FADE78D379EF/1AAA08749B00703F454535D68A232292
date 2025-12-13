@@ -1,0 +1,272 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    /// <summary>
+    /// Formulario para mostrar recorte de líneas usando el algoritmo Liang-Barsky.
+    /// Ahora permite dibujar múltiples segmentos con clics y definir un rectángulo de recorte
+    /// arrastrando el ratón; luego realizar el recorte sobre todos los segmentos.
+    /// </summary>
+    public partial class frmMetodoCorteLineaBarsky : Form
+    {
+        private List<Tuple<Point, Point>> segments = new List<Tuple<Point, Point>>();
+        private Point? currentStart = null;
+
+        private enum ToolMode { None, DrawLine, DefineRect }
+        private ToolMode mode = ToolMode.None;
+
+        // Rectangle in logical coordinates (units used by clipping functions)
+        private Rectangle? userClipRectLogical = null;
+        // Rectangle in screen coords for preview
+        private Rectangle userClipRectScreen = Rectangle.Empty;
+
+        private bool isDraggingRect = false;
+        private Point dragStartScreen;
+
+        public frmMetodoCorteLineaBarsky()
+        {
+            InitializeComponent();
+
+            // Wire up buttons
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+            btnDrawLine.Click += BtnDrawLine_Click;
+            btnDefineRect.Click += BtnDefineRect_Click;
+
+            // Trackbar
+            if (trkZoom != null)
+            {
+                trkZoom.Minimum = 1;
+                trkZoom.Maximum = 2000;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += (s, e) => { lblZoom.Text = $"Zoom: {trkZoom.Value/10f:0.##} px/unidad"; DrawAll(); };
+            }
+
+            if (pcbGrafico.Image == null)
+                pcbGrafico.Image = new Bitmap(Math.Max(1, pcbGrafico.Width), Math.Max(1, pcbGrafico.Height));
+
+            // Mouse events
+            pcbGrafico.MouseClick += PcbGrafico_MouseClick;
+            pcbGrafico.MouseDown += PcbGrafico_MouseDown;
+            pcbGrafico.MouseMove += PcbGrafico_MouseMove;
+            pcbGrafico.MouseUp += PcbGrafico_MouseUp;
+
+            // Initial draw
+            DrawAll();
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e) => Close();
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            segments.Clear();
+            currentStart = null;
+            userClipRectLogical = null;
+            userClipRectScreen = Rectangle.Empty;
+            mode = ToolMode.None;
+            tsslInfo.Text = "Recorte: 0 segmentos";
+            DrawAll();
+        }
+
+        private void BtnDrawLine_Click(object sender, EventArgs e)
+        {
+            mode = ToolMode.DrawLine;
+            tsslStatus.Text = "Modo: Dibujar Línea (haga clic para definir extremos)";
+        }
+
+        private void BtnDefineRect_Click(object sender, EventArgs e)
+        {
+            mode = ToolMode.DefineRect;
+            tsslStatus.Text = "Modo: Definir Rectángulo (arrastre con el mouse)";
+        }
+
+        private void PcbGrafico_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mode != ToolMode.DrawLine) return;
+
+            var logical = ScreenToLogical(e.Location);
+            if (currentStart == null)
+            {
+                currentStart = logical;
+            }
+            else
+            {
+                var p0 = currentStart.Value;
+                var p1 = logical;
+                segments.Add(Tuple.Create(p0, p1));
+                currentStart = null;
+                tsslInfo.Text = $"Recorte: {segments.Count} segmentos";
+            }
+            DrawAll();
+        }
+
+        private void PcbGrafico_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (mode == ToolMode.DefineRect && e.Button == MouseButtons.Left)
+            {
+                isDraggingRect = true;
+                dragStartScreen = e.Location;
+                userClipRectScreen = new Rectangle(e.Location, Size.Empty);
+            }
+        }
+
+        private void PcbGrafico_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraggingRect)
+            {
+                userClipRectScreen = GetNormalizedRect(dragStartScreen, e.Location);
+                DrawAll();
+            }
+        }
+
+        private void PcbGrafico_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (isDraggingRect && e.Button == MouseButtons.Left)
+            {
+                isDraggingRect = false;
+                userClipRectScreen = GetNormalizedRect(dragStartScreen, e.Location);
+                // Convert screen rect to logical coordinates
+                var p1 = ScreenToLogical(userClipRectScreen.Location);
+                var p2 = ScreenToLogical(new Point(userClipRectScreen.Right, userClipRectScreen.Bottom));
+                int xmin = Math.Min(p1.X, p2.X);
+                int xmax = Math.Max(p1.X, p2.X);
+                int ymin = Math.Min(p1.Y, p2.Y);
+                int ymax = Math.Max(p1.Y, p2.Y);
+                userClipRectLogical = new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
+                tsslStatus.Text = $"Rectángulo definido: ({xmin},{ymin}) - ({xmax},{ymax})";
+                DrawAll();
+            }
+        }
+
+        private Rectangle GetNormalizedRect(Point a, Point b)
+        {
+            int x = Math.Min(a.X, b.X);
+            int y = Math.Min(a.Y, b.Y);
+            int w = Math.Abs(a.X - b.X);
+            int h = Math.Abs(a.Y - b.Y);
+            return new Rectangle(x, y, w, h);
+        }
+
+        private Point ScreenToLogical(Point screen)
+        {
+            int width = pcbGrafico.Width, height = pcbGrafico.Height;
+            float scale = trkZoom.Value / 10f;
+            float cx = width / 2f, cy = height / 2f;
+            int lx = (int)Math.Round((screen.X - cx) / scale);
+            int ly = (int)Math.Round((cy - screen.Y) / scale);
+            return new Point(lx, ly);
+        }
+
+        private PointF LogicalToScreen(Point logical)
+        {
+            int width = pcbGrafico.Width, height = pcbGrafico.Height;
+            float scale = trkZoom.Value / 10f;
+            float cx = width / 2f, cy = height / 2f;
+            return new PointF(cx + logical.X * scale, cy - logical.Y * scale);
+        }
+
+        private void DrawAll()
+        {
+            if (pcbGrafico.Image == null) pcbGrafico.Image = new Bitmap(Math.Max(1, pcbGrafico.Width), Math.Max(1, pcbGrafico.Height));
+            int width = pcbGrafico.Width, height = pcbGrafico.Height; float scale = trkZoom.Value / 10f;
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.Clear(pcbGrafico.BackColor);
+
+                // grid
+                float spacing = scale < 6f ? scale * (int)Math.Ceiling(6f / Math.Max(0.0001f, scale)) : scale;
+                float cx = width / 2f, cy = height / 2f;
+                using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                {
+                    for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                using (var penAxis = new Pen(Color.Gray, 2)) { g.DrawLine(penAxis, 0, cy, width, cy); g.DrawLine(penAxis, cx, 0, cx, height); }
+
+                // draw existing segments (original)
+                using (var penOrig = new Pen(Color.DarkGray, 2))
+                {
+                    foreach (var seg in segments)
+                    {
+                        var pA = LogicalToScreen(seg.Item1);
+                        var pB = LogicalToScreen(seg.Item2);
+                        g.DrawLine(penOrig, pA, pB);
+                    }
+                }
+
+                // draw current start point if any
+                if (currentStart != null)
+                {
+                    var p = LogicalToScreen(currentStart.Value);
+                    g.FillEllipse(Brushes.Red, p.X - 3, p.Y - 3, 6, 6);
+                }
+
+                // if clip rect logical exists, draw clipped results
+                if (userClipRectLogical != null)
+                {
+                    // draw clip rect (screen)
+                    using (var penClip = new Pen(Color.Blue, 2))
+                    {
+                        penClip.DashStyle = DashStyle.Dash;
+                        var topLeft = LogicalToScreen(new Point(userClipRectLogical.Value.Left, userClipRectLogical.Value.Top));
+                        var bottomRight = LogicalToScreen(new Point(userClipRectLogical.Value.Right, userClipRectLogical.Value.Bottom));
+                        var r = GetNormalizedRect(new Point((int)topLeft.X, (int)topLeft.Y), new Point((int)bottomRight.X, (int)bottomRight.Y));
+                        g.DrawRectangle(penClip, r);
+                    }
+
+                    int accepted = 0;
+                    foreach (var seg in segments)
+                    {
+                        Point cp0 = seg.Item1; Point cp1 = seg.Item2;
+                        bool ok = CRecorteLinea.LiangBarskyClip(ref cp0, ref cp1, userClipRectLogical.Value);
+                        if (ok)
+                        {
+                            var q0 = LogicalToScreen(cp0);
+                            var q1 = LogicalToScreen(cp1);
+                            using (var penC = new Pen(Color.Red, 2)) g.DrawLine(penC, q0, q1);
+                            accepted++;
+                        }
+                    }
+                    tsslInfo.Text = $"Recorte: {accepted} segmentos aceptados / {segments.Count} procesados";
+                }
+                else if (userClipRectScreen != Rectangle.Empty && isDraggingRect)
+                {
+                    // draw preview rectangle while dragging
+                    using (var penPreview = new Pen(Color.Blue, 1)) { penPreview.DashStyle = DashStyle.Dash; g.DrawRectangle(penPreview, userClipRectScreen); }
+                }
+
+            }
+            pcbGrafico.Invalidate();
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            if (userClipRectLogical == null)
+            {
+                MessageBox.Show("Defina primero el rectángulo de recorte (Definir Rectángulo).", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Re-draw will show clipped segments
+            DrawAll();
+        }
+
+        private void frmMetodoCorteLineaBarsky_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}

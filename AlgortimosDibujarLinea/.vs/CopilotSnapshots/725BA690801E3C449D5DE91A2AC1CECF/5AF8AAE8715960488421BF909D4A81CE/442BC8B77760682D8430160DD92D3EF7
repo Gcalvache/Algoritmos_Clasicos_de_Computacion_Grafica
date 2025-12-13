@@ -1,0 +1,247 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    /// <summary>
+    /// Formulario para el método del punto medio para dibujar círculos.
+    /// Descripción técnica: implementa el algoritmo de punto medio para trazar
+    /// círculos discretos. Se valida la entrada del usuario y se maneja el zoom
+    /// y la visualización en un PictureBox. El código está organizado de forma
+    /// modular para permitir reemplazar la implementación por otra variante
+    /// si es necesario.
+    /// Requerimientos no funcionales: validación de entradas, manejo de errores,
+    /// nombres de variables en camelCase, comentarios en español y diseño modular.
+    /// </summary>
+    public partial class frmMetodoCirculo : Form
+    {
+        private bool primerAutoAjuste = true;
+
+        public frmMetodoCirculo()
+        {
+            InitializeComponent();
+
+            // Asociar eventos de botones
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            // Inicializar zoom si existe
+            if (trkZoom != null)
+            {
+                // valor por defecto sensato: 10 px/unidad -> valor de track 100
+                trkZoom.Minimum = 1; // 0.1 px/unidad
+                trkZoom.Maximum = 2000; // máximo razonable inicialmente
+                trkZoom.TickFrequency = 10;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            // Inicializar PictureBox con un bitmap en blanco
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private float ScaleFromTrack(int trackValue)
+        {
+            return trackValue / 10f;
+        }
+
+        private int TrackFromScale(float scale)
+        {
+            return (int)Math.Max(1, Math.Round(scale * 10f));
+        }
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            if (lblZoom != null && trkZoom != null)
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+
+            // Redibujar con el nuevo zoom y actualizar el cálculo si corresponde
+            BtnCalcular_Click(this, EventArgs.Empty);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXc.Clear();
+            txtYc.Clear();
+            txtR.Clear();
+
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+                {
+                    g.Clear(pcbGrafico.BackColor);
+                }
+                pcbGrafico.Invalidate();
+            }
+
+            // Restablecer ajuste automático para el próximo dibujo
+            primerAutoAjuste = true;
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            int xc, yc, r;
+            if (!int.TryParse(txtXc.Text, out xc) ||
+                !int.TryParse(txtYc.Text, out yc) ||
+                !int.TryParse(txtR.Text, out r))
+            {
+                MessageBox.Show("Ingrese valores enteros válidos para Xc, Yc y R.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (r < 0)
+            {
+                MessageBox.Show("El radio debe ser no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Generar puntos del círculo mediante el algoritmo de punto medio
+            var puntos = Clinea.CircleMidpoint(xc, yc, r);
+
+            if (puntos == null || puntos.Count == 0)
+            {
+                MessageBox.Show("No hay puntos para dibujar.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Preparar bitmap si es necesario
+            if (pcbGrafico.Image == null)
+                pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+
+            int width = pcbGrafico.Width;
+            int height = pcbGrafico.Height;
+            int margin = 12;
+
+            // Calcular escala automática para que el círculo quepa centrado en el área
+            float maxRadiusPx = Math.Min((width - margin * 2) / 2f, (height - margin * 2) / 2f);
+            float autoScale = (r == 0) ? 10f : (maxRadiusPx / r);
+            if (float.IsNaN(autoScale) || float.IsInfinity(autoScale) || autoScale <= 0f)
+                autoScale = 10f;
+
+            // Configurar rango del trackbar a partir de la escala automática
+            if (trkZoom != null)
+            {
+                int suggestedMax = Math.Max(TrackFromScale(autoScale * 4f), 50); // permitir hasta 4x auto
+                suggestedMax = Math.Min(suggestedMax, 5000);
+                trkZoom.Minimum = 1; // 0.1 px/unidad
+                trkZoom.Maximum = suggestedMax;
+
+                // Si es el primer dibujo, ajustar el track al valor automático
+                if (primerAutoAjuste)
+                {
+                    trkZoom.Value = Math.Min(trkZoom.Maximum, Math.Max(trkZoom.Minimum, TrackFromScale(autoScale)));
+                    primerAutoAjuste = false;
+                }
+                // Actualizar etiqueta del zoom
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            // Determinar la escala final (desde trackbar si existe, o la escala automática)
+            float scale = (trkZoom != null) ? ScaleFromTrack(trkZoom.Value) : autoScale;
+            scale = Math.Max(0.05f, scale); // mínimo
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                // Alta calidad para elementos superpuestos
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.Clear(pcbGrafico.BackColor);
+
+                // Calcular separación de la rejilla en píxeles; evitar rejilla demasiado densa
+                float spacing = scale;
+                if (spacing < 6f)
+                {
+                    int unitsPerLine = (int)Math.Ceiling(6f / Math.Max(0.0001f, scale));
+                    spacing = unitsPerLine * scale;
+                }
+
+                float cx = width / 2f;
+                float cy = height / 2f;
+
+                // Dibujar rejilla
+                using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                {
+                    for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                // Dibujar ejes
+                using (var penAxis = new Pen(Color.Gray, 2))
+                {
+                    g.DrawLine(penAxis, 0, cy, width, cy);
+                    g.DrawLine(penAxis, cx, 0, cx, height);
+                }
+
+                // Mapear coordenadas del mundo a la pantalla; centrar el círculo en el centro de la pantalla
+                Func<int, int, PointF> map = (x, y) => new PointF(cx + (x - xc) * scale, cy - (y - yc) * scale);
+
+                // Dibujar píxeles discretos del círculo
+                float pixelSize = Math.Max(1f, Math.Min(4f, scale * 0.6f));
+                using (var brushPixel = new SolidBrush(Color.FromArgb(220, 80, 80, 80)))
+                using (var penPixel = new Pen(Color.FromArgb(200, 20, 20, 20), 1))
+                {
+                    var oldSmoothing = g.SmoothingMode;
+                    g.SmoothingMode = SmoothingMode.None;
+                    foreach (var p in puntos)
+                    {
+                        var sp = map(p.X, p.Y);
+                        var rect = new RectangleF(sp.X - pixelSize / 2f, sp.Y - pixelSize / 2f, pixelSize, pixelSize);
+                        g.FillRectangle(brushPixel, rect);
+                        if (pixelSize >= 1.5f) g.DrawRectangle(penPixel, rect.X, rect.Y, rect.Width, rect.Height);
+                    }
+                    g.SmoothingMode = oldSmoothing;
+                }
+
+                // Dibujar contorno del círculo suavizado y marcador del centro
+                using (var penCircle = new Pen(Color.FromArgb(200, 0, 120, 200), Math.Max(1f, scale * 0.08f)))
+                using (var penCenter = new Pen(Color.Red, 1))
+                {
+                    float radiusPx = r * scale;
+                    var centerScreen = map(xc, yc);
+                    var rect = new RectangleF(centerScreen.X - radiusPx, centerScreen.Y - radiusPx, radiusPx * 2f, radiusPx * 2f);
+
+                    g.DrawEllipse(penCircle, rect);
+
+                    // Marcador del centro
+                    float centerMarker = Math.Max(2f, scale * 0.2f);
+                    var centerRect = new RectangleF(centerScreen.X - centerMarker / 2f, centerScreen.Y - centerMarker / 2f, centerMarker, centerMarker);
+                    g.FillEllipse(Brushes.Red, centerRect);
+                    g.DrawEllipse(penCenter, centerRect);
+                }
+
+                // Leyenda con parámetros
+                using (var font = new Font("Segoe UI", 9f))
+                using (var brush = new SolidBrush(Color.Black))
+                {
+                    var text = $"Center=({xc},{yc})  R={r}  Scale={scale:0.##} px/unidad";
+                    var size = g.MeasureString(text, font);
+                    var bg = new RectangleF(6, 6, size.Width + 6, size.Height + 6);
+                    using (var b = new SolidBrush(Color.FromArgb(200, 255, 255, 255))) g.FillRectangle(b, bg);
+                    g.DrawString(text, font, brush, 9, 9);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+
+        private void frmMetodoCirculo_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}

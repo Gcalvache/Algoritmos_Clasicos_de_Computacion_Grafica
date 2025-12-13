@@ -28,208 +28,268 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtR = new System.Windows.Forms.TextBox();
-            this.txtYc = new System.Windows.Forms.TextBox();
-            this.txtXc = new System.Windows.Forms.TextBox();
-            this.lblR = new System.Windows.Forms.Label();
-            this.lblYc = new System.Windows.Forms.Label();
-            this.lblXc = new System.Windows.Forms.Label();
-            this.grpGrafico = new System.Windows.Forms.GroupBox();
-            this.pcbGrafico = new System.Windows.Forms.PictureBox();
-            this.grpOpciones = new System.Windows.Forms.GroupBox();
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.grpTools = new System.Windows.Forms.GroupBox();
+            this.btnDefineRect = new System.Windows.Forms.Button();
+            this.btnDrawLine = new System.Windows.Forms.Button();
+            this.grpAlgorithm = new System.Windows.Forms.GroupBox();
             this.lblZoom = new System.Windows.Forms.Label();
             this.trkZoom = new System.Windows.Forms.TrackBar();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.grpActions = new System.Windows.Forms.GroupBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnCalcular = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.grpGrafico.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
-            this.grpOpciones.SuspendLayout();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.pcbGrafico = new System.Windows.Forms.PictureBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtXc = new System.Windows.Forms.TextBox();
+            this.txtYc = new System.Windows.Forms.TextBox();
+            this.txtR = new System.Windows.Forms.TextBox();
+            this.lblXc = new System.Windows.Forms.Label();
+            this.lblYc = new System.Windows.Forms.Label();
+            this.lblR = new System.Windows.Forms.Label();
+            this.pnlRight.SuspendLayout();
+            this.grpTools.SuspendLayout();
+            this.grpAlgorithm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
+            this.grpActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // pnlRight
             // 
-            this.groupBox1.Controls.Add(this.txtR);
-            this.groupBox1.Controls.Add(this.txtYc);
-            this.groupBox1.Controls.Add(this.txtXc);
-            this.groupBox1.Controls.Add(this.lblR);
-            this.groupBox1.Controls.Add(this.lblYc);
-            this.groupBox1.Controls.Add(this.lblXc);
-            this.groupBox1.Location = new System.Drawing.Point(24, 24);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 123);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos de entrada";
+            this.pnlRight.Controls.Add(this.grpTools);
+            this.pnlRight.Controls.Add(this.grpAlgorithm);
+            this.pnlRight.Controls.Add(this.grpActions);
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlRight.Location = new System.Drawing.Point(578, 0);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(222, 412);
+            this.pnlRight.TabIndex = 0;
             // 
-            // txtR
+            // grpTools
             // 
-            this.txtR.Location = new System.Drawing.Point(88, 80);
-            this.txtR.Name = "txtR";
-            this.txtR.Size = new System.Drawing.Size(177, 20);
-            this.txtR.TabIndex = 5;
+            this.grpTools.Controls.Add(this.btnDefineRect);
+            this.grpTools.Controls.Add(this.btnDrawLine);
+            this.grpTools.Location = new System.Drawing.Point(8, 164);
+            this.grpTools.Name = "grpTools";
+            this.grpTools.Size = new System.Drawing.Size(206, 88);
+            this.grpTools.TabIndex = 8;
+            this.grpTools.TabStop = false;
+            this.grpTools.Text = "Herramientas";
             // 
-            // txtYc
+            // btnDefineRect
             // 
-            this.txtYc.Location = new System.Drawing.Point(88, 50);
-            this.txtYc.Name = "txtYc";
-            this.txtYc.Size = new System.Drawing.Size(177, 20);
-            this.txtYc.TabIndex = 4;
+            this.btnDefineRect.Location = new System.Drawing.Point(18, 48);
+            this.btnDefineRect.Name = "btnDefineRect";
+            this.btnDefineRect.Size = new System.Drawing.Size(170, 25);
+            this.btnDefineRect.TabIndex = 1;
+            this.btnDefineRect.Text = "Definir Rectángulo de Recorte";
+            this.btnDefineRect.UseVisualStyleBackColor = true;
             // 
-            // txtXc
+            // btnDrawLine
             // 
-            this.txtXc.Location = new System.Drawing.Point(88, 22);
-            this.txtXc.Name = "txtXc";
-            this.txtXc.Size = new System.Drawing.Size(177, 20);
-            this.txtXc.TabIndex = 3;
+            this.btnDrawLine.Location = new System.Drawing.Point(18, 18);
+            this.btnDrawLine.Name = "btnDrawLine";
+            this.btnDrawLine.Size = new System.Drawing.Size(170, 25);
+            this.btnDrawLine.TabIndex = 0;
+            this.btnDrawLine.Text = "Dibujar Línea";
+            this.btnDrawLine.UseVisualStyleBackColor = true;
             // 
-            // lblR
+            // grpAlgorithm
             // 
-            this.lblR.AutoSize = true;
-            this.lblR.Location = new System.Drawing.Point(17, 83);
-            this.lblR.Name = "lblR";
-            this.lblR.Size = new System.Drawing.Size(21, 13);
-            this.lblR.TabIndex = 2;
-            this.lblR.Text = "R=";
-            // 
-            // lblYc
-            // 
-            this.lblYc.AutoSize = true;
-            this.lblYc.Location = new System.Drawing.Point(17, 53);
-            this.lblYc.Name = "lblYc";
-            this.lblYc.Size = new System.Drawing.Size(26, 13);
-            this.lblYc.TabIndex = 1;
-            this.lblYc.Text = "Yc=";
-            // 
-            // lblXc
-            // 
-            this.lblXc.AutoSize = true;
-            this.lblXc.Location = new System.Drawing.Point(17, 25);
-            this.lblXc.Name = "lblXc";
-            this.lblXc.Size = new System.Drawing.Size(26, 13);
-            this.lblXc.TabIndex = 0;
-            this.lblXc.Text = "Xc=";
-            // 
-            // grpGrafico
-            // 
-            this.grpGrafico.Controls.Add(this.pcbGrafico);
-            this.grpGrafico.Location = new System.Drawing.Point(336, 24);
-            this.grpGrafico.Name = "grpGrafico";
-            this.grpGrafico.Size = new System.Drawing.Size(452, 389);
-            this.grpGrafico.TabIndex = 2;
-            this.grpGrafico.TabStop = false;
-            this.grpGrafico.Text = "GRAFICO";
-            // 
-            // pcbGrafico
-            // 
-            this.pcbGrafico.Location = new System.Drawing.Point(7, 20);
-            this.pcbGrafico.Name = "pcbGrafico";
-            this.pcbGrafico.Size = new System.Drawing.Size(439, 356);
-            this.pcbGrafico.TabIndex = 0;
-            this.pcbGrafico.TabStop = false;
-            // 
-            // grpOpciones
-            // 
-            this.grpOpciones.Controls.Add(this.lblZoom);
-            this.grpOpciones.Controls.Add(this.trkZoom);
-            this.grpOpciones.Controls.Add(this.btnSalir);
-            this.grpOpciones.Controls.Add(this.btnLimpiar);
-            this.grpOpciones.Controls.Add(this.btnCalcular);
-            this.grpOpciones.Location = new System.Drawing.Point(24, 160);
-            this.grpOpciones.Name = "grpOpciones";
-            this.grpOpciones.Size = new System.Drawing.Size(286, 110);
-            this.grpOpciones.TabIndex = 3;
-            this.grpOpciones.TabStop = false;
-            this.grpOpciones.Text = "OPCIONES";
+            this.grpAlgorithm.Controls.Add(this.lblZoom);
+            this.grpAlgorithm.Controls.Add(this.trkZoom);
+            this.grpAlgorithm.Location = new System.Drawing.Point(8, 72);
+            this.grpAlgorithm.Name = "grpAlgorithm";
+            this.grpAlgorithm.Size = new System.Drawing.Size(206, 77);
+            this.grpAlgorithm.TabIndex = 7;
+            this.grpAlgorithm.TabStop = false;
+            this.grpAlgorithm.Text = "Algoritmo";
             // 
             // lblZoom
             // 
             this.lblZoom.AutoSize = true;
-            this.lblZoom.Location = new System.Drawing.Point(7, 16);
+            this.lblZoom.Location = new System.Drawing.Point(15, 18);
             this.lblZoom.Name = "lblZoom";
             this.lblZoom.Size = new System.Drawing.Size(66, 13);
-            this.lblZoom.TabIndex = 3;
+            this.lblZoom.TabIndex = 0;
             this.lblZoom.Text = "Zoom: 10 px";
             // 
             // trkZoom
             // 
-            this.trkZoom.Location = new System.Drawing.Point(7, 32);
-            this.trkZoom.Maximum = 100;
+            this.trkZoom.Location = new System.Drawing.Point(18, 32);
+            this.trkZoom.Maximum = 1000;
             this.trkZoom.Minimum = 2;
             this.trkZoom.Name = "trkZoom";
-            this.trkZoom.Size = new System.Drawing.Size(248, 45);
-            this.trkZoom.TabIndex = 2;
-            this.trkZoom.Value = 10;
+            this.trkZoom.Size = new System.Drawing.Size(170, 45);
+            this.trkZoom.TabIndex = 1;
+            this.trkZoom.Value = 100;
             // 
-            // btnSalir
+            // grpActions
             // 
-            this.btnSalir.Location = new System.Drawing.Point(180, 75);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 2;
-            this.btnSalir.Text = "SALIR";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.grpActions.Controls.Add(this.btnLimpiar);
+            this.grpActions.Controls.Add(this.btnSalir);
+            this.grpActions.Location = new System.Drawing.Point(8, 8);
+            this.grpActions.Name = "grpActions";
+            this.grpActions.Size = new System.Drawing.Size(206, 58);
+            this.grpActions.TabIndex = 5;
+            this.grpActions.TabStop = false;
+            this.grpActions.Text = "Acciones";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(93, 75);
+            this.btnLimpiar.Location = new System.Drawing.Point(18, 16);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 1;
-            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.Size = new System.Drawing.Size(80, 23);
+            this.btnLimpiar.TabIndex = 0;
+            this.btnLimpiar.Text = "Limpiar Canvas";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
-            // btnCalcular
+            // btnSalir
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(7, 75);
-            this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
-            this.btnCalcular.TabIndex = 0;
-            this.btnCalcular.Text = "CALCULAR";
-            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnSalir.Location = new System.Drawing.Point(108, 16);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(80, 23);
+            this.btnSalir.TabIndex = 1;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // pcbGrafico
+            // 
+            this.pcbGrafico.BackColor = System.Drawing.Color.White;
+            this.pcbGrafico.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pcbGrafico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcbGrafico.Location = new System.Drawing.Point(0, 0);
+            this.pcbGrafico.Name = "pcbGrafico";
+            this.pcbGrafico.Size = new System.Drawing.Size(578, 412);
+            this.pcbGrafico.TabIndex = 1;
+            this.pcbGrafico.TabStop = false;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslStatus,
+            this.tsslInfo});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 412);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslStatus
+            // 
+            this.tsslStatus.Name = "tsslStatus";
+            this.tsslStatus.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tsslInfo
+            // 
+            this.tsslInfo.Name = "tsslInfo";
+            this.tsslInfo.Size = new System.Drawing.Size(120, 17);
+            this.tsslInfo.Text = "Recorte: 0 segmentos";
+            // 
+            // txtXc
+            // 
+            this.txtXc.Location = new System.Drawing.Point(0, 0);
+            this.txtXc.Name = "txtXc";
+            this.txtXc.Size = new System.Drawing.Size(100, 20);
+            this.txtXc.TabIndex = 0;
+            this.txtXc.Visible = false;
+            // 
+            // txtYc
+            // 
+            this.txtYc.Location = new System.Drawing.Point(0, 0);
+            this.txtYc.Name = "txtYc";
+            this.txtYc.Size = new System.Drawing.Size(100, 20);
+            this.txtYc.TabIndex = 0;
+            this.txtYc.Visible = false;
+            // 
+            // txtR
+            // 
+            this.txtR.Location = new System.Drawing.Point(0, 0);
+            this.txtR.Name = "txtR";
+            this.txtR.Size = new System.Drawing.Size(100, 20);
+            this.txtR.TabIndex = 0;
+            this.txtR.Visible = false;
+            // 
+            // lblXc
+            // 
+            this.lblXc.AutoSize = true;
+            this.lblXc.Location = new System.Drawing.Point(0, 0);
+            this.lblXc.Name = "lblXc";
+            this.lblXc.Size = new System.Drawing.Size(26, 13);
+            this.lblXc.TabIndex = 0;
+            this.lblXc.Text = "Xc=";
+            this.lblXc.Visible = false;
+            // 
+            // lblYc
+            // 
+            this.lblYc.AutoSize = true;
+            this.lblYc.Location = new System.Drawing.Point(0, 0);
+            this.lblYc.Name = "lblYc";
+            this.lblYc.Size = new System.Drawing.Size(26, 13);
+            this.lblYc.TabIndex = 0;
+            this.lblYc.Text = "Yc=";
+            this.lblYc.Visible = false;
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.Location = new System.Drawing.Point(0, 0);
+            this.lblR.Name = "lblR";
+            this.lblR.Size = new System.Drawing.Size(21, 13);
+            this.lblR.TabIndex = 0;
+            this.lblR.Text = "R=";
+            this.lblR.Visible = false;
             // 
             // frmMetodoCorteLineaCohen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 434);
-            this.Controls.Add(this.grpGrafico);
-            this.Controls.Add(this.grpOpciones);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.pcbGrafico);
+            this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.statusStrip1);
             this.Name = "frmMetodoCorteLineaCohen";
-            this.Text = "Corte de línea - Cohen-Sutherland";
+            this.Text = "Recorte de Líneas - Cohen-Sutherland";
             this.Load += new System.EventHandler(this.frmMetodoCorteLineaCohen_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.grpGrafico.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
-            this.grpOpciones.ResumeLayout(false);
-            this.grpOpciones.PerformLayout();
+            this.pnlRight.ResumeLayout(false);
+            this.grpTools.ResumeLayout(false);
+            this.grpAlgorithm.ResumeLayout(false);
+            this.grpAlgorithm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
+            this.grpActions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblR;
-        private System.Windows.Forms.Label lblYc;
-        private System.Windows.Forms.Label lblXc;
-        private System.Windows.Forms.TextBox txtR;
-        private System.Windows.Forms.TextBox txtYc;
-        private System.Windows.Forms.TextBox txtXc;
-        private System.Windows.Forms.GroupBox grpGrafico;
-        private System.Windows.Forms.PictureBox pcbGrafico;
-        private System.Windows.Forms.GroupBox grpOpciones;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.GroupBox grpTools;
+        private System.Windows.Forms.Button btnDefineRect;
+        private System.Windows.Forms.Button btnDrawLine;
+        private System.Windows.Forms.GroupBox grpAlgorithm;
+        private System.Windows.Forms.GroupBox grpActions;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblZoom;
         private System.Windows.Forms.TrackBar trkZoom;
-        private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.PictureBox pcbGrafico;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
+        private System.Windows.Forms.ToolStripStatusLabel tsslInfo;
+        private System.Windows.Forms.TextBox txtXc;
+        private System.Windows.Forms.TextBox txtYc;
+        private System.Windows.Forms.TextBox txtR;
+        private System.Windows.Forms.Label lblXc;
+        private System.Windows.Forms.Label lblYc;
+        private System.Windows.Forms.Label lblR;
     }
 }
 

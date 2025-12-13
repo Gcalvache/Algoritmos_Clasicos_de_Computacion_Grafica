@@ -1,0 +1,279 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    /// <summary>
+    /// Formulario para el método de Bresenham para círculos.
+    /// Descripción técnica: genera los puntos discretos de un círculo usando el
+    /// algoritmo de Bresenham. Proporciona validación de entrada, control de zoom
+    /// y visualización en un PictureBox. Diseño modular para permitir reemplazo
+    /// o extensión del algoritmo.
+    /// </summary>
+    public partial class frmMetodoCirculoBresenham : Form
+    {
+        private bool primerAutoAjuste = true;
+
+        public frmMetodoCirculoBresenham()
+        {
+            InitializeComponent();
+
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+
+            if (trkZoom != null)
+            {
+                trkZoom.Minimum = 1; // 0.1 px/unidad
+                trkZoom.Maximum = 2000;
+                trkZoom.TickFrequency = 10;
+                trkZoom.Value = 100;
+                trkZoom.Scroll += TrkZoom_Scroll;
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+        }
+
+        private float ScaleFromTrack(int trackValue)
+        {
+            return trackValue / 10f;
+        }
+
+        private int TrackFromScale(float scale)
+        {
+            return (int)Math.Max(1, Math.Round(scale * 10f));
+        }
+
+        private void TrkZoom_Scroll(object sender, EventArgs e)
+        {
+            if (lblZoom != null && trkZoom != null)
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            BtnCalcular_Click(this, EventArgs.Empty);
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtXc.Clear();
+            txtYc.Clear();
+            txtR.Clear();
+            if (pcbGrafico.Image != null)
+            {
+                using (Graphics g = Graphics.FromImage(pcbGrafico.Image)) g.Clear(pcbGrafico.BackColor);
+                pcbGrafico.Invalidate();
+            }
+
+            primerAutoAjuste = true;
+        }
+
+        // Generador de puntos para círculos usando el algoritmo de Bresenham (versión entera)
+        private List<Point> GenerateBresenhamPoints(int xc, int yc, int r)
+        {
+            var points = new List<Point>();
+            var seen = new HashSet<Point>();
+            Action<int,int> add = (px, py) => {
+                var p = new Point(px, py);
+                if (seen.Add(p)) points.Add(p);
+            };
+
+            if (r < 0) return points;
+            if (r == 0)
+            {
+                add(xc, yc);
+                return points;
+            }
+
+            int x = 0;
+            int y = r;
+            int d = 3 - 2 * r;
+
+            // octantes iniciales
+            add(xc + x, yc + y);
+            add(xc - x, yc + y);
+            add(xc + x, yc - y);
+            add(xc - x, yc - y);
+            add(xc + y, yc + x);
+            add(xc - y, yc + x);
+            add(xc + y, yc - x);
+            add(xc - y, yc - x);
+
+            while (x < y)
+            {
+                x++;
+                if (d <= 0)
+                {
+                    d = d + 4 * x + 6;
+                }
+                else
+                {
+                    d = d + 4 * (x - y) + 10;
+                    y--;
+                }
+
+                add(xc + x, yc + y);
+                add(xc - x, yc + y);
+                add(xc + x, yc - y);
+                add(xc - x, yc - y);
+                add(xc + y, yc + x);
+                add(xc - y, yc + x);
+                add(xc + y, yc - x);
+                add(xc - y, yc - x);
+            }
+
+            return points;
+        }
+
+        // Cálculo y dibujado del círculo usando el algoritmo de Bresenham
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            int xc, yc, r;
+            if (!int.TryParse(txtXc.Text, out xc) ||
+                !int.TryParse(txtYc.Text, out yc) ||
+                !int.TryParse(txtR.Text, out r))
+            {
+                MessageBox.Show("Ingrese valores enteros válidos para Xc, Yc y R.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (r < 0)
+            {
+                MessageBox.Show("El radio debe ser no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var puntos = GenerateBresenhamPoints(xc, yc, r);
+
+            if (puntos == null || puntos.Count == 0)
+            {
+                MessageBox.Show("No hay puntos para dibujar.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int width = pcbGrafico.Width;
+            int height = pcbGrafico.Height;
+            int margin = 12;
+
+            // Calculo de escala automática para que el círculo quepa en el área dibujable
+            float maxRadiusPx = Math.Min((width - margin * 2) / 2f, (height - margin * 2) / 2f);
+            float autoScale = (r == 0) ? 10f : (maxRadiusPx / r);
+            if (float.IsNaN(autoScale) || float.IsInfinity(autoScale) || autoScale <= 0f) autoScale = 10f;
+
+            // configuración del rango del trackbar basado en autoScale para permitir acercar/alejar
+            if (trkZoom != null)
+            {
+                int suggestedMax = Math.Max(TrackFromScale(autoScale * 4f), 50); // permitir hasta 4x auto
+                suggestedMax = Math.Min(suggestedMax, 5000);
+                trkZoom.Minimum = 1; // 0.1 px/unidad
+                trkZoom.Maximum = suggestedMax;
+
+                // si es el primer dibujo, ajustar el track a autoScale para que el círculo quepa
+                if (primerAutoAjuste)
+                {
+                    trkZoom.Value = Math.Min(trkZoom.Maximum, Math.Max(trkZoom.Minimum, TrackFromScale(autoScale)));
+                    primerAutoAjuste = false;
+                }
+                // actualizar etiqueta
+                lblZoom.Text = $"Zoom: {ScaleFromTrack(trkZoom.Value):0.##} px/unidad";
+            }
+
+            // Determinar la escala final a partir del trackbar (si está presente) o de autoScale de lo contrario
+            float scale = (trkZoom != null) ? ScaleFromTrack(trkZoom.Value) : autoScale;
+            scale = Math.Max(0.05f, scale); // mínimo
+
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                // Alta calidad para superposición
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.Clear(pcbGrafico.BackColor);
+
+                // Calcular el espaciamiento de la cuadrícula en píxeles; evitar cuadrículas demasiado densas
+                float spacing = scale;
+                if (spacing < 6f)
+                {
+                    int unitsPerLine = (int)Math.Ceiling(6f / Math.Max(0.0001f, scale));
+                    spacing = unitsPerLine * scale;
+                }
+
+                float cx = width / 2f;
+                float cy = height / 2f;
+
+                // Dibujar cuadrícula
+                using (var penGrid = new Pen(Color.FromArgb(200, 230, 230, 230), 1))
+                {
+                    for (float x = cx; x <= width; x += spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float x = cx - spacing; x >= 0; x -= spacing) g.DrawLine(penGrid, x, 0, x, height);
+                    for (float y = cy; y <= height; y += spacing) g.DrawLine(penGrid, 0, y, width, y);
+                    for (float y = cy - spacing; y >= 0; y -= spacing) g.DrawLine(penGrid, 0, y, width, y);
+                }
+
+                // Dibujar ejes
+                using (var penAxis = new Pen(Color.Gray, 2))
+                {
+                    g.DrawLine(penAxis, 0, cy, width, cy);
+                    g.DrawLine(penAxis, cx, 0, cx, height);
+                }
+
+                // Mapear mundo (x,y) -> punto en pantalla; centrar el centro del círculo en el centro de la pantalla
+                Func<int, int, PointF> map = (x, y) => new PointF(cx + (x - xc) * scale, cy - (y - yc) * scale);
+
+                // Dibujar píxeles discretos
+                float pixelSize = Math.Max(1f, Math.Min(4f, scale * 0.6f));
+                using (var brushPixel = new SolidBrush(Color.FromArgb(220, 80, 80, 80)))
+                using (var penPixel = new Pen(Color.FromArgb(200, 20, 20, 20), 1))
+                {
+                    var oldSmoothing = g.SmoothingMode;
+                    g.SmoothingMode = SmoothingMode.None;
+                    foreach (var p in puntos)
+                    {
+                        var sp = map(p.X, p.Y);
+                        var rect = new RectangleF(sp.X - pixelSize / 2f, sp.Y - pixelSize / 2f, pixelSize, pixelSize);
+                        g.FillRectangle(brushPixel, rect);
+                        if (pixelSize >= 1.5f) g.DrawRectangle(penPixel, rect.X, rect.Y, rect.Width, rect.Height);
+                    }
+                    g.SmoothingMode = oldSmoothing;
+                }
+
+                // Superposición suave del círculo
+                using (var penCircle = new Pen(Color.FromArgb(200, 0, 120, 200), Math.Max(1f, scale * 0.08f)))
+                using (var penCenter = new Pen(Color.Red, 1))
+                {
+                    float radiusPx = r * scale;
+                    var centerScreen = map(xc, yc);
+                    var rect = new RectangleF(centerScreen.X - radiusPx, centerScreen.Y - radiusPx, radiusPx * 2f, radiusPx * 2f);
+
+                    g.DrawEllipse(penCircle, rect);
+
+                    float centerMarker = Math.Max(2f, scale * 0.2f);
+                    var centerRect = new RectangleF(centerScreen.X - centerMarker / 2f, centerScreen.Y - centerMarker / 2f, centerMarker, centerMarker);
+                    g.FillEllipse(Brushes.Red, centerRect);
+                    g.DrawEllipse(penCenter, centerRect);
+                }
+
+                using (var font = new Font("Segoe UI", 9f))
+                using (var brush = new SolidBrush(Color.Black))
+                {
+                    var text = $"Center=({xc},{yc})  R={r}  Scale={scale:0.##} px/unidad";
+                    var size = g.MeasureString(text, font);
+                    var bg = new RectangleF(6, 6, size.Width + 6, size.Height + 6);
+                    using (var b = new SolidBrush(Color.FromArgb(200, 255, 255, 255))) g.FillRectangle(b, bg);
+                    g.DrawString(text, font, brush, 9, 9);
+                }
+            }
+
+            pcbGrafico.Invalidate();
+        }
+    }
+}

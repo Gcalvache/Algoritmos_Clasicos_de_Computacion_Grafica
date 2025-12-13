@@ -1,0 +1,423 @@
+﻿namespace AlgortimosDibujarLinea
+{
+    partial class frmMetodoCorteLineaBarsky
+    {
+        /// <summary>
+        /// Variable del diseñador necesaria.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén usando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.grpTools = new System.Windows.Forms.GroupBox();
+            this.btnDefineRect = new System.Windows.Forms.Button();
+            this.btnDrawLine = new System.Windows.Forms.Button();
+            this.grpAlgorithm = new System.Windows.Forms.GroupBox();
+            this.cmbVariant = new System.Windows.Forms.ComboBox();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.lblZoom = new System.Windows.Forms.Label();
+            this.trkZoom = new System.Windows.Forms.TrackBar();
+            this.grpColors = new System.Windows.Forms.GroupBox();
+            this.btnClipColor = new System.Windows.Forms.Button();
+            this.lblClipColor = new System.Windows.Forms.Label();
+            this.btnLineColor = new System.Windows.Forms.Button();
+            this.lblLineColor = new System.Windows.Forms.Label();
+            this.grpActions = new System.Windows.Forms.GroupBox();
+            this.btnDeshacer = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.pcbGrafico = new System.Windows.Forms.PictureBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtXc = new System.Windows.Forms.TextBox();
+            this.txtYc = new System.Windows.Forms.TextBox();
+            this.txtR = new System.Windows.Forms.TextBox();
+            this.lblXc = new System.Windows.Forms.Label();
+            this.lblYc = new System.Windows.Forms.Label();
+            this.lblR = new System.Windows.Forms.Label();
+            this.pnlRight.SuspendLayout();
+            this.grpTools.SuspendLayout();
+            this.grpAlgorithm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).BeginInit();
+            this.grpColors.SuspendLayout();
+            this.grpActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.Controls.Add(this.grpTools);
+            this.pnlRight.Controls.Add(this.grpAlgorithm);
+            this.pnlRight.Controls.Add(this.grpColors);
+            this.pnlRight.Controls.Add(this.grpActions);
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlRight.Location = new System.Drawing.Point(771, 0);
+            this.pnlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(296, 508);
+            this.pnlRight.TabIndex = 0;
+            // 
+            // grpTools
+            // 
+            this.grpTools.Controls.Add(this.btnDefineRect);
+            this.grpTools.Controls.Add(this.btnDrawLine);
+            this.grpTools.Location = new System.Drawing.Point(11, 345);
+            this.grpTools.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpTools.Name = "grpTools";
+            this.grpTools.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpTools.Size = new System.Drawing.Size(275, 108);
+            this.grpTools.TabIndex = 8;
+            this.grpTools.TabStop = false;
+            this.grpTools.Text = "Herramientas";
+            // 
+            // btnDefineRect
+            // 
+            this.btnDefineRect.Location = new System.Drawing.Point(24, 59);
+            this.btnDefineRect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDefineRect.Name = "btnDefineRect";
+            this.btnDefineRect.Size = new System.Drawing.Size(227, 31);
+            this.btnDefineRect.TabIndex = 1;
+            this.btnDefineRect.Text = "Definir Rectángulo de Recorte";
+            this.btnDefineRect.UseVisualStyleBackColor = true;
+            this.btnDefineRect.Click += new System.EventHandler(this.btnDefineRect_Click);
+            // 
+            // btnDrawLine
+            // 
+            this.btnDrawLine.Location = new System.Drawing.Point(24, 22);
+            this.btnDrawLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDrawLine.Name = "btnDrawLine";
+            this.btnDrawLine.Size = new System.Drawing.Size(227, 31);
+            this.btnDrawLine.TabIndex = 0;
+            this.btnDrawLine.Text = "Dibujar Línea";
+            this.btnDrawLine.UseVisualStyleBackColor = true;
+            // 
+            // grpAlgorithm
+            // 
+            this.grpAlgorithm.Controls.Add(this.cmbVariant);
+            this.grpAlgorithm.Controls.Add(this.btnCalcular);
+            this.grpAlgorithm.Controls.Add(this.lblZoom);
+            this.grpAlgorithm.Controls.Add(this.trkZoom);
+            this.grpAlgorithm.Location = new System.Drawing.Point(11, 197);
+            this.grpAlgorithm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpAlgorithm.Name = "grpAlgorithm";
+            this.grpAlgorithm.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpAlgorithm.Size = new System.Drawing.Size(275, 138);
+            this.grpAlgorithm.TabIndex = 7;
+            this.grpAlgorithm.TabStop = false;
+            this.grpAlgorithm.Text = "Algoritmo";
+            // 
+            // cmbVariant
+            // 
+            this.cmbVariant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVariant.FormattingEnabled = true;
+            this.cmbVariant.Items.AddRange(new object[] {
+            "Liang-Barsky"});
+            this.cmbVariant.Location = new System.Drawing.Point(24, 94);
+            this.cmbVariant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbVariant.Name = "cmbVariant";
+            this.cmbVariant.Size = new System.Drawing.Size(225, 24);
+            this.cmbVariant.TabIndex = 3;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(24, 54);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(227, 31);
+            this.btnCalcular.TabIndex = 2;
+            this.btnCalcular.Text = "Realizar Recorte";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(20, 22);
+            this.lblZoom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(79, 16);
+            this.lblZoom.TabIndex = 0;
+            this.lblZoom.Text = "Zoom: 10 px";
+            // 
+            // trkZoom
+            // 
+            this.trkZoom.Location = new System.Drawing.Point(24, 39);
+            this.trkZoom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trkZoom.Maximum = 1000;
+            this.trkZoom.Minimum = 2;
+            this.trkZoom.Name = "trkZoom";
+            this.trkZoom.Size = new System.Drawing.Size(227, 56);
+            this.trkZoom.TabIndex = 1;
+            this.trkZoom.Value = 100;
+            // 
+            // grpColors
+            // 
+            this.grpColors.Controls.Add(this.btnClipColor);
+            this.grpColors.Controls.Add(this.lblClipColor);
+            this.grpColors.Controls.Add(this.btnLineColor);
+            this.grpColors.Controls.Add(this.lblLineColor);
+            this.grpColors.Location = new System.Drawing.Point(11, 103);
+            this.grpColors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpColors.Name = "grpColors";
+            this.grpColors.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpColors.Size = new System.Drawing.Size(275, 84);
+            this.grpColors.TabIndex = 6;
+            this.grpColors.TabStop = false;
+            this.grpColors.Text = "Colores";
+            // 
+            // btnClipColor
+            // 
+            this.btnClipColor.Location = new System.Drawing.Point(128, 49);
+            this.btnClipColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClipColor.Name = "btnClipColor";
+            this.btnClipColor.Size = new System.Drawing.Size(123, 25);
+            this.btnClipColor.TabIndex = 3;
+            this.btnClipColor.Text = "Seleccionar";
+            this.btnClipColor.UseVisualStyleBackColor = true;
+            // 
+            // lblClipColor
+            // 
+            this.lblClipColor.AutoSize = true;
+            this.lblClipColor.Location = new System.Drawing.Point(20, 53);
+            this.lblClipColor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblClipColor.Name = "lblClipColor";
+            this.lblClipColor.Size = new System.Drawing.Size(112, 16);
+            this.lblClipColor.TabIndex = 2;
+            this.lblClipColor.Text = "Color de Recorte:";
+            // 
+            // btnLineColor
+            // 
+            this.btnLineColor.Location = new System.Drawing.Point(128, 20);
+            this.btnLineColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLineColor.Name = "btnLineColor";
+            this.btnLineColor.Size = new System.Drawing.Size(123, 25);
+            this.btnLineColor.TabIndex = 1;
+            this.btnLineColor.Text = "Seleccionar";
+            this.btnLineColor.UseVisualStyleBackColor = true;
+            // 
+            // lblLineColor
+            // 
+            this.lblLineColor.AutoSize = true;
+            this.lblLineColor.Location = new System.Drawing.Point(20, 23);
+            this.lblLineColor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLineColor.Name = "lblLineColor";
+            this.lblLineColor.Size = new System.Drawing.Size(97, 16);
+            this.lblLineColor.TabIndex = 0;
+            this.lblLineColor.Text = "Color de Línea:";
+            // 
+            // grpActions
+            // 
+            this.grpActions.Controls.Add(this.btnDeshacer);
+            this.grpActions.Controls.Add(this.btnLimpiar);
+            this.grpActions.Controls.Add(this.btnSalir);
+            this.grpActions.Location = new System.Drawing.Point(11, 10);
+            this.grpActions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpActions.Name = "grpActions";
+            this.grpActions.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpActions.Size = new System.Drawing.Size(275, 89);
+            this.grpActions.TabIndex = 5;
+            this.grpActions.TabStop = false;
+            this.grpActions.Text = "Acciones";
+            // 
+            // btnDeshacer
+            // 
+            this.btnDeshacer.Location = new System.Drawing.Point(24, 52);
+            this.btnDeshacer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeshacer.Name = "btnDeshacer";
+            this.btnDeshacer.Size = new System.Drawing.Size(227, 28);
+            this.btnDeshacer.TabIndex = 2;
+            this.btnDeshacer.Text = "Deshacer (Ctrl+Z)";
+            this.btnDeshacer.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(24, 20);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(107, 28);
+            this.btnLimpiar.TabIndex = 0;
+            this.btnLimpiar.Text = "Limpiar Canvas";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(144, 20);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(107, 28);
+            this.btnSalir.TabIndex = 1;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // pcbGrafico
+            // 
+            this.pcbGrafico.BackColor = System.Drawing.Color.White;
+            this.pcbGrafico.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pcbGrafico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcbGrafico.Location = new System.Drawing.Point(0, 0);
+            this.pcbGrafico.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pcbGrafico.Name = "pcbGrafico";
+            this.pcbGrafico.Size = new System.Drawing.Size(771, 508);
+            this.pcbGrafico.TabIndex = 1;
+            this.pcbGrafico.TabStop = false;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslStatus,
+            this.tsslInfo});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 508);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1067, 26);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslStatus
+            // 
+            this.tsslStatus.Name = "tsslStatus";
+            this.tsslStatus.Size = new System.Drawing.Size(0, 20);
+            // 
+            // tsslInfo
+            // 
+            this.tsslInfo.Name = "tsslInfo";
+            this.tsslInfo.Size = new System.Drawing.Size(151, 20);
+            this.tsslInfo.Text = "Recorte: 0 segmentos";
+            // 
+            // txtXc
+            // 
+            this.txtXc.Location = new System.Drawing.Point(0, 0);
+            this.txtXc.Name = "txtXc";
+            this.txtXc.Size = new System.Drawing.Size(100, 22);
+            this.txtXc.TabIndex = 0;
+            this.txtXc.Visible = false;
+            // 
+            // txtYc
+            // 
+            this.txtYc.Location = new System.Drawing.Point(0, 0);
+            this.txtYc.Name = "txtYc";
+            this.txtYc.Size = new System.Drawing.Size(100, 22);
+            this.txtYc.TabIndex = 0;
+            this.txtYc.Visible = false;
+            // 
+            // txtR
+            // 
+            this.txtR.Location = new System.Drawing.Point(0, 0);
+            this.txtR.Name = "txtR";
+            this.txtR.Size = new System.Drawing.Size(100, 22);
+            this.txtR.TabIndex = 0;
+            this.txtR.Visible = false;
+            // 
+            // lblXc
+            // 
+            this.lblXc.AutoSize = true;
+            this.lblXc.Location = new System.Drawing.Point(0, 0);
+            this.lblXc.Name = "lblXc";
+            this.lblXc.Size = new System.Drawing.Size(26, 13);
+            this.lblXc.TabIndex = 0;
+            this.lblXc.Text = "Xc=";
+            this.lblXc.Visible = false;
+            // 
+            // lblYc
+            // 
+            this.lblYc.AutoSize = true;
+            this.lblYc.Location = new System.Drawing.Point(0, 0);
+            this.lblYc.Name = "lblYc";
+            this.lblYc.Size = new System.Drawing.Size(26, 13);
+            this.lblYc.TabIndex = 0;
+            this.lblYc.Text = "Yc=";
+            this.lblYc.Visible = false;
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.Location = new System.Drawing.Point(0, 0);
+            this.lblR.Name = "lblR";
+            this.lblR.Size = new System.Drawing.Size(21, 13);
+            this.lblR.TabIndex = 0;
+            this.lblR.Text = "R=";
+            this.lblR.Visible = false;
+            // 
+            // frmMetodoCorteLineaBarsky
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1067, 534);
+            this.Controls.Add(this.pcbGrafico);
+            this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.statusStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "frmMetodoCorteLineaBarsky";
+            this.Text = "Recorte de Líneas - Liang-Barsky";
+            this.Load += new System.EventHandler(this.frmMetodoCorteLineaBarsky_Load);
+            this.pnlRight.ResumeLayout(false);
+            this.grpTools.ResumeLayout(false);
+            this.grpAlgorithm.ResumeLayout(false);
+            this.grpAlgorithm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkZoom)).EndInit();
+            this.grpColors.ResumeLayout(false);
+            this.grpColors.PerformLayout();
+            this.grpActions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrafico)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.GroupBox grpTools;
+        private System.Windows.Forms.Button btnDefineRect;
+        private System.Windows.Forms.Button btnDrawLine;
+        private System.Windows.Forms.GroupBox grpAlgorithm;
+        private System.Windows.Forms.ComboBox cmbVariant;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.GroupBox grpColors;
+        private System.Windows.Forms.Button btnClipColor;
+        private System.Windows.Forms.Label lblClipColor;
+        private System.Windows.Forms.Button btnLineColor;
+        private System.Windows.Forms.Label lblLineColor;
+        private System.Windows.Forms.GroupBox grpActions;
+        private System.Windows.Forms.Button btnDeshacer;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.TrackBar trkZoom;
+        private System.Windows.Forms.PictureBox pcbGrafico;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
+        private System.Windows.Forms.ToolStripStatusLabel tsslInfo;
+        private System.Windows.Forms.TextBox txtXc;
+        private System.Windows.Forms.TextBox txtYc;
+        private System.Windows.Forms.TextBox txtR;
+        private System.Windows.Forms.Label lblXc;
+        private System.Windows.Forms.Label lblYc;
+        private System.Windows.Forms.Label lblR;
+    }
+}
+

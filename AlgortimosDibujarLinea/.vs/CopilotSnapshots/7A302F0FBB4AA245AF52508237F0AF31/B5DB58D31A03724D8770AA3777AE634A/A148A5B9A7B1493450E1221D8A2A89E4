@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AlgortimosDibujarLinea
+{
+    /// <summary>
+    /// Formulario para recorte de polígonos usando la variante Greiner-Hormann (placeholder).
+    /// Permite al usuario definir un polígono sujeto y visualizar el resultado del recorte.
+    /// Se valida que el polígono sujeto tenga al menos 3 vértices antes de realizar el recorte.
+    /// </summary>
+    public partial class frmMetodoRecortePoligonoGreiner : Form
+    {
+        private List<PointF> poligonoSujeto = new List<PointF>();
+        private List<PointF> poligonoRecorte = null;
+
+        public frmMetodoRecortePoligonoGreiner()
+        {
+            InitializeComponent();
+            btnCalcular.Click += BtnCalcular_Click;
+            btnLimpiar.Click += BtnLimpiar_Click;
+            btnSalir.Click += BtnSalir_Click;
+            pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+            pcbGrafico.MouseClick += PcbGrafico_MouseClick;
+            trkZoom.Minimum = 1; trkZoom.Maximum = 200; trkZoom.Value = 20;
+            trkZoom.Scroll += (s,e) => { lblZoom.Text = $"Zoom: {trkZoom.Value} px"; Redraw(); };
+            Redraw();
+        }
+
+        private void PcbGrafico_MouseClick(object sender, MouseEventArgs e)
+        {
+            int w = pcbGrafico.Width, h = pcbGrafico.Height; float scale = trkZoom.Value; float cx = w/2f, cy = h/2f;
+            int lx = (int)Math.Round((e.X - cx)/scale); int ly = (int)Math.Round((cy - e.Y)/scale);
+            poligonoSujeto.Add(new PointF(lx, ly)); Redraw();
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e) { poligonoSujeto.Clear(); poligonoRecorte = null; txtXc.Clear(); txtYc.Clear(); txtR.Clear(); Redraw(); }
+        private void BtnSalir_Click(object sender, EventArgs e) => Close();
+
+        private void Redraw()
+        {
+            if (pcbGrafico.Image==null) pcbGrafico.Image = new Bitmap(pcbGrafico.Width, pcbGrafico.Height);
+            using (Graphics g = Graphics.FromImage(pcbGrafico.Image))
+            {
+                g.Clear(pcbGrafico.BackColor);
+                float scale = trkZoom.Value; float w = pcbGrafico.Width, h = pcbGrafico.Height; float cx = w/2f, cy = h/2f;
+
+                if (poligonoSujeto.Count>0)
+                {
+                    var pts = poligonoSujeto.Select(p => new PointF(cx + p.X*scale, cy - p.Y*scale)).ToArray();
+                    if (pts.Length==1) g.FillEllipse(Brushes.Red, pts[0].X-3, pts[0].Y-3, 6,6);
+                    else g.DrawPolygon(Pens.DarkGray, pts);
+                }
+
+                var rect = new Rectangle(0,0,pcbGrafico.Width-1, pcbGrafico.Height-1); g.DrawRectangle(Pens.Blue, rect);
+                float halfW = (w/2f)/scale; float halfH = (h/2f)/scale;
+                poligonoRecorte = new List<PointF> { new PointF(-halfW,-halfH), new PointF(halfW,-halfH), new PointF(halfW,halfH), new PointF(-halfW,halfH) };
+
+                if (poligonoSujeto.Count>=3)
+                {
+                    var resultado = CRecortePoligono.GreinerHormannClip(poligonoSujeto, poligonoRecorte);
+                    if (resultado!=null && resultado.Count>0)
+                    {
+                        var rpts = resultado.Select(p=> new PointF(cx + p.X*scale, cy - p.Y*scale)).ToArray();
+                        using (var brush = new SolidBrush(Color.FromArgb(120, 100, 200, 100))) g.FillPolygon(brush, rpts);
+                        g.DrawPolygon(new Pen(Color.Green,2), rpts);
+                    }
+                }
+            }
+            pcbGrafico.Invalidate();
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            if (poligonoSujeto.Count<3) { MessageBox.Show("Defina al menos 3 puntos en el polígono sujeto.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+            Redraw();
+        }
+    }
+}
